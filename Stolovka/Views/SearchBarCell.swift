@@ -15,23 +15,22 @@ class SearchBarCell: UITableViewCell {
         didSet {
             guard let item = item as? SearchBarModel else { return }
             searchBar.text = item.searchBarString
-            if let searchBarImage = item.searchBarSettingImageString {
-                searchBarButton.setBackgroundImage(UIImage(systemName: searchBarImage), for: .normal)
-            }
+            let image = UIImage(sfSymbol: item.searchBarSymbol)
+            searchBarButton.setBackgroundImage(image, for: .normal)
         }
     }
     
     private lazy var searchBarButton: UIButton = {
         let searchBarButton = UIButton(type: .system)
         searchBarButton.addTarget(self, action: #selector(didTapSearchButton), for: .touchUpInside)
-        searchBarButton.tintColor = .black
+        searchBarButton.tintColor = Asset.Colors.menu.color
         return searchBarButton
     }()
     
     private lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.searchTextField.font = .systemFont(ofSize: 14, weight: .light)
-        searchBar.searchTextField.textColor = constants.searchBarTextColor
+        searchBar.searchTextField.textColor = Asset.Colors.secondaryText.color
         searchBar.searchTextField.textAlignment = .left
         searchBar.backgroundImage = UIImage()
         return searchBar

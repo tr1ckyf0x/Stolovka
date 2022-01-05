@@ -1,0 +1,11 @@
+/* 
+  Localized.strings
+  Stolovka
+
+  Created by Vladislav Lisianskii on 05.01.2022.
+  Copyright © 2022 Владислав Лисянский. All rights reserved.
+*/
+
+"standardGreeting" = "Привет, %@";
+"guest" = "Гость";
+"searchBarMessage" = "Поиск по столовке...";

@@ -17,8 +17,6 @@ enum CellItemType {
 protocol CellItem {
     var cellItemType: CellItemType { get }
     var rowCount: Int { get }
-    var sectionTitle: String { get }
-    
 }
 
 extension CellItem {
@@ -40,7 +38,7 @@ class StolovkaViewModel: NSObject {
         }
 
         if let _ = profile.doesContainSearchBar {
-            let searchBarItem = SearchBarModel(searchBarString: constants.searchBarMessage, searchBarSettingImageString: constants.searchBarImageString)
+            let searchBarItem = SearchBarModel(searchBarString: L10n.searchBarMessage, searchBarSymbol: SFSymbol.sliderHorizontal)
             items.append(searchBarItem)
         }
         
@@ -78,23 +76,11 @@ extension StolovkaViewModel: UITableViewDataSource {
         }
         return UITableViewCell()
     }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-       
-        if constants.tableViewAllowsHeaderNames {
-        return items[section].sectionTitle
-    }
-        return nil
-    }
 }
 
     
 //MARK: - CellItems
 class GreetingModel: CellItem {
-    
-    var sectionTitle: String {
-        return "Приветствие Клекта"
-    }
     
     var cellItemType: CellItemType {
         return .greeting
@@ -105,7 +91,7 @@ class GreetingModel: CellItem {
     
     init (name: String, qouteOfTheDay: String) {
         self.userName = name
-        self.usernameGreeting = "\(constants.standardGreeting) \(name)!"
+        self.usernameGreeting = L10n.standardGreeting(name)
         self.qouteOfTheDay = qouteOfTheDay
     }
 }
@@ -115,15 +101,13 @@ class SearchBarModel: CellItem {
     var cellItemType: CellItemType {
         return .searchBar
     }
-    var sectionTitle: String {
-        return "Поисковая клетка"}
     
-    var searchBarString: String?
-    var searchBarSettingImageString: String?
+    var searchBarString: String
+    var searchBarSymbol: SFSymbolRepresentable
     
-    init(searchBarString: String, searchBarSettingImageString: String) {
+    init(searchBarString: String, searchBarSymbol: SFSymbolRepresentable) {
         self.searchBarString = searchBarString
-        self.searchBarSettingImageString = searchBarSettingImageString
+        self.searchBarSymbol = searchBarSymbol
     }
 }
 

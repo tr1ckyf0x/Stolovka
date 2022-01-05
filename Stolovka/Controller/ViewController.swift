@@ -19,7 +19,7 @@ class ViewController: UIViewController {
         tableView.register(SearchBarCell.self, forCellReuseIdentifier: "\(SearchBarCell.self)")
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 200
-        tableView.backgroundColor = constants.viewControllerTableViewBackgroundColor
+        tableView.backgroundColor = Asset.Colors.tableViewBackground.color
         tableView.allowsSelection = false
         tableView.separatorStyle = .none
 
@@ -33,12 +33,12 @@ class ViewController: UIViewController {
     }
     
     func setupview() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "takeoutbag.and.cup.and.straw.fill"), style: .plain, target: self, action: #selector (didTapShoppingCart ))
-        navigationItem.rightBarButtonItem?.tintColor = constants.navigationItemShoppingCartColor
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "line.3.horizontal"), style: . plain, target: self, action: #selector (didTapMenuButton ))
-        navigationItem.leftBarButtonItem?.tintColor = constants.navigationItemMenuColor
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(sfSymbol: SFSymbol.takeoutbagAndCupAndAtraw), style: .plain, target: self, action: #selector (didTapShoppingCart))
+        navigationItem.rightBarButtonItem?.tintColor = Asset.Colors.shoppingCart.color
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(sfSymbol: SFSymbol.threeLinesHorizontal), style: . plain, target: self, action: #selector (didTapMenuButton))
+        navigationItem.leftBarButtonItem?.tintColor = Asset.Colors.menu.color
         
-        view.backgroundColor = constants.viewControllerBackgroundColor
+        view.backgroundColor = Asset.Colors.tableViewBackground.color
         
         view.addSubview(tableView)
         tableView.frame = view.bounds
@@ -62,4 +62,8 @@ extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0
     }
+}
+
+// MARK: - Constants
+extension ViewController {
 }
