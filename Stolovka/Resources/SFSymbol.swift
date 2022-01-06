@@ -11,6 +11,6 @@ import Foundation
 
 enum SFSymbol: String, SFSymbolRepresentable {
     case sliderHorizontal = "slider.horizontal.3"
-    case takeoutbagAndCupAndAtraw = "takeoutbag.and.cup.and.straw.fill"
+    case takeoutbagAndCupAndStraw = "takeoutbag.and.cup.and.straw.fill"
     case threeLinesHorizontal = "line.3.horizontal"
 }

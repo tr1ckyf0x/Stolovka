@@ -85,11 +85,11 @@ class GreetingModel: CellItem {
     var cellItemType: CellItemType {
         return .greeting
     }
-    var userName: String?
-    var qouteOfTheDay: String?
-    var usernameGreeting: String?
+    var userName: String
+    var qouteOfTheDay: String
+    var usernameGreeting: String
     
-    init (name: String, qouteOfTheDay: String) {
+    init(name: String, qouteOfTheDay: String) {
         self.userName = name
         self.usernameGreeting = L10n.standardGreeting(name)
         self.qouteOfTheDay = qouteOfTheDay

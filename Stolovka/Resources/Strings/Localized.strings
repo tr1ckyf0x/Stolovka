@@ -6,6 +6,6 @@
   Copyright © 2022 Владислав Лисянский. All rights reserved.
 */
 
-"standardGreeting" = "Привет, %@";
+"standardGreeting" = "Привет, %@!";
 "guest" = "Гость";
 "searchBarMessage" = "Поиск по столовке...";
