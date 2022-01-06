@@ -22,6 +22,14 @@ packages:
   Moya:
     url: https://github.com/Moya/Moya
     from: 15.0.0
+  Swinject:
+    url: https://github.com/Swinject/Swinject
+    from: 2.8.0
+
+  # Local packages
+
+  UseCase:
+    path: Stolovka/Packages/UseCase
 
 targets:
   Stolovka:
@@ -29,9 +37,13 @@ targets:
     type: application
     sources:
       - path: "Stolovka"
+        excludes:
+          - "Packages/**/"
     dependencies:
       - package: SnapKit
       - package: Moya
+      - package: Swinject
+      - package: UseCase
 
     settings:
       base:

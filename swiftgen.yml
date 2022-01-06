@@ -12,7 +12,7 @@
 ##   SwiftGen will parse all `.strings` files found in that folder.
 strings:
   inputs:
-    - Stolovka/Resources/Strings/Localized.strings
+    - Stolovka/Resources/Strings
   outputs:
     - templateName: structured-swift5
       output: Stolovka/Generated/Strings+Generated.swift

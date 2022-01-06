@@ -38,7 +38,7 @@ class StolovkaViewModel: NSObject {
         }
 
         if let _ = profile.doesContainSearchBar {
-            let searchBarItem = SearchBarModel(searchBarString: L10n.searchBarMessage, searchBarSymbol: SFSymbol.sliderHorizontal)
+            let searchBarItem = SearchBarModel(searchBarString: L10n.Localized.searchBarMessage, searchBarSymbol: SFSymbol.sliderHorizontal)
             items.append(searchBarItem)
         }
         
@@ -91,7 +91,7 @@ class GreetingModel: CellItem {
     
     init(name: String, qouteOfTheDay: String) {
         self.userName = name
-        self.usernameGreeting = L10n.standardGreeting(name)
+        self.usernameGreeting = L10n.Localized.standardGreeting(name)
         self.qouteOfTheDay = qouteOfTheDay
     }
 }
