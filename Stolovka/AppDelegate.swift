@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let nikitaViewController = ViewController()
         nikitaViewController.tabBarItem.title = L10n.Localized.nikitaScreenTitle
-        nikitaViewController.tabBarItem.image = UIImage(sfSymbol: SFSymbol.person)
+        nikitaViewController.tabBarItem.image = Asset.Assets.plankton.image.withRenderingMode(.alwaysOriginal)
         let nikitaNavigationController = UINavigationController(rootViewController: nikitaViewController)
         viewControllers.append(nikitaNavigationController)
 
