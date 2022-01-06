@@ -22,7 +22,9 @@ struct MainScreenAssembly: Assembly {
         }
         .initCompleted { (resolver: Resolver, viewController: MainScreenViewController) in
             let presenter = resolver.resolve(MainScreenViewControllerOutput.self)
+            let oldsRecommendedCollectionViewDataSource = resolver.resolve(UICollectionViewDataSource.self, name: Constants.oldsRecommendedCollectionManagerKey)
             viewController.presenter = presenter
+            viewController.setOldsRecommendedCollectionDataSource(oldsRecommendedCollectionViewDataSource)
         }
         .implements(UIViewController.self, name: Constants.viewControllerKey)
         .implements(MainScreenViewControllerInput.self)
@@ -33,8 +35,12 @@ struct MainScreenAssembly: Assembly {
         .initCompleted { (resolver: Resolver, presenter: MainScreenPresenter) in
             let viewController = resolver.resolve(MainScreenViewControllerInput.self)
             let fetchGreetingUseCase = resolver.resolve(FetchGreetingUseCase.self)
+            let fetchOldsRecommendedProductsUseCase = resolver.resolve(FetchOldsRecommendedProductsUseCase.self)
+            let oldsRecommendedCollectionManager = resolver.resolve(MainScreenProductCarouselCollectionManagerProtocol.self, name: Constants.oldsRecommendedCollectionManagerKey)
             presenter.viewController = viewController
             presenter.fetchGreetingUseCase = fetchGreetingUseCase
+            presenter.fetchOldsRecommendedProductsUseCase = fetchOldsRecommendedProductsUseCase
+            presenter.oldsRecommendedCollectionManager = oldsRecommendedCollectionManager
         }
         .implements(MainScreenViewControllerOutput.self)
 
@@ -46,11 +52,26 @@ struct MainScreenAssembly: Assembly {
                 quouteOfTheDayProvider: quoteOfTheDayProvider
             )
         }
+
+        container.register(FetchOldsRecommendedProductsUseCase.self) { (resolver: Resolver) -> FetchOldsRecommendedProductsUseCase in
+            let oldsRecommendedProductsProvider = resolver.resolve(OldsRecommendedProductsProvider.self)!
+            return FetchOldsRecommendedProductsUseCase(oldsRecommendedProductsProvider: oldsRecommendedProductsProvider)
+        }
+
+        container.register(MainScreenProductCarouselCollectionManager.self, name: Constants.oldsRecommendedCollectionManagerKey) { (
+            resolver: Resolver
+        ) -> MainScreenProductCarouselCollectionManager in
+            MainScreenProductCarouselCollectionManager()
+        }
+        .implements(MainScreenProductCarouselCollectionManagerProtocol.self, name: Constants.oldsRecommendedCollectionManagerKey)
+        .implements(UICollectionViewDataSource.self, name: Constants.oldsRecommendedCollectionManagerKey)
     }
 }
 
 extension MainScreenAssembly {
     enum Constants {
         static let viewControllerKey = "\(MainScreenViewController.self)"
+
+        fileprivate static let oldsRecommendedCollectionManagerKey = "oldsRecommendedCollectionManager"
     }
 }

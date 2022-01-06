@@ -23,15 +23,24 @@ final class MainScreenViewController: UIViewController {
         presenter?.viewDidLoad(self)
     }
 
+    func setOldsRecommendedCollectionDataSource(_ dataSource: UICollectionViewDataSource?) {
+        mainScreenView.productCarouselView.dataSource = dataSource
+    }
+
 }
 
 // MARK: - MainScreenViewControllerInput
 extension MainScreenViewController: MainScreenViewControllerInput {
     func setupViews() {
+        mainScreenView.productCarouselView.title = L10n.MainScreen.oldsRecommend
     }
 
     func setGreeting(model: MainScreenGreetingModel) {
         mainScreenView.greetingView.greetingText = model.greeting
         mainScreenView.greetingView.quoteOfTheDayText = model.quoteOfTheDay
+    }
+
+    func reloadOldsRecommendedCollection() {
+        mainScreenView.productCarouselView.reloadCollection()
     }
 }

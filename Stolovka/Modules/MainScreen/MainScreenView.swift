@@ -23,12 +23,16 @@ final class MainScreenView: UIView {
 
     lazy var stackView: UIStackView = {
         let stackView = UIStackView(
-            arrangedSubviews: [greetingView]
+            arrangedSubviews: [greetingView, productCarouselView]
         )
+        stackView.axis = .vertical
+        stackView.spacing = 16
         return stackView
     }()
 
     lazy var greetingView = MainScreenGreetingView()
+
+    lazy var productCarouselView = ProductCarouselView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)

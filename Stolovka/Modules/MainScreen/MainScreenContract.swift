@@ -11,8 +11,13 @@ import Foundation
 protocol MainScreenViewControllerInput: AnyObject {
     func setupViews()
     func setGreeting(model: MainScreenGreetingModel)
+    func reloadOldsRecommendedCollection()
 }
 
 protocol MainScreenViewControllerOutput: AnyObject {
     func viewDidLoad(_ view: MainScreenViewControllerInput)
+}
+
+protocol MainScreenProductCarouselCollectionManagerProtocol: AnyObject {
+    func setProducts(_ products: [MainScreenProduct])
 }

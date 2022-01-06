@@ -6,7 +6,6 @@ public protocol UseCaseProtocol {
 }
 
 open class UseCase<Argument, Res>: UseCaseProtocol {
-
     public init() { }
 
     open func execute(_ requestArgument: Argument) -> Res {

@@ -1,5 +1,5 @@
 //
-//  QuoteOfTheDayAssembly.swift
+//  QuoteOfTheDayProviderAssembly.swift
 //  Stolovka
 //
 //  Created by Vladislav Lisianskii on 06.01.2022.
@@ -9,7 +9,7 @@
 import Foundation
 import Swinject
 
-struct QuoteOfTheDayAssembly: Assembly {
+struct QuoteOfTheDayProviderAssembly: Assembly {
 
     init() { }
 
@@ -17,5 +17,6 @@ struct QuoteOfTheDayAssembly: Assembly {
         container.register(QuoteOfTheDayProvider.self) { _ -> QuoteOfTheDayProvider in
             DumbQuoteOfTheDayProvider()
         }
+        .inObjectScope(.container)
     }
 }

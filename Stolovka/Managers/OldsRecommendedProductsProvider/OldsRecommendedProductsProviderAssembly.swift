@@ -1,5 +1,5 @@
 //
-//  UsernameProviderAssembly.swift
+//  OldsRecommendedProductsProviderAssembly.swift
 //  Stolovka
 //
 //  Created by Vladislav Lisianskii on 06.01.2022.
@@ -9,13 +9,13 @@
 import Foundation
 import Swinject
 
-struct UsernameProviderAssembly: Assembly {
+struct OldsRecommendedProductsProviderAssembly: Assembly {
 
     init() { }
 
     func assemble(container: Container) {
-        container.register(UsernameProvider.self) { _ -> UsernameProvider in
-            DumbUsernameProvider()
+        container.register(OldsRecommendedProductsProvider.self) { _ -> OldsRecommendedProductsProvider in
+            DumbOldsRecommendedProductsProvider()
         }
         .inObjectScope(.container)
     }

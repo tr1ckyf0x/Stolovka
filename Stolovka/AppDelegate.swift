@@ -16,7 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private lazy var assemblies: [Assembly] = [
         MainScreenAssembly(),
         UsernameProviderAssembly(),
-        QuoteOfTheDayAssembly()
+        QuoteOfTheDayProviderAssembly(),
+        OldsRecommendedProductsProviderAssembly()
     ]
 
     private lazy var assembler = Assembler(assemblies)
