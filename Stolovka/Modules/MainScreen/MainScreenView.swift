@@ -23,7 +23,7 @@ final class MainScreenView: UIView {
 
     lazy var stackView: UIStackView = {
         let stackView = UIStackView(
-            arrangedSubviews: [greetingView, productCarouselView]
+            arrangedSubviews: [greetingView, searchView, productCarouselView]
         )
         stackView.axis = .vertical
         stackView.spacing = 16
@@ -33,6 +33,8 @@ final class MainScreenView: UIView {
     lazy var greetingView = MainScreenGreetingView()
 
     lazy var productCarouselView = ProductCarouselView()
+
+    lazy var searchView = MainSearchView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
