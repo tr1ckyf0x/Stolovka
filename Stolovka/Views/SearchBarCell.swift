@@ -14,7 +14,7 @@ class SearchBarCell: UITableViewCell {
     var item: CellItem? {
         didSet {
             guard let item = item as? SearchBarModel else { return }
-            searchBar.text = item.searchBarString
+            searchBar.placeholder = item.searchBarString
             let image = UIImage(sfSymbol: item.searchBarSymbol)
             searchBarButton.setBackgroundImage(image, for: .normal)
         }
