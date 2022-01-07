@@ -120,6 +120,6 @@ extension ProductCarouselView {
     enum Constants {
         static let shownCardsCount: CGFloat = 2.3
         static let spaceBetweenCards: CGFloat = 16
-        static let spacesBetweenCardsCount = shownCardsCount.rounded(.up)
+        static let spacesBetweenCardsCount = shownCardsCount.rounded(.down) + 1
     }
 }
