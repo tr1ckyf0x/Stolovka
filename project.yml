@@ -25,6 +25,12 @@ packages:
   Swinject:
     url: https://github.com/Swinject/Swinject
     from: 2.8.0
+  Nimble:
+    url: https://github.com/Quick/Nimble
+    from: 9.2.0
+  Quick:
+    url: https://github.com/Quick/Quick
+    from: 4.0.0
 
   # Local packages
 
@@ -61,3 +67,14 @@ targets:
         Release:
           CODE_SIGN_IDENTITY: "Apple Distribution"
           PROVISIONING_PROFILE_SPECIFIER: "Stolovka AppStore"
+
+  StolovkaTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: "StolovkaTests"
+    dependencies:
+      - target: "Stolovka"
+      - package: Quick
+      - package: Nimble
+      - package: UseCase
