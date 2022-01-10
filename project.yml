@@ -36,6 +36,17 @@ packages:
 
   UseCase:
     path: Stolovka/Packages/UseCase
+  SharedResources:
+    path: Stolovka/Packages/SharedResources
+  MainScreen:
+    path: Stolovka/Packages/MainScreen
+  UsernameProvider:
+    path: Stolovka/Packages/UsernameProvider
+  QuoteOfTheDayProvider:
+    path: Stolovka/Packages/QuoteOfTheDayProvider
+  OldsRecommendedProductsProvider:
+    path: Stolovka/Packages/OldsRecommendedProductsProvider
+    
 
 targets:
   Stolovka:
@@ -50,6 +61,11 @@ targets:
       - package: Moya
       - package: Swinject
       - package: UseCase
+      - package: SharedResources
+      - package: MainScreen
+      - package: UsernameProvider
+      - package: QuoteOfTheDayProvider
+      - package: OldsRecommendedProductsProvider
 
     settings:
       base:

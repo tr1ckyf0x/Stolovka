@@ -3,10 +3,10 @@
 //  Stolovaya5
 //
 //  Created by Nikita Shvad on 31.12.2021.
-//Вообще все настройки цвета нужно вывести в K
 
 import UIKit
 import SnapKit
+import SharedResources
 
 class GreetingCell: UITableViewCell {
 
@@ -20,7 +20,7 @@ class GreetingCell: UITableViewCell {
     
     private lazy var usernameGreetingLabel: UILabel = {
         let label = UILabel()
-        label.textColor = Asset.Colors.primaryText.color
+        label.textColor = SharedResources.Asset.Colors.primaryText.color
         label.font = .systemFont(ofSize: 18)
         label.numberOfLines = 1
         return label
@@ -28,7 +28,7 @@ class GreetingCell: UITableViewCell {
     
     private lazy var qouteOfTheDayLabel: UILabel = {
         let label = UILabel()
-        label.textColor = Asset.Colors.primaryText.color
+        label.textColor = SharedResources.Asset.Colors.primaryText.color
         label.font = usernameGreetingLabel.font
         return label
     }()

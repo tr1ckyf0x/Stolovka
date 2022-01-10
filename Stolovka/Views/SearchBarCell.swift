@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SharedResources
 
 class SearchBarCell: UITableViewCell {
     
@@ -23,14 +24,14 @@ class SearchBarCell: UITableViewCell {
     private lazy var searchBarButton: UIButton = {
         let searchBarButton = UIButton(type: .system)
         searchBarButton.addTarget(self, action: #selector(didTapSearchButton), for: .touchUpInside)
-        searchBarButton.tintColor = Asset.Colors.menu.color
+        searchBarButton.tintColor = SharedResources.Asset.Colors.menu.color
         return searchBarButton
     }()
     
     private lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.searchTextField.font = .systemFont(ofSize: 14, weight: .light)
-        searchBar.searchTextField.textColor = Asset.Colors.secondaryText.color
+        searchBar.searchTextField.textColor = SharedResources.Asset.Colors.secondaryText.color
         searchBar.searchTextField.textAlignment = .left
         searchBar.backgroundImage = UIImage()
         return searchBar

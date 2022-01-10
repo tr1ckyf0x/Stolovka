@@ -7,6 +7,11 @@
 
 import UIKit
 import Swinject
+import SharedResources
+import MainScreen
+import UsernameProvider
+import QuoteOfTheDayProvider
+import OldsRecommendedProductsProvider
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -39,8 +44,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         let nikitaViewController = ViewController()
-        nikitaViewController.tabBarItem.title = L10n.Localized.nikitaScreenTitle
-        nikitaViewController.tabBarItem.image = Asset.Assets.plankton.image.withRenderingMode(.alwaysOriginal)
+        nikitaViewController.tabBarItem.title = SharedResources.L10n.nikitaScreenTitle
+        nikitaViewController.tabBarItem.image = SharedResources.Asset.Assets.plankton.image.withRenderingMode(.alwaysOriginal)
         let nikitaNavigationController = UINavigationController(rootViewController: nikitaViewController)
         viewControllers.append(nikitaNavigationController)
 

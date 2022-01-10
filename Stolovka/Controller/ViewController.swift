@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SharedResources
 
 class ViewController: UIViewController {
     
@@ -19,7 +20,7 @@ class ViewController: UIViewController {
         tableView.register(SearchBarCell.self, forCellReuseIdentifier: "\(SearchBarCell.self)")
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 200
-        tableView.backgroundColor = Asset.Colors.tableViewBackground.color
+        tableView.backgroundColor = SharedResources.Asset.Colors.tableViewBackground.color
         tableView.allowsSelection = false
         tableView.separatorStyle = .none
 
@@ -34,11 +35,11 @@ class ViewController: UIViewController {
     
     func setupview() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(sfSymbol: SFSymbol.takeoutbagAndCupAndStraw), style: .plain, target: self, action: #selector (didTapShoppingCart))
-        navigationItem.rightBarButtonItem?.tintColor = Asset.Colors.shoppingCart.color
+        navigationItem.rightBarButtonItem?.tintColor = SharedResources.Asset.Colors.shoppingCart.color
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(sfSymbol: SFSymbol.threeLinesHorizontal), style: . plain, target: self, action: #selector (didTapMenuButton))
-        navigationItem.leftBarButtonItem?.tintColor = Asset.Colors.menu.color
+        navigationItem.leftBarButtonItem?.tintColor = SharedResources.Asset.Colors.menu.color
         
-        view.backgroundColor = Asset.Colors.tableViewBackground.color
+        view.backgroundColor = SharedResources.Asset.Colors.tableViewBackground.color
         
         view.addSubview(tableView)
         tableView.frame = view.bounds
