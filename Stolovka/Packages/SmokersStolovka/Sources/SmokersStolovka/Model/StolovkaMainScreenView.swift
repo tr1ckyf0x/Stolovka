@@ -1,0 +1,72 @@
+//
+//  MainScreenView.swift
+//  Stolovka
+//
+//  Created by Nikita Shvad on 07.01.2022.
+//  Copyright © 2022 Владислав Лисянский. All rights reserved.
+//
+
+import UIKit
+import SharedResources
+
+class StolovkaMainScreenView: UIView {
+   
+    let greetingSubview = GreetingView()
+    let searchSubview = SearchBarView()
+    let recommendationsSubview = RecommendationsCollectionView()
+    let itemCategoryCollectionView = ItemCategoryCollectionView()
+    let categorizedFoodItemsSubview = CategorizedFoodItemsCollectionView()
+    
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.addSubview(scrollViewContentView)
+        return scrollView
+    }()
+    
+    private lazy var scrollViewContentView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .yellow
+        view.addSubview(stackView)
+        return view
+    }()
+    
+    private lazy var stackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [greetingSubview , searchSubview, recommendationsSubview, itemCategoryCollectionView,categorizedFoodItemsSubview])
+        stackView.axis = .vertical
+        stackView.spacing = 16
+        stackView.backgroundColor = SharedResources.Asset.Colors.tableViewBackground.color
+        return stackView
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupview()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("Was Not Implemented.")
+    }
+}
+    //MARK: - Private Methods
+
+extension StolovkaMainScreenView {
+    private func setupview() {
+        backgroundColor = SharedResources.Asset.Colors.tableViewBackground.color
+        addSubview(scrollView)
+        
+        scrollView.snp.makeConstraints { make in
+            make.edges.equalTo(safeAreaLayoutGuide)
+        }
+
+        scrollViewContentView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+            make.width.equalToSuperview()
+            make.height.equalToSuperview()
+        }
+
+        stackView.snp.makeConstraints { make in
+            make.leading.trailing.top.equalToSuperview()
+            make.bottom.lessThanOrEqualToSuperview()
+        }
+}
+}

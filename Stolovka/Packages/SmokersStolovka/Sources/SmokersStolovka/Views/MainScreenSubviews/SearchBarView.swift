@@ -9,22 +9,13 @@ import UIKit
 import SnapKit
 import SharedResources
 
-class SearchBarCell: UITableViewCell {
-    
-    
-    var item: CellItem? {
-        didSet {
-            guard let item = item as? SearchBarModel else { return }
-            searchBar.placeholder = item.searchBarString
-            let image = UIImage(sfSymbol: item.searchBarSymbol)
-            searchBarButton.setBackgroundImage(image, for: .normal)
-        }
-    }
+class SearchBarView: UIView {
     
     private lazy var searchBarButton: UIButton = {
         let searchBarButton = UIButton(type: .system)
         searchBarButton.addTarget(self, action: #selector(didTapSearchButton), for: .touchUpInside)
         searchBarButton.tintColor = SharedResources.Asset.Colors.menu.color
+        searchBarButton.setBackgroundImage(UIImage(sfSymbol: SFSymbol.sliderHorizontal), for: .normal)
         return searchBarButton
     }()
     
@@ -34,11 +25,12 @@ class SearchBarCell: UITableViewCell {
         searchBar.searchTextField.textColor = SharedResources.Asset.Colors.secondaryText.color
         searchBar.searchTextField.textAlignment = .left
         searchBar.backgroundImage = UIImage()
+        searchBar.placeholder = SharedResources.L10n.searchBarMessage
         return searchBar
     }()
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setupView()
     }
     
@@ -47,24 +39,27 @@ class SearchBarCell: UITableViewCell {
     }
     
     private func setupView() {
-        
-        contentView.addSubview(searchBar)
+
+        [
+            searchBar,
+            searchBarButton
+        ].forEach(addSubview(_:))
+
         searchBar.snp.makeConstraints { make in
-            make.left.equalTo(contentView.snp.left)
-            make.right.equalTo(contentView.snp.right).multipliedBy(0.85)
-            make.bottom.equalTo(contentView.snp.bottom)
-            make.top.equalTo(contentView.snp.top)
+            make.leading.equalToSuperview().offset(8)
+            make.top.bottom.equalToSuperview()
+            make.trailing.equalTo(searchBarButton.snp.leading).offset(-8)
         }
-        contentView.addSubview(searchBarButton)
-        
+
         searchBarButton.snp.makeConstraints { make in
-            make.left.equalTo(searchBar.snp.right).offset(13)
-            make.width.equalTo(searchBarButton.snp.height)
-            make.centerY.equalTo(contentView.snp.centerY)
+            make.trailing.equalToSuperview().inset(8)
+            make.top.greaterThanOrEqualToSuperview()
+            make.centerY.equalToSuperview()
         }
-    }
-    
+        
+}
     @objc func didTapSearchButton () {
         print("Tapped Search Settings Button")
     }
+
 }

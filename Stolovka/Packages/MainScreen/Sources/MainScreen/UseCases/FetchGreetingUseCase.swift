@@ -10,6 +10,7 @@ import Foundation
 import UseCase
 import UsernameProvider
 import QuoteOfTheDayProvider
+import SharedResources
 
 final class FetchGreetingUseCase: UseCase<Void, MainScreenGreetingModel> {
 
@@ -26,7 +27,7 @@ final class FetchGreetingUseCase: UseCase<Void, MainScreenGreetingModel> {
 
     override func execute(_ requestArgument: Argument) -> Res {
         let name = usernameProvider.username
-        let greetingText = L10n.helloGreeting(name)
+        let greetingText = SharedResources.L10n.standardGreeting(name)
         let quoteOfTheDay = quouteOfTheDayProvider.quoteOfTheDay
         return MainScreenGreetingModel(
             greeting: greetingText,

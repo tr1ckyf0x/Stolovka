@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SharedResources
 
 final class MainScreenViewController: UIViewController {
 
@@ -32,7 +33,7 @@ final class MainScreenViewController: UIViewController {
 // MARK: - MainScreenViewControllerInput
 extension MainScreenViewController: MainScreenViewControllerInput {
     func setupViews() {
-        mainScreenView.productCarouselView.title = L10n.oldsRecommend
+        mainScreenView.productCarouselView.title = SharedResources.L10n.recommendations
     }
 
     func setGreeting(model: MainScreenGreetingModel) {

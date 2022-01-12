@@ -15,4 +15,6 @@ public enum SFSymbol: String, SFSymbolRepresentable {
     case threeLinesHorizontal = "line.3.horizontal"
     case house
     case plusCircle = "plus.circle"
+    case heart = "heart"
+    case heartFill = "heart.fill"
 }

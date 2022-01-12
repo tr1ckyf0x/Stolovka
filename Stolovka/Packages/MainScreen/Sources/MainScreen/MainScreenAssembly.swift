@@ -20,7 +20,7 @@ public struct MainScreenAssembly: Assembly {
     public func assemble(container: Container) {
         container.register(MainScreenViewController.self) { _ -> MainScreenViewController in
             let viewController = MainScreenViewController()
-            viewController.tabBarItem.title = L10n.tabBarTitle
+            viewController.tabBarItem.title = MainScreen.L10n.tabBarTitle
             viewController.tabBarItem.image = UIImage(sfSymbol: SFSymbol.house)
             return viewController
         }
