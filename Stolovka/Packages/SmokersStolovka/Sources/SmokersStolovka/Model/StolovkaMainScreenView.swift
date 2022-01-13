@@ -16,6 +16,7 @@ class StolovkaMainScreenView: UIView {
     let recommendationsSubview = RecommendationsCollectionView()
     let itemCategoryCollectionView = ItemCategoryCollectionView()
     let categorizedFoodItemsSubview = CategorizedFoodItemsCollectionView()
+    let emptyView = UIView()
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -30,8 +31,9 @@ class StolovkaMainScreenView: UIView {
     }()
     
     private lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [greetingSubview , searchSubview, recommendationsSubview, itemCategoryCollectionView,categorizedFoodItemsSubview])
+        let stackView = UIStackView(arrangedSubviews: [greetingSubview , searchSubview, recommendationsSubview, emptyView, itemCategoryCollectionView,categorizedFoodItemsSubview])
         stackView.axis = .vertical
+        stackView.setCustomSpacing(24, after: searchSubview)
         stackView.spacing = 16
         stackView.backgroundColor = SharedResources.Asset.Colors.tableViewBackground.color
         return stackView
@@ -66,6 +68,10 @@ extension StolovkaMainScreenView {
         stackView.snp.makeConstraints { make in
             make.leading.trailing.top.equalToSuperview()
             make.bottom.lessThanOrEqualToSuperview()
+        }
+        
+        emptyView.snp.makeConstraints { make in
+            make.height.equalTo(searchSubview.snp.height).multipliedBy(0.6)
         }
 }
 }

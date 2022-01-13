@@ -14,7 +14,7 @@ class GreetingView: UIView {
     private lazy var usernameGreetingLabel: UILabel = {
         let label = UILabel()
         label.textColor = SharedResources.Asset.Colors.primaryText.color
-        label.font = .systemFont(ofSize: 18)
+        label.font = .systemFont(ofSize: 20)
         label.numberOfLines = 1
         label.text = SharedResources.L10n.guest
         return label

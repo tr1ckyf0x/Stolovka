@@ -16,7 +16,7 @@ class RecommendationsCollectionView: UIView {
     private lazy var headingLabel: UILabel = {
         let label = UILabel()
         label.textColor = SharedResources.Asset.Colors.primaryText.color
-        label.font = .systemFont(ofSize: 22, weight: .bold)
+        label.font = .systemFont(ofSize: 24, weight: .bold)
         label.numberOfLines = 1
         return label
     }()

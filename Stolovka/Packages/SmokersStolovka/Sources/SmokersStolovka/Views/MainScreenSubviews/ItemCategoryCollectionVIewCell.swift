@@ -16,7 +16,7 @@ class ItemCategoryCollectionViewCell: UICollectionViewCell {
         let itemCategoryLabel = UILabel()
         itemCategoryLabel.textAlignment = .left
         itemCategoryLabel.textColor = SharedResources.Asset.Colors.primaryText.color
-        itemCategoryLabel.font = .systemFont(ofSize: 18)
+        itemCategoryLabel.font = .systemFont(ofSize: 22)
         itemCategoryLabel.minimumScaleFactor = 0.6
         return itemCategoryLabel
     }()

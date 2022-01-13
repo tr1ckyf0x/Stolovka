@@ -74,7 +74,7 @@ class FoodCollectionViewCell: UICollectionViewCell {
 
 extension FoodCollectionViewCell {
     private func setupView() {
-        contentView.backgroundColor = UIColor.secondarySystemBackground
+        contentView.backgroundColor = Asset.Colors.tableViewBackground.color
         contentView.layer.cornerRadius = 10
         
         [likeButton,
