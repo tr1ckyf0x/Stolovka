@@ -10,9 +10,13 @@ import Foundation
 import UIKit
 import SharedResources
 
-//TODO: Replace all colors and label string
+protocol FoodCollectionViewCellDelegate: AnyObject {
+    func foodCollectionViewCellDidPressLikeButton(_ foodCollectionViewCell: FoodCollectionViewCell)
+}
 
 class FoodCollectionViewCell: UICollectionViewCell {
+
+    weak var delegate: FoodCollectionViewCellDelegate?
     
     private lazy var itemImage: UIImageView = {
         let image = UIImageView()
@@ -115,7 +119,7 @@ extension FoodCollectionViewCell {
     }
     
     @objc private func pressedHeartButton() {
-        print("Tapped like button")
+        delegate?.foodCollectionViewCellDidPressLikeButton(self)
     }
     
     @objc private func pressedAddToCartButton() {

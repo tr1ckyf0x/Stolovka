@@ -23,6 +23,7 @@ class StolovkaMainScreenPresenter {
     var fetchCategorizedItemsUseCase: AsyncUseCase<Void, [CategorizedFoodItems]>?
 }
 
+// MARK: - MainScreenControllerOutput
 extension StolovkaMainScreenPresenter: MainScreenControllerOutput {
     
     func viewDidLoad(mainScreen: MainScreenControllerInput) {
@@ -36,9 +37,24 @@ extension StolovkaMainScreenPresenter: MainScreenControllerOutput {
     }
 }
 
+// MARK: - CategoryForItemManagerDelegate
 extension StolovkaMainScreenPresenter: CategoryForItemManagerDelegate {
     func categoryForItemManager(_ categoryForItemManager: MainScreenItemCategoryProtocol, didSelectCellAt indexPath: IndexPath) {
         viewController?.scrollCategorizedItems(to: indexPath)
+    }
+}
+
+// MARK: - CategorizedFoodItemsManagerDelegate
+extension StolovkaMainScreenPresenter: CategorizedFoodItemsManagerDelegate {
+    func categorizedFoodItemsManagerNeedsDelegateForFoodCell(_ categorizedFoodItemsManager: MainScreenCategorizedFoodItemsCollectionProtocol) -> FoodCollectionViewCellDelegate? {
+        return self
+    }
+}
+
+// MARK: - FoodCollectionViewCellDelegate
+extension StolovkaMainScreenPresenter: FoodCollectionViewCellDelegate {
+    func foodCollectionViewCellDidPressLikeButton(_ foodCollectionViewCell: FoodCollectionViewCell) {
+        print("Tapped like button")
     }
 }
 

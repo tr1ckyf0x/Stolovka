@@ -9,9 +9,14 @@
 import Foundation
 import UIKit
 
+protocol CategorizedFoodItemsManagerDelegate: AnyObject {
+    func categorizedFoodItemsManagerNeedsDelegateForFoodCell(_ categorizedFoodItemsManager: MainScreenCategorizedFoodItemsCollectionProtocol) -> FoodCollectionViewCellDelegate?
+}
+
 final class CategorizedFoodItemsManager: NSObject {
     var categorizedFoodItems = [CategorizedFoodItems]()
-    
+
+    weak var delegate: CategorizedFoodItemsManagerDelegate?
 }
 
 extension CategorizedFoodItemsManager: MainScreenCategorizedFoodItemsCollectionProtocol {
@@ -37,6 +42,8 @@ extension CategorizedFoodItemsManager: UICollectionViewDataSource {
 
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(FoodCollectionViewCell.self)", for: indexPath) as? FoodCollectionViewCell {
             cell.configure(foodItem: categorizedFoodItems[indexPath.section].products[indexPath.item])
+            let cellDelegate = delegate?.categorizedFoodItemsManagerNeedsDelegateForFoodCell(self)
+            cell.delegate = cellDelegate
             return cell
         }
         
