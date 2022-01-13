@@ -84,6 +84,10 @@ extension ViewController: MainScreenControllerInput {
         mainScreenView.greetingSubview.greetingText = model.greeting
         mainScreenView.greetingSubview.quoteOfTheDayText = model.quoteOfTheDay
     }
+
+    func scrollCategorizedItems(to indexPath: IndexPath) {
+        mainScreenView.categorizedFoodItemsSubview.scroll(to: indexPath)
+    }
 }
 
 

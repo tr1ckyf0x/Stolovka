@@ -65,8 +65,8 @@ extension CategorizedFoodItemsCollectionView {
         collectionView.reloadData()
     }
     
-    func configureCollectionView(indexPath: IndexPath) {
-        collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+    func scroll(to indexPath: IndexPath) {
+        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
 }
 

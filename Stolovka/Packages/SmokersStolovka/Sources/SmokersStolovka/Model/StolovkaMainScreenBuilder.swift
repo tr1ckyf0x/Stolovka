@@ -21,7 +21,6 @@ public enum StolovkaMainScreenBuilder {
         let categorizedFoodProvider = CategorizedItemsProvider()
         let categorizedFoodItemsManager = CategorizedFoodItemsManager()
         let categoryForItemManager = CategoryForItemManager()
-        let categoryForItemDelegate = ItemCategoryCollectionViewDelegate()
         
         let getGreetingUseCase = GetGreetingUseCase(
             usernameProvider: usernameProvider,
@@ -37,11 +36,11 @@ public enum StolovkaMainScreenBuilder {
         
         presenter.recommendationsCollectionManager = recommendationsCollectionViewManager
         viewController.setRecommendationsDataSource(dataSource: recommendationsCollectionViewManager)
-        
+
+        categoryForItemManager.delegate = presenter
         presenter.itemCategoryCollectionManager = categoryForItemManager
-        presenter.itemCategoryCollectionDelegate = categoryForItemDelegate
         viewController.setItemCategoryCollectionViewDataSource(dataSource: categoryForItemManager)
-        viewController.setItemCategoryDelegate(delegate: categoryForItemDelegate)
+        viewController.setItemCategoryDelegate(delegate: categoryForItemManager)
         
         presenter.categorizedFoodItemsCollectionManager = categorizedFoodItemsManager
         viewController.setCategorizedItemsDataSource(dataSource: categorizedFoodItemsManager)

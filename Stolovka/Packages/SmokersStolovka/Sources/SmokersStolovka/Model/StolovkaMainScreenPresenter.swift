@@ -16,7 +16,6 @@ class StolovkaMainScreenPresenter {
     var fetchGreetingUseCase: UseCase<Void, ChumBucketGreetingModel>?
     var recommendationsCollectionManager: MainScreenRecommendationsCollectionProtocol?
     var itemCategoryCollectionManager: MainScreenItemCategoryProtocol?
-    var itemCategoryCollectionDelegate: ItemCategoryCollectionViewDelegate?
     
     var categorizedFoodItemsCollectionManager: MainScreenCategorizedFoodItemsCollectionProtocol?
     
@@ -34,6 +33,12 @@ extension StolovkaMainScreenPresenter: MainScreenControllerOutput {
         mainScreen.reloadRecommendationsTitles()
         mainScreen.reloadRecommendationsCollection()
         mainScreen.reloadCategorizedItemsCollection()
+    }
+}
+
+extension StolovkaMainScreenPresenter: CategoryForItemManagerDelegate {
+    func categoryForItemManager(_ categoryForItemManager: MainScreenItemCategoryProtocol, didSelectCellAt indexPath: IndexPath) {
+        viewController?.scrollCategorizedItems(to: indexPath)
     }
 }
 
