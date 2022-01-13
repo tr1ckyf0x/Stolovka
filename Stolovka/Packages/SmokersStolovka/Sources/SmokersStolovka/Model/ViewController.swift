@@ -32,6 +32,10 @@ class ViewController: UIViewController {
         mainScreenView.itemCategoryCollectionView.dataSource = dataSource
     }
     
+    func setItemCategoryDelegate(delegate: UICollectionViewDelegate) {
+        mainScreenView.itemCategoryCollectionView.delegate = delegate
+    }
+    
     func setCategorizedItemsDataSource(dataSource: UICollectionViewDataSource) {
         mainScreenView.categorizedFoodItemsSubview.dataSource = dataSource
     }

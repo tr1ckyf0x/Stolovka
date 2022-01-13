@@ -9,7 +9,6 @@ final class CategoryForItemManager: NSObject {
 }
 
 extension CategoryForItemManager: MainScreenItemCategoryProtocol {
-    
     func setupItemCategories(_ categorizedFoodItems: [CategorizedFoodItems]) {
         self.categorizedFoodItems = categorizedFoodItems
     }
@@ -23,8 +22,7 @@ extension CategoryForItemManager: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-
-        return categorizedFoodItems[section].products.count
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

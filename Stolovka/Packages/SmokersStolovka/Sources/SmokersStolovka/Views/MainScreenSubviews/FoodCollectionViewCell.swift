@@ -106,7 +106,7 @@ extension FoodCollectionViewCell {
         }
         
         likeButton.snp.makeConstraints { make in
-            make.bottom.equalTo(itemImage.snp.top).offset(10)
+            make.bottom.equalTo(itemImage.snp.top).inset(15)
             make.centerX.equalTo(addToCartButton.snp.centerX)
             make.size.equalTo(addToCartButton)
         }

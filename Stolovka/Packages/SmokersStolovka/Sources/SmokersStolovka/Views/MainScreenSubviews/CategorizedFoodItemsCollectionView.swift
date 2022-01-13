@@ -64,6 +64,10 @@ extension CategorizedFoodItemsCollectionView {
     func reloadCollection() {
         collectionView.reloadData()
     }
+    
+    func configureCollectionView(indexPath: IndexPath) {
+        collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+    }
 }
 
 //MARK: - PrivateMethods
@@ -72,7 +76,6 @@ extension CategorizedFoodItemsCollectionView {
     
     private func setupViews() {
         addSubview(collectionView)
-        
         collectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
             self.collectionViewHeightConstraint = make.height.equalTo(1).constraint.layoutConstraints.first

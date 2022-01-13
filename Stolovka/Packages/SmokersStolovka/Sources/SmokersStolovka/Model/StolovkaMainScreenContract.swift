@@ -28,8 +28,13 @@ protocol MainScreenRecommendationsCollectionProtocol: AnyObject {
 protocol MainScreenCategorizedFoodItemsCollectionProtocol: AnyObject {
     func setupCategorizedItems (_ categorizedFoodItems: [CategorizedFoodItems])
 }
+
 protocol MainScreenItemCategoryProtocol: AnyObject {
     func setupItemCategories(_ categorizedFoodItems: [CategorizedFoodItems])
 }
+
+//protocol MainScreenNumberOfCategoriesProtocol: AnyObject {
+//    func setupItemCategoryConstraints (for collectionView : ItemSpacesProtocol)
+//}
 
 

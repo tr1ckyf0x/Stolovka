@@ -34,7 +34,7 @@ class ItemCategoryCollectionView: UIView {
     private var collectionViewHeightConstraint: LayoutConstraint?
     
     override func layoutSubviews() {
-        let width = collectionView.bounds.width
+        let width = self.bounds.width
         let height = collectionviewHeightForWidth(width: width)
         collectionViewHeightConstraint?.constant = height
         self.layoutIfNeeded()
@@ -64,6 +64,17 @@ extension ItemCategoryCollectionView {
         }
     }
     
+    var delegate: UICollectionViewDelegate? {
+        
+        get {
+            return collectionView.delegate
+        }
+        
+        set {
+            return collectionView.delegate = newValue
+        }
+    }
+    
     func reloadCollection() {
         collectionView.reloadData()
     }
@@ -75,33 +86,26 @@ extension ItemCategoryCollectionView {
     private func setupView() {
         addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.right.bottom.equalToSuperview()
+            make.left.equalToSuperview().inset(10)
             self.collectionViewHeightConstraint = make.height.equalTo(1).constraint.layoutConstraints.first
         }
     }
     
     private func collectionviewHeightForWidth(width: CGFloat) -> CGFloat {
-        let spacing = Constants.minimalItemSpacing
-        let totalAvailibleWidth = width - Constants.spacesBetweenItems * spacing
+        let spacing = flowLayout.minimumInteritemSpacing
+        let totalAvailibleWidth = width - (Constants.spacesBetweenItems * spacing)
         let itemDimension = (totalAvailibleWidth / Constants.numberOfItemsOnScreen).rounded(.down)
-        let heightForItem = itemDimension * 0.3
+        let heightForItem = itemDimension * 0.19
         return heightForItem
     }
 }
 
 extension ItemCategoryCollectionView {
     private enum Constants {
-        static let minimalItemSpacing: CGFloat = 4.0
-        static let numberOfItemsOnScreen: CGFloat = 3.3
+        static let minimalItemSpacing: CGFloat = 16.0
+        static let numberOfItemsOnScreen: CGFloat = 2.2
         static let spacesBetweenItems: CGFloat = numberOfItemsOnScreen.rounded() - 1
-    }
-}
-
-extension ItemCategoryCollectionView: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.bounds.width
-        let height = collectionviewHeightForWidth(width: width)
-        return CGSize(width: height, height: height)
     }
 }
 

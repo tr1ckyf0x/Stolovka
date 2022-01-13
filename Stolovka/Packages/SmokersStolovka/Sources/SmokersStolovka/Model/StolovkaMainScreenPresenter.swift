@@ -16,6 +16,8 @@ class StolovkaMainScreenPresenter {
     var fetchGreetingUseCase: UseCase<Void, ChumBucketGreetingModel>?
     var recommendationsCollectionManager: MainScreenRecommendationsCollectionProtocol?
     var itemCategoryCollectionManager: MainScreenItemCategoryProtocol?
+    var itemCategoryCollectionDelegate: ItemCategoryCollectionViewDelegate?
+    
     var categorizedFoodItemsCollectionManager: MainScreenCategorizedFoodItemsCollectionProtocol?
     
     var recommendationsUseCase: AsyncUseCase<Void, [FoodItem]>?
