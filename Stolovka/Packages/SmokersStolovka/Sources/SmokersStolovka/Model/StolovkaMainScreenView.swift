@@ -25,7 +25,6 @@ class StolovkaMainScreenView: UIView {
     
     private lazy var scrollViewContentView: UIView = {
         let view = UIView()
-        view.backgroundColor = .yellow
         view.addSubview(stackView)
         return view
     }()
@@ -61,7 +60,7 @@ extension StolovkaMainScreenView {
         scrollViewContentView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
             make.width.equalToSuperview()
-            make.height.equalToSuperview()
+            make.height.equalToSuperview().priority(.low)
         }
 
         stackView.snp.makeConstraints { make in
