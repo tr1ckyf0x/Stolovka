@@ -7,29 +7,42 @@
 //
 
 import Foundation
+import SwiftUI
 
 enum ProductCategory {
     case bakery
     case hot
     case fromYesterday
- 
+    case soup
+    case desert
+    case beverage
+    
     var title: String {
         switch self {
         case .bakery:
-            return "Выпечка" 
- 
+            return "Выпечка"
+            
         case .hot:
             return "Горячее"
- 
+            
         case .fromYesterday:
             return "Вчерашнее"
+            
+        case .soup:
+            return "Жидкое"
+            
+        case .desert:
+            return "Сладкое"
+            
+        case .beverage:
+            return "Попить"
         }
     }
 }
 
 struct CategorizedFoodItems {
     let category: ProductCategory
-        let products: [FoodItem]
+    let products: [FoodItem]
 }
 
 

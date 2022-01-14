@@ -16,10 +16,10 @@ protocol RecommendationsProviderProtocol {
 final class RecommendationsProvider: RecommendationsProviderProtocol {
     func fetchRecommendations(completion: @escaping (Result<[CategorizedFoodItems], Error>) -> Void) {
         let foodItems = [
-            CategorizedFoodItems(category: .bakery, products: [
-                FoodItem(name: "Сосиска в тесте", price: 12.000, pictureUrl: .local(Asset.Assets.Products.sosiskaVTeste),isLikedByUser: false, itemID: "112"),
-                FoodItem(name: "Кофейный напиток", price: 5.000, pictureUrl: .local(Asset.Assets.Products.cofeinyiNapitok), isLikedByUser: false, itemID: "101"),
-                FoodItem(name: "Пюрешка с котлеткой", price: 24.000, pictureUrl: .local(Asset.Assets.Products.pyreshkaSKotletkoi), isLikedByUser: false, itemID: "118")
+            CategorizedFoodItems(category: .hot, products: [
+                FoodItem(name: "Кофейный напиток", price: 5.000, description: "Хорошо идет под экзамены", pictureUrl: .local(Asset.Assets.Products.cofeinyiNapitok), isLikedByUser: false, itemID: "11123"),
+                FoodItem(name: "Сосиска в тесте", price: 12.000, description: "Обыкновенная сосиска. Без сюпризов.", pictureUrl: .local(Asset.Assets.Products.sosiskaVTeste), isLikedByUser: false, itemID: "1118"),
+                FoodItem.init(name: "Белый хлеб", price: 0.33, description: "Выгодная цена.", pictureUrl: .local(Asset.Assets.Products.whiteBread), isLikedByUser: false, itemID: "111156")
             ])
         ]
         

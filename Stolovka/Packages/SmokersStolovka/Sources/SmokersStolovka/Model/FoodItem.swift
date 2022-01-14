@@ -16,6 +16,7 @@ enum PictureFormat {
 struct FoodItem {
     var name: String
     var price: Double
+    var description: String
     var pictureUrl: PictureFormat
     var isLikedByUser: Bool
     var itemID: String
