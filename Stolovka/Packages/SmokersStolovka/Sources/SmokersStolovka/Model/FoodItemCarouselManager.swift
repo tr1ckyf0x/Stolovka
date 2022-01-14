@@ -13,20 +13,20 @@ protocol CategorizedFoodItemsManagerDelegate: AnyObject {
     func categorizedFoodItemsManagerNeedsDelegateForFoodCell(_ categorizedFoodItemsManager: MainScreenCategorizedFoodItemsCollectionProtocol) -> FoodCollectionViewCellDelegate?
 }
 
-final class CategorizedFoodItemsManager: NSObject {
+final class FoodItemCarouselManager: NSObject {
     var categorizedFoodItems = [CategorizedFoodItems]()
 
     weak var delegate: CategorizedFoodItemsManagerDelegate?
 }
 
-extension CategorizedFoodItemsManager: MainScreenCategorizedFoodItemsCollectionProtocol {
+extension FoodItemCarouselManager: MainScreenCategorizedFoodItemsCollectionProtocol {
     
     func setupCategorizedItems(_ categorizedFoodItems: [CategorizedFoodItems]) {
         self.categorizedFoodItems = categorizedFoodItems
     }
 }
 
-extension CategorizedFoodItemsManager: UICollectionViewDataSource {
+extension FoodItemCarouselManager: UICollectionViewDataSource {
    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return categorizedFoodItems.count
