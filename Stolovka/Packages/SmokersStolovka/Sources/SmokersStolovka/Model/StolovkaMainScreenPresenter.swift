@@ -53,6 +53,11 @@ extension StolovkaMainScreenPresenter: CategorizedFoodItemsManagerDelegate {
 
 // MARK: - FoodCollectionViewCellDelegate
 extension StolovkaMainScreenPresenter: FoodCollectionViewCellDelegate {
+   
+    func foodCollectionViewCellDidPressAddToCartButton(_ foodCollectionViewCell: FoodCollectionViewCell) {
+        print("Added item to shopping cart")
+    }
+    
     func foodCollectionViewCellDidPressLikeButton(_ foodCollectionViewCell: FoodCollectionViewCell) {
         print("Tapped like button")
     }

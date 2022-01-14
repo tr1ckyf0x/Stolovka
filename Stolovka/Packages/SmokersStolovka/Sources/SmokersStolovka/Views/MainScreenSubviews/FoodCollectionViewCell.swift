@@ -12,6 +12,7 @@ import SharedResources
 
 protocol FoodCollectionViewCellDelegate: AnyObject {
     func foodCollectionViewCellDidPressLikeButton(_ foodCollectionViewCell: FoodCollectionViewCell)
+    func foodCollectionViewCellDidPressAddToCartButton (_ foodCollectionViewCell: FoodCollectionViewCell)
 }
 
 class FoodCollectionViewCell: UICollectionViewCell {
@@ -123,7 +124,7 @@ extension FoodCollectionViewCell {
     }
     
     @objc private func pressedAddToCartButton() {
-        print("Tapped add to cart")
+        delegate?.foodCollectionViewCellDidPressAddToCartButton(self)
     }
     
     private func configurePriceLabelText(for price: Double) {
