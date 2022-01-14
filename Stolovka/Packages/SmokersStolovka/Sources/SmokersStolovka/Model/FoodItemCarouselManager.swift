@@ -26,6 +26,14 @@ extension FoodItemCarouselManager: MainScreenCategorizedFoodItemsCollectionProto
     }
 }
 
+extension FoodItemCarouselManager: MainScreenRecommendationsCollectionProtocol {
+    func setupRecommendations(_ foodItems: [CategorizedFoodItems]) {
+        self.categorizedFoodItems = foodItems
+    }
+    
+    
+}
+
 extension FoodItemCarouselManager: UICollectionViewDataSource {
    
     func numberOfSections(in collectionView: UICollectionView) -> Int {

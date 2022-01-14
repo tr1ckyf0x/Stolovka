@@ -14,7 +14,7 @@ class StolovkaMainScreenPresenter {
     
     weak var viewController: MainScreenControllerInput?
     var fetchGreetingUseCase: UseCase<Void, ChumBucketGreetingModel>?
-    var recommendationsCollectionManager: MainScreenCategorizedFoodItemsCollectionProtocol?
+    var recommendationsCollectionManager: MainScreenRecommendationsCollectionProtocol?
     var itemCategoryCollectionManager: MainScreenItemCategoryProtocol?
     
     var categorizedFoodItemsCollectionManager: MainScreenCategorizedFoodItemsCollectionProtocol?
@@ -56,7 +56,7 @@ extension StolovkaMainScreenPresenter {
         recommendationsUseCase?.executeAsync { [weak self] (result: Result<[CategorizedFoodItems], Error>) in
             switch result {
             case let .success(products):
-                self?.recommendationsCollectionManager?.setupCategorizedItems(products)
+                self?.recommendationsCollectionManager?.setupRecommendations(products)
                 self?.viewController?.reloadRecommendationsCollection()
             case let .failure(error):
                 print(error)

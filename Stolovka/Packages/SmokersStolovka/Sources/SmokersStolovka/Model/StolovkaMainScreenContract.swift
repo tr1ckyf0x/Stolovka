@@ -23,7 +23,7 @@ protocol MainScreenControllerOutput: AnyObject {
 }
 
 protocol MainScreenRecommendationsCollectionProtocol: AnyObject {
-    func setupRecommendations(_ foodItems: [FoodItem])
+    func setupRecommendations(_ foodItems: [CategorizedFoodItems])
 }
 
 protocol MainScreenCategorizedFoodItemsCollectionProtocol: AnyObject {
