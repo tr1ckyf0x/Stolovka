@@ -9,14 +9,14 @@
 import Foundation
 import UIKit
 
-protocol CategorizedFoodItemsManagerDelegate: AnyObject {
+protocol FoodItemCarouselDelegate: AnyObject {
     func categorizedFoodItemsManagerNeedsDelegateForFoodCell(_ categorizedFoodItemsManager: MainScreenCategorizedFoodItemsCollectionProtocol) -> FoodCollectionViewCellDelegate?
 }
 
 final class FoodItemCarouselManager: NSObject {
     var categorizedFoodItems = [CategorizedFoodItems]()
 
-    weak var delegate: CategorizedFoodItemsManagerDelegate?
+    weak var delegate: FoodItemCarouselDelegate?
 }
 
 extension FoodItemCarouselManager: MainScreenCategorizedFoodItemsCollectionProtocol {

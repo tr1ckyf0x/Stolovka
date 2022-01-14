@@ -91,7 +91,7 @@ extension ViewController: MainScreenControllerInput {
 }
 
 // MARK: - CategorizedFoodItemsManagerDelegate
-extension ViewController: CategorizedFoodItemsManagerDelegate {
+extension ViewController: FoodItemCarouselDelegate {
     func categorizedFoodItemsManagerNeedsDelegateForFoodCell(_ categorizedFoodItemsManager: MainScreenCategorizedFoodItemsCollectionProtocol) -> FoodCollectionViewCellDelegate? {
         return self
     }

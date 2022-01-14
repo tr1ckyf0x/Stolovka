@@ -16,10 +16,10 @@ public enum StolovkaMainScreenBuilder {
         let usernameProvider = UserProfileDataProvider()
         let quoteOfDayProvider = QouteOfDayDataProvider()
         let recommendationsProvider = RecommendationsProvider()
-        let recommendationsCollectionViewManager = CategorizedFoodItemsManager()
+        let recommendationsCollectionViewManager = FoodItemCarouselManager()
         
         let categorizedFoodProvider = CategorizedItemsProvider()
-        let categorizedFoodItemsManager = CategorizedFoodItemsManager()
+        let categorizedFoodItemsManager = FoodItemCarouselManager()
         let categoryForItemManager = CategoryForItemManager()
         
         let getGreetingUseCase = GetGreetingUseCase(
