@@ -10,15 +10,17 @@ import Foundation
 import SharedResources
 
 protocol RecommendationsProviderProtocol {
-    func fetchRecommendations (completion: @escaping(Result<[FoodItem], Error>) -> Void)
+    func fetchRecommendations (completion: @escaping(Result<[CategorizedFoodItems], Error>) -> Void)
 }
 
 final class RecommendationsProvider: RecommendationsProviderProtocol {
-    func fetchRecommendations(completion: @escaping (Result<[FoodItem], Error>) -> Void) {
+    func fetchRecommendations(completion: @escaping (Result<[CategorizedFoodItems], Error>) -> Void) {
         let foodItems = [
-            FoodItem(name: "Сосиска в тесте", price: 12.000, pictureUrl: .local(SharedResources.Asset.Assets.Products.sosiskaVTeste)),
-            FoodItem(name: "Кофейный Напиток", price: 5.000, pictureUrl: .local(SharedResources.Asset.Assets.Products.cofeinyiNapitok)),
-            FoodItem(name: "Кофейный Напиток", price: 5.000, pictureUrl: .local(SharedResources.Asset.Assets.Products.cofeinyiNapitok))
+            CategorizedFoodItems(category: .bakery, products: [
+                FoodItem(name: "Сосиска в тесте", price: 12.000, pictureUrl: .local(Asset.Assets.Products.sosiskaVTeste)),
+                FoodItem(name: "Кофейный напиток", price: 5.000, pictureUrl: .local(Asset.Assets.Products.cofeinyiNapitok)),
+                FoodItem(name: "Пюрешка с котлеткой", price: 24.000, pictureUrl: .local(Asset.Assets.Products.pyreshkaSKotletkoi))
+            ])
         ]
         
         completion(.success(foodItems))

@@ -108,10 +108,5 @@ extension ViewController: FoodCollectionViewCellDelegate {
         print("Tapped like button")
     }
 }
-//MARK: - RecommendationsCollectionViewCellDelegate
-extension ViewController: RecommendationsCollectionViewManagerNeedsDelegate {
-    func recommendationsCollectionViewNeedsDelegateForCell(_ recommendationsCollectionViewManager: MainScreenRecommendationsCollectionProtocol) -> FoodCollectionViewCellDelegate {
-        return self
-    }
-}
+
 

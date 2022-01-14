@@ -16,7 +16,7 @@ public enum StolovkaMainScreenBuilder {
         let usernameProvider = UserProfileDataProvider()
         let quoteOfDayProvider = QouteOfDayDataProvider()
         let recommendationsProvider = RecommendationsProvider()
-        let recommendationsCollectionViewManager = RecommendationsCollectionViewManager()
+        let recommendationsCollectionViewManager = CategorizedFoodItemsManager()
         
         let categorizedFoodProvider = CategorizedItemsProvider()
         let categorizedFoodItemsManager = CategorizedFoodItemsManager()
