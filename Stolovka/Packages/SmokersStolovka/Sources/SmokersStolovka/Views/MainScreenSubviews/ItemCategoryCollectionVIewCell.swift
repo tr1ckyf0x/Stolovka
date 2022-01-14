@@ -37,8 +37,11 @@ extension ItemCategoryCollectionViewCell {
     func configure(productCategory: ProductCategory) {
         itemCategoryLabel.text = productCategory.title
     }
-    func configureView(selected: Bool) {
-        if selected {
+    func configureView(isSelected: Bool) {
+        // could not apply ternary operator
+        //isSelected ? itemCategoryLabel.font = .systemFont(ofSize: 22, weight: .bold) : itemCategoryLabel.font = .systemFont(ofSize: 22)
+        
+        if isSelected {
             itemCategoryLabel.font = .systemFont(ofSize: 22, weight: .bold)
         }
         else {

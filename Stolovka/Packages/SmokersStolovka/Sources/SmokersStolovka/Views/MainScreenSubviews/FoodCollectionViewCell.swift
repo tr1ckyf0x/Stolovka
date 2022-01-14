@@ -11,12 +11,12 @@ import UIKit
 import SharedResources
 
 protocol FoodCollectionViewCellDelegate: AnyObject {
-    func foodCollectionViewCellDidPressLikeButton(_ foodCollectionViewCell: FoodCollectionViewCell)
+    func foodCollectionViewCellDidPressLikeButton( foodCollectionViewCell: FoodCollectionViewCell, likeButtonPressedFor foodItem: FoodItem)
     func foodCollectionViewCellDidPressAddToCartButton (_ foodCollectionViewCell: FoodCollectionViewCell)
 }
 
 class FoodCollectionViewCell: UICollectionViewCell {
-
+    var foodItem: FoodItem?
     weak var delegate: FoodCollectionViewCellDelegate?
     
     private lazy var itemImage: UIImageView = {
@@ -120,7 +120,8 @@ extension FoodCollectionViewCell {
     }
     
     @objc private func pressedHeartButton() {
-        delegate?.foodCollectionViewCellDidPressLikeButton(self)
+        if let foodItem = foodItem {
+            delegate?.foodCollectionViewCellDidPressLikeButton(foodCollectionViewCell: self, likeButtonPressedFor: foodItem)}
     }
     
     @objc private func pressedAddToCartButton() {
@@ -151,9 +152,12 @@ extension FoodCollectionViewCell {
 
 extension FoodCollectionViewCell {
     func configure(foodItem: FoodItem) {
+        let notLikedByUserImage = UIImage(sfSymbol: SFSymbol.heart)
+        let likedByUserImage = UIImage(sfSymbol: SFSymbol.heartFill)
         configurePriceLabelText(for: foodItem.price)
         configureProductImage(for: foodItem.pictureUrl)
         productTitleLabel.text = foodItem.name
-        
+        foodItem.isLikedByUser ? likeButton.setImage(likedByUserImage, for: .normal) : likeButton.setImage(notLikedByUserImage, for: .normal)
     }
+    
 }

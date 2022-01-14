@@ -54,6 +54,7 @@ extension ViewController {
     
     @objc private func didTapShoppingCart() {
         print("Tapped Shopping Cart")
+        
     }
     
     @objc private func didTapMenuButton() {
@@ -99,13 +100,15 @@ extension ViewController: FoodItemCarouselDelegate {
 
 // MARK: - FoodCollectionViewCellDelegate
 extension ViewController: FoodCollectionViewCellDelegate {
-   
     func foodCollectionViewCellDidPressAddToCartButton(_ foodCollectionViewCell: FoodCollectionViewCell) {
-        print("Added item to shopping cart")
+        print("added to cart")
     }
     
-    func foodCollectionViewCellDidPressLikeButton(_ foodCollectionViewCell: FoodCollectionViewCell) {
-        print("Tapped like button")
+    func foodCollectionViewCellDidPressLikeButton(foodCollectionViewCell: FoodCollectionViewCell, likeButtonPressedFor foodItem: FoodItem) {
+        print("Liked an Item")
+        print(foodItem)
+
+        
     }
 }
 

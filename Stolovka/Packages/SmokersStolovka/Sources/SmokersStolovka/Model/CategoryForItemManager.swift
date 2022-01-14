@@ -9,7 +9,6 @@ protocol CategoryForItemManagerDelegate: AnyObject {
 
 final class CategoryForItemManager: NSObject {
     private var categorizedFoodItems = [CategorizedFoodItems]()
-
     private var lastIndexPath = IndexPath(row: 0, section: 0)
 
     weak var delegate: CategoryForItemManagerDelegate?
@@ -55,7 +54,7 @@ extension CategoryForItemManager: UICollectionViewDelegateFlowLayout {
         if let cell = collectionView.cellForItem(at: indexPath) as? ItemCategoryCollectionViewCell {
             collectionView.deselectItem(at: lastIndexPath, animated: true)
             lastIndexPath = indexPath
-            cell.configureView(selected: true)
+            cell.configureView(isSelected: true)
             delegate?.categoryForItemManager(self, didSelectCellAt: indexPath)
         }
 
@@ -65,14 +64,14 @@ extension CategoryForItemManager: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? ItemCategoryCollectionViewCell {
-            cell.configureView(selected: false)
+            cell.configureView(isSelected: false)
         }
     }
 
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: lastIndexPath) as? ItemCategoryCollectionViewCell {
             collectionView.selectItem(at: lastIndexPath, animated: true, scrollPosition: .centeredHorizontally)
-            cell.configureView(selected: true)
+            cell.configureView(isSelected: true)
         }
     }
 }

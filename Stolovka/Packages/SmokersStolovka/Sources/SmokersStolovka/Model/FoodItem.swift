@@ -17,4 +17,6 @@ struct FoodItem {
     var name: String
     var price: Double
     var pictureUrl: PictureFormat
+    var isLikedByUser: Bool
+    var itemID: String
 }
