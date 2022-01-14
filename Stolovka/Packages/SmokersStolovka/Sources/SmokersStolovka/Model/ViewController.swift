@@ -90,4 +90,28 @@ extension ViewController: MainScreenControllerInput {
     }
 }
 
+// MARK: - CategorizedFoodItemsManagerDelegate
+extension ViewController: CategorizedFoodItemsManagerDelegate {
+    func categorizedFoodItemsManagerNeedsDelegateForFoodCell(_ categorizedFoodItemsManager: MainScreenCategorizedFoodItemsCollectionProtocol) -> FoodCollectionViewCellDelegate? {
+        return self
+    }
+}
+
+// MARK: - FoodCollectionViewCellDelegate
+extension ViewController: FoodCollectionViewCellDelegate {
+   
+    func foodCollectionViewCellDidPressAddToCartButton(_ foodCollectionViewCell: FoodCollectionViewCell) {
+        print("Added item to shopping cart")
+    }
+    
+    func foodCollectionViewCellDidPressLikeButton(_ foodCollectionViewCell: FoodCollectionViewCell) {
+        print("Tapped like button")
+    }
+}
+//MARK: - RecommendationsCollectionViewCellDelegate
+extension ViewController: RecommendationsCollectionViewManagerNeedsDelegate {
+    func recommendationsCollectionViewNeedsDelegateForCell(_ recommendationsCollectionViewManager: MainScreenRecommendationsCollectionProtocol) -> FoodCollectionViewCellDelegate {
+        return self
+    }
+}
 

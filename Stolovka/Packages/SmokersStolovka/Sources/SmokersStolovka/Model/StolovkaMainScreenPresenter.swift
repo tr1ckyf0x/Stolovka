@@ -44,25 +44,6 @@ extension StolovkaMainScreenPresenter: CategoryForItemManagerDelegate {
     }
 }
 
-// MARK: - CategorizedFoodItemsManagerDelegate
-extension StolovkaMainScreenPresenter: CategorizedFoodItemsManagerDelegate {
-    func categorizedFoodItemsManagerNeedsDelegateForFoodCell(_ categorizedFoodItemsManager: MainScreenCategorizedFoodItemsCollectionProtocol) -> FoodCollectionViewCellDelegate? {
-        return self
-    }
-}
-
-// MARK: - FoodCollectionViewCellDelegate
-extension StolovkaMainScreenPresenter: FoodCollectionViewCellDelegate {
-   
-    func foodCollectionViewCellDidPressAddToCartButton(_ foodCollectionViewCell: FoodCollectionViewCell) {
-        print("Added item to shopping cart")
-    }
-    
-    func foodCollectionViewCellDidPressLikeButton(_ foodCollectionViewCell: FoodCollectionViewCell) {
-        print("Tapped like button")
-    }
-}
-
 //MARK: - Private Functions
 extension StolovkaMainScreenPresenter {
     

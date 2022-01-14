@@ -9,8 +9,12 @@
 import Foundation
 import UIKit
 
+protocol  RecommendationsCollectionViewManagerNeedsDelegate: AnyObject {
+   func recommendationsCollectionViewNeedsDelegateForCell(_ recommendationsCollectionViewManager: MainScreenRecommendationsCollectionProtocol) -> FoodCollectionViewCellDelegate}
+
 final class RecommendationsCollectionViewManager: NSObject {
     private var foodItems = [FoodItem]()
+    weak var delegate: RecommendationsCollectionViewManagerNeedsDelegate?
 }
 
 extension RecommendationsCollectionViewManager: MainScreenRecommendationsCollectionProtocol {
@@ -28,6 +32,8 @@ extension RecommendationsCollectionViewManager: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(FoodCollectionViewCell.self)", for: indexPath) as? FoodCollectionViewCell {
             cell.configure(foodItem: foodItems[indexPath.item])
+            let delegate = delegate?.recommendationsCollectionViewNeedsDelegateForCell(self)
+            cell.delegate = delegate
             return cell
             
         }
