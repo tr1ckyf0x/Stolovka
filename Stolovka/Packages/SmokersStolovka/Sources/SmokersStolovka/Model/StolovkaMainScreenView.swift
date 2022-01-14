@@ -71,7 +71,8 @@ extension StolovkaMainScreenView {
         }
         
         emptyView.snp.makeConstraints { make in
-            make.height.equalTo(searchSubview.snp.height).multipliedBy(0.6)
+            make.height.equalTo(searchSubview.snp.height).multipliedBy(0.3)
         }
 }
 }
+
