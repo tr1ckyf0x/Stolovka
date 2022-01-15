@@ -81,7 +81,6 @@ extension ItemCategoryCollectionView {
     
     func scroll(to indexPath: IndexPath) {
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-        print("feihfeihfiehfiefh")
     }
 }
 

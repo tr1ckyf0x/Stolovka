@@ -59,7 +59,6 @@ extension CategoryForItemManager: UICollectionViewDelegateFlowLayout {
         }
 
         collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-        print("Selected Item")
     }
 
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
