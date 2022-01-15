@@ -24,8 +24,10 @@ final class FoodItemCarouselManager: NSObject, MainScreenItemCategoryProtocol {
     
     private var categorizedFoodItems = [CategorizedFoodItems]()
     
+    var viewController: UIViewController?
+    
     private var lastIndexPath = IndexPath(row: 0, section: 0)
-
+    
     weak var itemForCategoryDelegate: ItemForCateogryDelegate?
     weak var delegate: FoodItemCarouselDelegate?
 }
@@ -46,7 +48,7 @@ extension FoodItemCarouselManager: MainScreenRecommendationsCollectionProtocol {
 }
 
 extension FoodItemCarouselManager: UICollectionViewDataSource {
-   
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return categorizedFoodItems.count
     }
@@ -56,7 +58,7 @@ extension FoodItemCarouselManager: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
+        
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(FoodCollectionViewCell.self)", for: indexPath) as? FoodCollectionViewCell {
             cell.configure(foodItem: categorizedFoodItems[indexPath.section].products[indexPath.item])
             let cellDelegate = delegate?.categorizedFoodItemsManagerNeedsDelegateForFoodCell(self)
@@ -77,13 +79,18 @@ extension FoodItemCarouselManager: UICollectionViewDelegateFlowLayout {
         let height = collectionView.bounds.height
         return CGSize(width: width, height: height)
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            collectionView.deselectItem(at: lastIndexPath, animated: true)
-            lastIndexPath = indexPath
-        itemForCategoryDelegate?.itemForCategory(self, didSelectCellAt: indexPath)
+        collectionView.deselectItem(at: lastIndexPath, animated: true)
         
-            collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+        //Сделать это абстрактнее. 
+        if indexPath == lastIndexPath { print ("Should show the item")
+            viewController?.present(PureBlackViewController(), animated: true, completion: nil)
+        }
+        
+        lastIndexPath = indexPath
+        itemForCategoryDelegate?.itemForCategory(self, didSelectCellAt: indexPath)
+        collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
     }
 }
 
