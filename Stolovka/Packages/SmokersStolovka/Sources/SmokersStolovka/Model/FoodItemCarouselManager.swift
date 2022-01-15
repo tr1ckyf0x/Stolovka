@@ -86,7 +86,6 @@ extension FoodItemCarouselManager: UICollectionViewDelegateFlowLayout {
         itemForCategoryDelegate?.itemForCategory(self, didSelectCellAt: indexPath)
         
             collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-            print("Selected Item FOOD ")
     }
 }
 
