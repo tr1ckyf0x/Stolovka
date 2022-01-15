@@ -21,6 +21,7 @@ class FoodCollectionViewCell: UICollectionViewCell {
     
     private lazy var itemImage: UIImageView = {
         let image = UIImageView()
+        image.contentMode = .scaleAspectFit
         return image
     }()
     
@@ -28,6 +29,7 @@ class FoodCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.textColor = SharedResources.Asset.Colors.primaryText.color
         label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = true
         label.font = .systemFont(ofSize: 14)
         label.minimumScaleFactor = 0.5
         label.textAlignment = .center
@@ -92,8 +94,9 @@ extension FoodCollectionViewCell {
         }
         
         addToCartButton.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().inset(10)
+            make.trailing.equalToSuperview().offset(6)
             make.height.equalTo(productPriceLabel)
+            make.width.equalTo(productPriceLabel)
             make.centerY.equalTo(productPriceLabel)
         }
         
@@ -106,17 +109,17 @@ extension FoodCollectionViewCell {
         itemImage.snp.makeConstraints { make in
             make.bottom.equalTo(productTitleLabel.snp.top)
             make.centerX.equalToSuperview()
-            make.width.equalToSuperview().multipliedBy(0.55)
+            make.width.equalToSuperview().multipliedBy(0.52)
             make.height.equalTo(itemImage.snp.width)
         }
         
         likeButton.snp.makeConstraints { make in
-            make.bottom.equalTo(itemImage.snp.top).inset(15)
+            make.bottom.equalTo(itemImage.snp.top)
+            make.top.equalToSuperview().inset(5)
             make.centerX.equalTo(addToCartButton.snp.centerX)
             make.size.equalTo(addToCartButton)
         }
-        
-        
+
     }
     
     @objc private func pressedHeartButton() {

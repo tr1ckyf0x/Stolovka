@@ -52,8 +52,6 @@ extension FoodItemCarouselManager: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-
         return categorizedFoodItems[section].products.count
     }
     
