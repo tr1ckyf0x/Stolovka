@@ -9,13 +9,24 @@
 import Foundation
 import UIKit
 
+protocol ItemForCateogryDelegate: AnyObject {
+    func itemForCategory(_ categoryForItemManager: MainScreenItemCategoryProtocol, didSelectCellAt indexPath: IndexPath)
+}
+
 protocol FoodItemCarouselDelegate: AnyObject {
     func categorizedFoodItemsManagerNeedsDelegateForFoodCell(_ categorizedFoodItemsManager: MainScreenCategorizedFoodItemsCollectionProtocol) -> FoodCollectionViewCellDelegate?
 }
 
-final class FoodItemCarouselManager: NSObject {
-    var categorizedFoodItems = [CategorizedFoodItems]()
+final class FoodItemCarouselManager: NSObject, MainScreenItemCategoryProtocol {
+    func setupItemCategories(_ categorizedFoodItems: [CategorizedFoodItems]) {
+        self.categorizedFoodItems = categorizedFoodItems
+    }
+    
+    private var categorizedFoodItems = [CategorizedFoodItems]()
+    
+    private var lastIndexPath = IndexPath(row: 0, section: 0)
 
+    weak var itemForCategoryDelegate: ItemForCateogryDelegate?
     weak var delegate: FoodItemCarouselDelegate?
 }
 
@@ -57,5 +68,33 @@ extension FoodItemCarouselManager: UICollectionViewDataSource {
         }
         
         return UICollectionViewCell()
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+extension FoodItemCarouselManager: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width: CGFloat = (collectionView.bounds.width - (Constants.numberOfItemsOnScreen * Constants.minimalItemSpacing)) / Constants.numberOfItemsOnScreen
+        let height = collectionView.bounds.height
+        return CGSize(width: width, height: height)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+            collectionView.deselectItem(at: lastIndexPath, animated: true)
+            lastIndexPath = indexPath
+        itemForCategoryDelegate?.itemForCategory(self, didSelectCellAt: indexPath)
+        
+            collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+            print("Selected Item FOOD ")
+    }
+}
+
+// MARK: - Constants
+extension FoodItemCarouselManager {
+    private enum Constants {
+        static let minimalItemSpacing: CGFloat = 20
+        static let numberOfItemsOnScreen: CGFloat = 2.3
+        static let spacesBetweenItems: CGFloat = numberOfItemsOnScreen.rounded() - 1
     }
 }

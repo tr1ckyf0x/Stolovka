@@ -16,6 +16,7 @@ protocol MainScreenControllerInput: AnyObject {
     func reloadRecommendationsCollection()
     func reloadCategorizedItemsCollection()
     func scrollCategorizedItems(to indexPath: IndexPath)
+    func scrollItemCategories(to indexPath: IndexPath)
 }
 
 protocol MainScreenControllerOutput: AnyObject {

@@ -36,6 +36,10 @@ class ViewController: UIViewController {
         mainScreenView.itemCategoryCollectionView.delegate = delegate
     }
     
+    func setCategoryForItemDelegate(delegate: UICollectionViewDelegate) {
+        mainScreenView.categorizedFoodItemsSubview.delegate = delegate
+    }
+    
     func setCategorizedItemsDataSource(dataSource: UICollectionViewDataSource) {
         mainScreenView.categorizedFoodItemsSubview.dataSource = dataSource
     }
@@ -63,6 +67,7 @@ extension ViewController {
 }
 
 extension ViewController: MainScreenControllerInput {
+
     func reloadRecommendationsTitles() {
         mainScreenView.itemCategoryCollectionView.reloadCollection()
     }
@@ -89,10 +94,16 @@ extension ViewController: MainScreenControllerInput {
     func scrollCategorizedItems(to indexPath: IndexPath) {
         mainScreenView.categorizedFoodItemsSubview.scroll(to: indexPath)
     }
+    
+    func scrollItemCategories(to indexPath: IndexPath) {
+        mainScreenView.itemCategoryCollectionView.scroll(to: indexPath)
+    }
+    
 }
 
 // MARK: - CategorizedFoodItemsManagerDelegate
 extension ViewController: FoodItemCarouselDelegate {
+
     func categorizedFoodItemsManagerNeedsDelegateForFoodCell(_ categorizedFoodItemsManager: MainScreenCategorizedFoodItemsCollectionProtocol) -> FoodCollectionViewCellDelegate? {
         return self
     }

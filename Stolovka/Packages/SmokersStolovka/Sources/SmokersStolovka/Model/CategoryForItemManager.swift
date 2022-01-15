@@ -70,7 +70,6 @@ extension CategoryForItemManager: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: lastIndexPath) as? ItemCategoryCollectionViewCell {
-            collectionView.selectItem(at: lastIndexPath, animated: true, scrollPosition: .centeredHorizontally)
             cell.configureView(isSelected: true)
         }
     }
@@ -79,7 +78,7 @@ extension CategoryForItemManager: UICollectionViewDelegateFlowLayout {
 // MARK: - Constants
 extension CategoryForItemManager {
     private enum Constants {
-        static let minimalItemSpacing: CGFloat = 16.0
+        static let minimalItemSpacing: CGFloat = 10
         static let numberOfItemsOnScreen: CGFloat = 2.2
         static let spacesBetweenItems: CGFloat = numberOfItemsOnScreen.rounded() - 1
     }

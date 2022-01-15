@@ -14,7 +14,6 @@ class CategorizedFoodItemsCollectionView: UIView {
     
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: self.frame, collectionViewLayout: flowLayout)
-        collectionView.delegate = self
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
         collectionView.register(FoodCollectionViewCell.self, forCellWithReuseIdentifier: "\(FoodCollectionViewCell.self)")
@@ -61,6 +60,15 @@ extension CategorizedFoodItemsCollectionView {
         }
     }
     
+    var delegate: UICollectionViewDelegate? {
+        get {
+            collectionView.delegate
+        }
+        set {
+            collectionView.delegate = newValue
+        }
+    }
+    
     func reloadCollection() {
         collectionView.reloadData()
     }
@@ -93,7 +101,7 @@ extension CategorizedFoodItemsCollectionView {
 
 extension CategorizedFoodItemsCollectionView {
     private enum Constants {
-        static let spaceBetweenCards: CGFloat = 20
+        static let spaceBetweenCards: CGFloat = 10
         static let spacesBetweenCardsCount: CGFloat = shownCardsCount.rounded() - 1
         static let shownCardsCount: CGFloat = 2.3
     }

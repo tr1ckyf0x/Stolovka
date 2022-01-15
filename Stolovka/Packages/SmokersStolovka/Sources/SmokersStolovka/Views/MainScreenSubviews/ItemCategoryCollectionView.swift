@@ -78,6 +78,11 @@ extension ItemCategoryCollectionView {
     func reloadCollection() {
         collectionView.reloadData()
     }
+    
+    func scroll(to indexPath: IndexPath) {
+        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        print("feihfeihfiehfiefh")
+    }
 }
 
 //MARK: - private methods

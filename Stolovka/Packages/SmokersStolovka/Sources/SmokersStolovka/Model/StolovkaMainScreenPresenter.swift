@@ -40,10 +40,16 @@ extension StolovkaMainScreenPresenter: MainScreenControllerOutput {
 // MARK: - CategoryForItemManagerDelegate
 extension StolovkaMainScreenPresenter: CategoryForItemManagerDelegate {
     func categoryForItemManager(_ categoryForItemManager: MainScreenItemCategoryProtocol, didSelectCellAt indexPath: IndexPath) {
-        viewController?.scrollCategorizedItems(to: indexPath)
+        viewController?.scrollCategorizedItems(to: IndexPath(item: 0, section: indexPath.section))
+        print("!@#$%^&!@#$%^&!@#$%^&!@#$%^&!#$%^&")
     }
 }
-
+extension StolovkaMainScreenPresenter: ItemForCateogryDelegate {
+    func itemForCategory(_ categoryForItemManager: MainScreenItemCategoryProtocol, didSelectCellAt indexPath: IndexPath) {
+        viewController?.scrollItemCategories(to: IndexPath(item: 0, section: indexPath.section))
+        print("Section path is \(indexPath.section)")
+    }
+}
 //MARK: - Private Functions
 extension StolovkaMainScreenPresenter {
     
