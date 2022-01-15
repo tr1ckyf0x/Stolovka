@@ -8,6 +8,7 @@
 
 import Foundation
 import SharedModels
+import UIKit
 
 protocol MainScreenControllerInput: AnyObject {
     func setGreeting(model: ChumBucketGreetingModel)
@@ -17,6 +18,7 @@ protocol MainScreenControllerInput: AnyObject {
     func reloadCategorizedItemsCollection()
     func scrollCategorizedItems(to indexPath: IndexPath)
     func scrollItemCategories(to indexPath: IndexPath)
+    func showIndividualItemView(collectionView: UICollectionView, indexPath: IndexPath)
 }
 
 protocol MainScreenControllerOutput: AnyObject {

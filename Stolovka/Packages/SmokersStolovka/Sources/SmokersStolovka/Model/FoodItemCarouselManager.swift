@@ -24,7 +24,7 @@ final class FoodItemCarouselManager: NSObject, MainScreenItemCategoryProtocol {
     
     private var categorizedFoodItems = [CategorizedFoodItems]()
     
-    var viewController: UIViewController?
+    var viewController: MainScreenControllerInput?
     
     private var lastIndexPath = IndexPath(row: 0, section: 0)
     
@@ -83,9 +83,11 @@ extension FoodItemCarouselManager: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: lastIndexPath, animated: true)
         
-        //Сделать это абстрактнее. 
-        if indexPath == lastIndexPath { print ("Should show the item")
-            viewController?.present(PureBlackViewController(), animated: true, completion: nil)
+        if indexPath == lastIndexPath {
+            print("IndexPath ", indexPath)
+            print ("Should show the item")
+            viewController?.showIndividualItemView(collectionView: collectionView, indexPath: indexPath)
+            return
         }
         
         lastIndexPath = indexPath

@@ -11,6 +11,7 @@ import SharedResources
 class ViewController: UIViewController {
     
     private let mainScreenView = StolovkaMainScreenView()
+    private let individualProductView = IndividualItemViewController()
     
     var presenter: MainScreenControllerOutput?
     
@@ -42,6 +43,7 @@ class ViewController: UIViewController {
     
     func setCategorizedItemsDataSource(dataSource: UICollectionViewDataSource) {
         mainScreenView.categorizedFoodItemsSubview.dataSource = dataSource
+        individualProductView.individualProductView.dataSource = dataSource
     }
     
 }
@@ -67,7 +69,7 @@ extension ViewController {
 }
 
 extension ViewController: MainScreenControllerInput {
-
+    
     func reloadRecommendationsTitles() {
         mainScreenView.itemCategoryCollectionView.reloadCollection()
     }
@@ -98,7 +100,10 @@ extension ViewController: MainScreenControllerInput {
     func scrollItemCategories(to indexPath: IndexPath) {
         mainScreenView.itemCategoryCollectionView.scroll(to: indexPath)
     }
-    
+    func showIndividualItemView(collectionView: UICollectionView, indexPath: IndexPath) {
+        navigationController?.pushViewController(individualProductView, animated: true)
+        individualProductView.individualProductView.scrollToItem(indexPath: indexPath)
+    }
 }
 
 // MARK: - CategorizedFoodItemsManagerDelegate
