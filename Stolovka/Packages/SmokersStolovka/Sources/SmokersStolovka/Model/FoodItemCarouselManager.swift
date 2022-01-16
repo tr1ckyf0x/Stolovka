@@ -84,12 +84,9 @@ extension FoodItemCarouselManager: UICollectionViewDelegateFlowLayout {
         collectionView.deselectItem(at: lastIndexPath, animated: true)
         
         if indexPath == lastIndexPath {
-            print("IndexPath ", indexPath)
-            print ("Should show the item")
             viewController?.showIndividualItemView(collectionView: collectionView, indexPath: indexPath)
             return
         }
-        
         lastIndexPath = indexPath
         itemForCategoryDelegate?.itemForCategory(self, didSelectCellAt: indexPath)
         collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
