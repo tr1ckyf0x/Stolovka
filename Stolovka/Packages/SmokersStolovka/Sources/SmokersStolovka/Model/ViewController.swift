@@ -103,8 +103,7 @@ extension ViewController: MainScreenControllerInput {
     
     func showIndividualItemView(collectionView: UICollectionView, indexPath: IndexPath) {
         navigationController?.pushViewController(individualProductView, animated: true)
-        individualProductView.indexPath = indexPath
-        individualProductView.individualProductView.scrollToItem()
+        individualProductView.individualProductView.scrollToItem(indexPath: indexPath)
     }
 }
 
@@ -125,8 +124,6 @@ extension ViewController: FoodCollectionViewCellDelegate {
     func foodCollectionViewCellDidPressLikeButton(foodCollectionViewCell: FoodCollectionViewCell, likeButtonPressedFor foodItem: FoodItem) {
         print("Liked an Item")
         print(foodItem)
-
-        
     }
 }
 

@@ -64,7 +64,6 @@ class IndividualItemView: UIView {
         return button
     }()
     
-    var scrollToIndexPath: IndexPath?
     
     private var collectionViewHeightConstraint: LayoutConstraint?
     
@@ -143,9 +142,8 @@ extension IndividualItemView {
 //MARK: - Public Methods
 extension IndividualItemView {
     
-    func scrollToItem() {
-        guard let scrollToIndexPath = scrollToIndexPath else { return }
-        individualItemCollectionView.scrollToItem(at: scrollToIndexPath, at: .left, animated: false)
+    func scrollToItem(indexPath: IndexPath) {
+        individualItemCollectionView.scrollToItem(at: indexPath, at: .left, animated: false)
     }
     
     var dataSource: UICollectionViewDataSource? {
@@ -159,15 +157,6 @@ extension IndividualItemView {
     
     func reloadCollection() {
         individualItemCollectionView.reloadData()
-    }
-    
-    var indexPath: IndexPath? {
-        get {
-            scrollToIndexPath
-        }
-        set {
-            scrollToIndexPath = newValue
-        }
     }
 }
 

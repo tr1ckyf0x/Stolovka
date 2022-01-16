@@ -162,5 +162,4 @@ extension FoodCollectionViewCell {
         productTitleLabel.text = foodItem.name
         foodItem.isLikedByUser ? likeButton.setImage(likedByUserImage, for: .normal) : likeButton.setImage(notLikedByUserImage, for: .normal)
     }
-    
 }
