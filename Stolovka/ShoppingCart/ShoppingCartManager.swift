@@ -6,13 +6,18 @@
 //
 
 import Foundation
+import SmokersStolovka
+
+
 
 protocol ShoppingCartManagerProtocol {
     func updateShoppingCart(categorizedProduct: [CategorizedFoodItems])
+    func addItemToShoppingCart(_ item: [CategorizedFoodItems])
+    func removeItemFromShoppingCart(at indexPath: IndexPath)
 }
 
 class ShoppingCartManager {
-    var categorizedFoodItems: [CategorizedFoodItems]?
+    var categorizedFoodItems: [] = []
 }
 
 
