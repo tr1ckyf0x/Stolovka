@@ -132,6 +132,10 @@ extension IndividualItemView: UICollectionViewDelegateFlowLayout {
         let height = collectionViewHeightForWidth(width: width)
         return CGSize(width: height, height: height)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        reloadViewTitleDescription(indexPath: indexPath)
+    }
 }
 
 extension IndividualItemView {
@@ -146,9 +150,7 @@ extension IndividualItemView {
     
     func scrollToItem(indexPath: IndexPath) {
         individualItemCollectionView.scrollToItem(at: indexPath, at: .left, animated: false)
-        guard let item = foodItemModel else { return }
-        itemDescriptionLabel.text = item[indexPath.section].products[indexPath.row].description
-        itemHeading.text = item[indexPath.section].products[indexPath.row].name
+        reloadViewTitleDescription(indexPath: indexPath)
     }
     
     var dataSource: UICollectionViewDataSource? {
@@ -162,6 +164,12 @@ extension IndividualItemView {
     
     func reloadCollection() {
         individualItemCollectionView.reloadData()
+    }
+    
+    func reloadViewTitleDescription(indexPath: IndexPath) {
+        guard let item = foodItemModel else { return }
+        itemDescriptionLabel.text = item[indexPath.section].products[indexPath.row].description
+        itemHeading.text = item[indexPath.section].products[indexPath.row].name
     }
 }
 
