@@ -12,7 +12,7 @@ import SharedResources
 class IndividualItemViewController: UIViewController {
     
     let individualProductView = IndividualItemView()
-    
+    var indexPath: IndexPath?
     
     override func viewDidLoad() {
         view = individualProductView
@@ -21,7 +21,10 @@ class IndividualItemViewController: UIViewController {
 
 //MARK: - Public Methods
 extension IndividualItemViewController {
-    
+    func configure(indexPath: IndexPath) {
+        self.indexPath = indexPath
+        individualProductView.scrollToIndexPath = indexPath
+    }
 }
 
 

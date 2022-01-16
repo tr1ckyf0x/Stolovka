@@ -100,9 +100,11 @@ extension ViewController: MainScreenControllerInput {
     func scrollItemCategories(to indexPath: IndexPath) {
         mainScreenView.itemCategoryCollectionView.scroll(to: indexPath)
     }
+    
     func showIndividualItemView(collectionView: UICollectionView, indexPath: IndexPath) {
         navigationController?.pushViewController(individualProductView, animated: true)
-        individualProductView.individualProductView.scrollToItem(indexPath: indexPath)
+        individualProductView.indexPath = indexPath
+        individualProductView.individualProductView.scrollToItem()
     }
 }
 
