@@ -13,6 +13,8 @@ import SharedResources
 
 class IndividualItemView: UIView {
     
+    var foodItemModel: [CategorizedFoodItems]?
+    
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.addSubview(itemHeading)
@@ -25,15 +27,15 @@ class IndividualItemView: UIView {
         let label = UILabel()
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 30, weight: .heavy)
-        label.text = "Булочка с присыпкой"
+        label.text = "Это начальное значение лейбла. от вьюшки"
         label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
     private lazy var itemDescriptionLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 15, weight: .medium)
-        label.text = "Очень вкусная булочка, ты ее очень любишь. Крутая булочка. Ну было и было. И что теперь? Булочка всё равно хороша."
+        label.font = .systemFont(ofSize: 22, weight: .medium)
+        label.text = "Это начальное значение лейбла. от вьюшки"
         label.numberOfLines = 0
         label.textAlignment = .center
         return label
@@ -70,6 +72,7 @@ class IndividualItemView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
+        individualItemCollectionView.reloadData()
     }
     
     required init?(coder: NSCoder) {
@@ -144,6 +147,9 @@ extension IndividualItemView {
     
     func scrollToItem(indexPath: IndexPath) {
         individualItemCollectionView.scrollToItem(at: indexPath, at: .left, animated: false)
+        guard let item = foodItemModel else { return }
+        itemDescriptionLabel.text = item[indexPath.section].products[indexPath.row].description
+        itemHeading.text = item[indexPath.section].products[indexPath.row].name
     }
     
     var dataSource: UICollectionViewDataSource? {

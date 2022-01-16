@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+protocol SetUpModelProtocol: AnyObject {
+    func modelWithDetailedDescription() -> [CategorizedFoodItems]
+}
+
 protocol ItemForCateogryDelegate: AnyObject {
     func itemForCategory(_ categoryForItemManager: MainScreenItemCategoryProtocol, didSelectCellAt indexPath: IndexPath)
 }
@@ -30,6 +34,14 @@ final class FoodItemCarouselManager: NSObject, MainScreenItemCategoryProtocol {
     
     weak var itemForCategoryDelegate: ItemForCateogryDelegate?
     weak var delegate: FoodItemCarouselDelegate?
+}
+
+extension FoodItemCarouselManager: SetUpModelProtocol {
+    func modelWithDetailedDescription() -> [CategorizedFoodItems] {
+        return categorizedFoodItems
+    }
+    
+    
 }
 
 extension FoodItemCarouselManager: MainScreenCategorizedFoodItemsCollectionProtocol {
@@ -84,7 +96,7 @@ extension FoodItemCarouselManager: UICollectionViewDelegateFlowLayout {
         collectionView.deselectItem(at: lastIndexPath, animated: true)
         
         if indexPath == lastIndexPath {
-            viewController?.showIndividualItemView(collectionView: collectionView, indexPath: indexPath)
+            viewController?.showIndividualItemView(collectionView: collectionView, indexPath: indexPath, categorizedFoodItem: categorizedFoodItems)
             return
         }
         lastIndexPath = indexPath

@@ -18,7 +18,7 @@ protocol MainScreenControllerInput: AnyObject {
     func reloadCategorizedItemsCollection()
     func scrollCategorizedItems(to indexPath: IndexPath)
     func scrollItemCategories(to indexPath: IndexPath)
-    func showIndividualItemView(collectionView: UICollectionView, indexPath: IndexPath)
+    func showIndividualItemView(collectionView: UICollectionView, indexPath: IndexPath, categorizedFoodItem: [CategorizedFoodItems])
 }
 
 protocol MainScreenControllerOutput: AnyObject {
