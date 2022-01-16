@@ -94,11 +94,13 @@ extension FoodItemCarouselManager: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: lastIndexPath, animated: true)
-        
+       
         if indexPath == lastIndexPath {
+            collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
             viewController?.showIndividualItemView(collectionView: collectionView, indexPath: indexPath, categorizedFoodItem: categorizedFoodItems)
             return
         }
+        
         lastIndexPath = indexPath
         itemForCategoryDelegate?.itemForCategory(self, didSelectCellAt: indexPath)
         collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)

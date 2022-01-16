@@ -103,8 +103,10 @@ extension ViewController: MainScreenControllerInput {
     
     func showIndividualItemView(collectionView: UICollectionView, indexPath: IndexPath, categorizedFoodItem: [CategorizedFoodItems]) {
         navigationController?.pushViewController(individualProductView, animated: true)
-        individualProductView.individualProductView.scrollToItem(indexPath: indexPath)
         individualProductView.individualProductView.foodItemModel = categorizedFoodItem
+        individualProductView.individualProductView.scrollToItem(indexPath: indexPath)
+       
+
     }
 }
 

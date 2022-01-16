@@ -93,7 +93,6 @@ extension IndividualItemView {
     
     private func setupView() {
         addSubview(scrollView)
-        
         scrollView.snp.makeConstraints { make in
             make.edges.equalTo(safeAreaLayoutGuide.snp.edges)
         }
