@@ -9,7 +9,6 @@ import Foundation
 import SmokersStolovka
 
 
-
 protocol ShoppingCartManagerProtocol {
     func updateShoppingCart(categorizedProduct: [CategorizedFoodItems])
     func addItemToShoppingCart(_ item: [CategorizedFoodItems])

@@ -12,7 +12,7 @@ import SnapKit
 import SharedResources
 
 class IndividualItemView: UIView {
-    
+   //Лучше всё это (лейблы, информация о продукте, кнопки) просто сделать как отдельную клетку - было бы меньше боли. Сейчас очень сложно синхронизировать текст лейблов с ячейкой. 
     var foodItemModel: [CategorizedFoodItems]?
     
     private lazy var scrollView: UIScrollView = {
