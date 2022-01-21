@@ -11,7 +11,6 @@ import SharedResources
 class ViewController: UIViewController {
     
     private let mainScreenView = StolovkaMainScreenView()
-    private let individualProductView = IndividualItemViewController()
     
     var presenter: MainScreenControllerOutput?
     
@@ -43,7 +42,6 @@ class ViewController: UIViewController {
     
     func setCategorizedItemsDataSource(dataSource: UICollectionViewDataSource) {
         mainScreenView.categorizedFoodItemsSubview.dataSource = dataSource
-        individualProductView.individualProductView.dataSource = dataSource
     }
     
 }
@@ -99,14 +97,6 @@ extension ViewController: MainScreenControllerInput {
     
     func scrollItemCategories(to indexPath: IndexPath) {
         mainScreenView.itemCategoryCollectionView.scroll(to: indexPath)
-    }
-    
-    func showIndividualItemView(collectionView: UICollectionView, indexPath: IndexPath, categorizedFoodItem: [CategorizedFoodItems]) {
-        navigationController?.pushViewController(individualProductView, animated: true)
-        individualProductView.individualProductView.foodItemModel = categorizedFoodItem
-        individualProductView.individualProductView.scrollToItem(indexPath: indexPath)
-       
-
     }
 }
 

@@ -28,8 +28,6 @@ final class FoodItemCarouselManager: NSObject, MainScreenItemCategoryProtocol {
     
     private var categorizedFoodItems = [CategorizedFoodItems]()
     
-    var viewController: MainScreenControllerInput?
-    
     private var lastIndexPath = IndexPath(row: 0, section: 0)
     
     weak var itemForCategoryDelegate: ItemForCateogryDelegate?
@@ -97,7 +95,6 @@ extension FoodItemCarouselManager: UICollectionViewDelegateFlowLayout {
        
         if indexPath == lastIndexPath {
             collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-            viewController?.showIndividualItemView(collectionView: collectionView, indexPath: indexPath, categorizedFoodItem: categorizedFoodItems)
             return
         }
         

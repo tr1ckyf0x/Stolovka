@@ -37,9 +37,6 @@ public enum StolovkaMainScreenBuilder {
         presenter.recommendationsCollectionManager = recommendationsCollectionViewManager
         viewController.setRecommendationsDataSource(dataSource: recommendationsCollectionViewManager)
         
-        
-        categorizedFoodItemsManager.viewController = viewController
-        
         categoryForItemManager.delegate = presenter
         categorizedFoodItemsManager.itemForCategoryDelegate = presenter
         
@@ -54,8 +51,6 @@ public enum StolovkaMainScreenBuilder {
         presenter.categorizedFoodItemsCollectionManager = categorizedFoodItemsManager
         viewController.setCategorizedItemsDataSource(dataSource: categorizedFoodItemsManager)
         
-    
-
         viewController.presenter = presenter
         presenter.viewController = viewController
 
