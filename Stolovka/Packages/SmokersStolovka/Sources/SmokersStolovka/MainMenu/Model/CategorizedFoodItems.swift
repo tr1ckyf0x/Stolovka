@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftUI
+import SharedResources
 
 enum ProductCategory {
     case bakery
@@ -20,22 +21,22 @@ enum ProductCategory {
     var title: String {
         switch self {
         case .bakery:
-            return "Выпечка"
+            return L10n.bakery
             
         case .hot:
-            return "Горячее"
+            return L10n.hot
             
         case .fromYesterday:
-            return "Вчерашнее"
+            return L10n.fromYesterday
             
         case .soup:
-            return "Жидкое"
+            return L10n.soup
             
         case .desert:
-            return "Сладкое"
+            return L10n.desert
             
         case .beverage:
-            return "Попить"
+            return L10n.beverage
         }
     }
 }
