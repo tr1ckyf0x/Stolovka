@@ -10,7 +10,7 @@ import UIKit
 import SharedResources
 
 class StolovkaMainScreenView: UIView {
-   
+    
     let greetingSubview = GreetingView()
     let searchSubview = SearchBarView()
     let recommendationsSubview = RecommendationsCollectionView()
@@ -48,7 +48,7 @@ class StolovkaMainScreenView: UIView {
         fatalError("Was Not Implemented.")
     }
 }
-    //MARK: - Private Methods
+//MARK: - Private Methods
 
 extension StolovkaMainScreenView {
     private func setupview() {
@@ -58,13 +58,13 @@ extension StolovkaMainScreenView {
         scrollView.snp.makeConstraints { make in
             make.edges.equalTo(safeAreaLayoutGuide)
         }
-
+        
         scrollViewContentView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
             make.width.equalToSuperview()
             make.height.equalToSuperview().priority(.low)
         }
-
+        
         stackView.snp.makeConstraints { make in
             make.leading.trailing.top.equalToSuperview()
             make.bottom.lessThanOrEqualToSuperview()
@@ -73,6 +73,6 @@ extension StolovkaMainScreenView {
         emptyView.snp.makeConstraints { make in
             make.height.equalTo(searchSubview.snp.height).multipliedBy(0.3)
         }
-}
+    }
 }
 

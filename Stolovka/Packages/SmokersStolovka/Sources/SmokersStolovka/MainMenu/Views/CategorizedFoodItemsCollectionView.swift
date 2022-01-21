@@ -35,6 +35,7 @@ class CategorizedFoodItemsCollectionView: UIView {
         super.init(frame: frame)
         setupViews()
     }
+    
     required init?(coder: NSCoder) {
         fatalError("Has not been implemented")
     }

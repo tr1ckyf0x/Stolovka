@@ -22,7 +22,6 @@ final class RecommendationsProvider: RecommendationsProviderProtocol {
                 FoodItem.init(name: "Белый хлеб", price: 0.33, description: "Выгодная цена.", pictureUrl: .local(Asset.Assets.Products.whiteBread), isLikedByUser: false, itemID: "111156")
             ])
         ]
-        
         completion(.success(foodItems))
     }
     

@@ -68,7 +68,7 @@ extension FoodItemCarouselManager: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
+
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(FoodCollectionViewCell.self)", for: indexPath) as? FoodCollectionViewCell {
             cell.configure(foodItem: categorizedFoodItems[indexPath.section].products[indexPath.item])
             let cellDelegate = delegate?.categorizedFoodItemsManagerNeedsDelegateForFoodCell(self)
