@@ -21,14 +21,15 @@ extension UserProfileProvider {
     var addresses: [Address]? { return nil }
 }
 
-class Address {
+struct Address {
     var city: String
+    
     init(city: String) {
         self.city = city
     }
 }
 
-class UserProfileDataProvider: UserProfileProvider {
+struct UserProfileDataProvider: UserProfileProvider {
     var userName: String { return "Аркадий"}
 }
 

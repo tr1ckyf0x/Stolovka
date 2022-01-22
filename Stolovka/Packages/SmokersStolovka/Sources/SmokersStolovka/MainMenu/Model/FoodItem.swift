@@ -9,10 +9,6 @@
 import Foundation
 import SharedResources
 
-enum PictureFormat {
-    case local(SharedResources.ImageAsset)
-}
-
 struct FoodItem {
     var name: String
     var price: Double

@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupview()
-        presenter?.viewDidLoad(mainScreen: self)
+        presenter?.viewDidLoad(view: self)
     }
    
     func setRecommendationsDataSource(dataSource: UICollectionViewDataSource) {
@@ -36,7 +36,7 @@ class ViewController: UIViewController {
         mainScreenView.itemCategoryCollectionView.delegate = delegate
     }
     
-    func setCategoryForItemDelegate(delegate: UICollectionViewDelegate) {
+    func setCategorizedFoodItemsDelegate(delegate: UICollectionViewDelegate) {
         mainScreenView.categorizedFoodItemsSubview.delegate = delegate
     }
     

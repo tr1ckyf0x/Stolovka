@@ -5,7 +5,6 @@
 //  Created by Nikita Shvad on 07.01.2022.
 //  Copyright © 2022 Владислав Лисянский. All rights reserved.
 //
-
 import Foundation
 import UseCase
 import SharedModels
@@ -26,14 +25,14 @@ class StolovkaMainScreenPresenter {
 // MARK: - MainScreenControllerOutput
 extension StolovkaMainScreenPresenter: MainScreenControllerOutput {
     
-    func viewDidLoad(mainScreen: MainScreenControllerInput) {
+    func viewDidLoad(view: MainScreenControllerInput) {
         setGreeting()
         fetchRecommendations()
         fetchCategorizedItems()
-        mainScreen.loadViews()
-        mainScreen.reloadRecommendationsTitles()
-        mainScreen.reloadRecommendationsCollection()
-        mainScreen.reloadCategorizedItemsCollection()
+        view.loadViews()
+        view.reloadRecommendationsTitles()
+        view.reloadRecommendationsCollection()
+        view.reloadCategorizedItemsCollection()
     }
 }
 
@@ -43,7 +42,7 @@ extension StolovkaMainScreenPresenter: CategoryForItemManagerDelegate {
         viewController?.scrollCategorizedItems(to: IndexPath(item: 0, section: indexPath.section))
     }
 }
-extension StolovkaMainScreenPresenter: ItemForCateogryDelegate {
+extension StolovkaMainScreenPresenter: ItemForCategoryDelegate {
     func itemForCategory(_ categoryForItemManager: MainScreenItemCategoryProtocol, didSelectCellAt indexPath: IndexPath) {
         viewController?.scrollItemCategories(to: IndexPath(item: 0, section: indexPath.section))
     }

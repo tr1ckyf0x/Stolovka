@@ -6,7 +6,6 @@
 //  Copyright © 2022 Владислав Лисянский. All rights reserved.
 //
 
-import Foundation
 import SharedModels
 import UIKit
 
@@ -21,7 +20,7 @@ protocol MainScreenControllerInput: AnyObject {
 }
 
 protocol MainScreenControllerOutput: AnyObject {
-    func viewDidLoad(mainScreen: MainScreenControllerInput)
+    func viewDidLoad(view: MainScreenControllerInput)
 }
 
 protocol MainScreenRecommendationsCollectionProtocol: AnyObject {
@@ -35,9 +34,3 @@ protocol MainScreenCategorizedFoodItemsCollectionProtocol: AnyObject {
 protocol MainScreenItemCategoryProtocol: AnyObject {
     func setupItemCategories(_ categorizedFoodItems: [CategorizedFoodItems])
 }
-
-//protocol MainScreenNumberOfCategoriesProtocol: AnyObject {
-//    func setupItemCategoryConstraints (for collectionView : ItemSpacesProtocol)
-//}
-
-

@@ -46,7 +46,7 @@ public enum StolovkaMainScreenBuilder {
         presenter.itemCategoryCollectionManager = categoryForItemManager
         viewController.setItemCategoryCollectionViewDataSource(dataSource: categoryForItemManager)
         viewController.setItemCategoryDelegate(delegate: categoryForItemManager)
-        viewController.setCategoryForItemDelegate(delegate: categorizedFoodItemsManager)
+        viewController.setCategorizedFoodItemsDelegate(delegate: categorizedFoodItemsManager)
         
         presenter.categorizedFoodItemsCollectionManager = categorizedFoodItemsManager
         viewController.setCategorizedItemsDataSource(dataSource: categorizedFoodItemsManager)

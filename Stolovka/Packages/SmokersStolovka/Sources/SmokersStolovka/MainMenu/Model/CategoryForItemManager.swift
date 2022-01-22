@@ -1,6 +1,4 @@
 
-
-import Foundation
 import UIKit
 
 protocol CategoryForItemManagerDelegate: AnyObject {
@@ -25,21 +23,18 @@ extension CategoryForItemManager: MainScreenItemCategoryProtocol {
 extension CategoryForItemManager: UICollectionViewDataSource {
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return categorizedFoodItems.count
+        categorizedFoodItems.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(ItemCategoryCollectionViewCell.self)", for: indexPath) as? ItemCategoryCollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(ItemCategoryCollectionViewCell.self)", for: indexPath) as? ItemCategoryCollectionViewCell else { fatalError("Could not deque cell") }
             cell.configure(productCategory: categorizedFoodItems[indexPath.section].category)
             return cell
         }
-        
-        fatalError("Could not deque the ItemCategory cell")
-    }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout

@@ -5,15 +5,13 @@
 //  Created by Nikita Shvad on 09.01.2022.
 //  Copyright © 2022 Владислав Лисянский. All rights reserved.
 //
-
-import Foundation
 import UIKit
 
 protocol SetUpModelProtocol: AnyObject {
     func modelWithDetailedDescription() -> [CategorizedFoodItems]
 }
 
-protocol ItemForCateogryDelegate: AnyObject {
+protocol ItemForCategoryDelegate: AnyObject {
     func itemForCategory(_ categoryForItemManager: MainScreenItemCategoryProtocol, didSelectCellAt indexPath: IndexPath)
 }
 
@@ -30,7 +28,7 @@ final class FoodItemCarouselManager: NSObject, MainScreenItemCategoryProtocol {
     
     private var lastIndexPath = IndexPath(row: 0, section: 0)
     
-    weak var itemForCategoryDelegate: ItemForCateogryDelegate?
+    weak var itemForCategoryDelegate: ItemForCategoryDelegate?
     weak var delegate: FoodItemCarouselDelegate?
 }
 
@@ -38,8 +36,6 @@ extension FoodItemCarouselManager: SetUpModelProtocol {
     func modelWithDetailedDescription() -> [CategorizedFoodItems] {
         return categorizedFoodItems
     }
-    
-    
 }
 
 extension FoodItemCarouselManager: MainScreenCategorizedFoodItemsCollectionProtocol {
@@ -53,8 +49,6 @@ extension FoodItemCarouselManager: MainScreenRecommendationsCollectionProtocol {
     func setupRecommendations(_ foodItems: [CategorizedFoodItems]) {
         self.categorizedFoodItems = foodItems
     }
-    
-    
 }
 
 extension FoodItemCarouselManager: UICollectionViewDataSource {
@@ -69,15 +63,12 @@ extension FoodItemCarouselManager: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(FoodCollectionViewCell.self)", for: indexPath) as? FoodCollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(FoodCollectionViewCell.self)", for: indexPath) as? FoodCollectionViewCell else { fatalError("Could not deque cell") }
             cell.configure(foodItem: categorizedFoodItems[indexPath.section].products[indexPath.item])
             let cellDelegate = delegate?.categorizedFoodItemsManagerNeedsDelegateForFoodCell(self)
             cell.foodItem = categorizedFoodItems[indexPath.section].products[indexPath.item]
             cell.delegate = cellDelegate
             return cell
-        }
-        
-        return UICollectionViewCell()
     }
 }
 
