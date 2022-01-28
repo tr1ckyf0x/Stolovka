@@ -111,7 +111,7 @@ extension ProductCollectionCell {
         let number = NSNumber(value: price)
         let formattedValue = formatter.string(from: number)!
 
-        priceLabel.text = L10n.roubles(formattedValue)
+        priceLabel.text = SharedResources.L10n.roubles(formattedValue)
     }
 
     private func configureProductImage(for imageSource: ImageSource) {

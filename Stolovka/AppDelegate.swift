@@ -12,6 +12,7 @@ import MainScreen
 import UsernameProvider
 import QuoteOfTheDayProvider
 import OldsRecommendedProductsProvider
+import SmokersStolovka
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -42,10 +43,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let navigationController = UINavigationController(rootViewController: mainViewController)
             viewControllers.append(navigationController)
         }
-
-        let nikitaViewController = ViewController()
+        let nikitaViewController = StolovkaMainScreenBuilder.buildStolovkaMainScreen()
         nikitaViewController.tabBarItem.title = SharedResources.L10n.nikitaScreenTitle
-        nikitaViewController.tabBarItem.image = SharedResources.Asset.Assets.plankton.image.withRenderingMode(.alwaysOriginal)
+        nikitaViewController.tabBarItem.image = UIImage(asset: SharedResources.Asset.Assets.plankton)?.withRenderingMode(.alwaysOriginal)
         let nikitaNavigationController = UINavigationController(rootViewController: nikitaViewController)
         viewControllers.append(nikitaNavigationController)
 

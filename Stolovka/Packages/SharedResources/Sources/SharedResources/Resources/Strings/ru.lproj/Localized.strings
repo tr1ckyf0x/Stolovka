@@ -7,7 +7,16 @@
 */
 
 "standardGreeting" = "Привет, %@!";
+"will you eat" = "Есть будешь, или как?";
 "guest" = "Гость";
 "searchBarMessage" = "Поиск по столовке...";
-
+"recommendations" = "Старшаки рекомендуют";
+"roubles" = "%@ ₽";
 "NikitaScreenTitle" = "Столовка курильщика";
+"bakery" = "Выпечка";
+"fromYesterday" = "Вчерашнее";
+"hot" = "Горячее";
+"soup" = "Жидкое";
+"desert" = "Сладкое";
+"beverage" = "Попить";
+
