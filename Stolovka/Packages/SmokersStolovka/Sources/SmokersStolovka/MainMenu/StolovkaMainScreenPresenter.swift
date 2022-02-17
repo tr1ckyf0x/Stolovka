@@ -15,7 +15,7 @@ class StolovkaMainScreenPresenter {
     var fetchGreetingUseCase: UseCase<Void, ChumBucketGreetingModel>?
     var recommendationsCollectionManager: MainScreenRecommendationsCollectionProtocol?
     var itemCategoryCollectionManager: MainScreenItemCategoryProtocol?
-    var shoppingCart: ShoppingCartManager?
+    var shoppingCartManager: ShoppingCartManager?
     
     var categorizedFoodItemsCollectionManager: MainScreenCategorizedFoodItemsCollectionProtocol?
     
@@ -42,7 +42,7 @@ extension StolovkaMainScreenPresenter: MainScreenControllerOutput {
             switch result {
             case .success:
                 print("Success")
-                self?.shoppingCart?.shoppingCart?.append(foodItem)
+                self?.shoppingCartManager?.shoppingCart.append(foodItem)
             case let .failure(error):
                 print(error)
             }

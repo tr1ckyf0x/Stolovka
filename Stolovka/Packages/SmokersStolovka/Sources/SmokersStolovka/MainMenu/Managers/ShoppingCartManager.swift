@@ -16,10 +16,10 @@ protocol ShoppingCartManagerProtocol {
 
 class ShoppingCartManager: ShoppingCartManagerProtocol {
     
-    var shoppingCart: [FoodItem]?
+    var shoppingCart: [FoodItem] = []
     
     func addToCart(foodItem: FoodItem, completion: @escaping (Result<Any, Error>) -> Void) {
-        shoppingCart?.append(foodItem)
+        shoppingCart.append(foodItem)
         print("ShoppingCart Items are \(String(describing: shoppingCart))")
     }
     
