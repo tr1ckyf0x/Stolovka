@@ -50,7 +50,7 @@ final class MainScreenView: UIView {
 extension MainScreenView {
     private func setupViews() {
         backgroundColor = .systemBackground
-
+    
         addSubview(scrollView)
 
         scrollView.snp.makeConstraints { make in

@@ -15,10 +15,12 @@ class StolovkaMainScreenPresenter {
     var fetchGreetingUseCase: UseCase<Void, ChumBucketGreetingModel>?
     var recommendationsCollectionManager: MainScreenRecommendationsCollectionProtocol?
     var itemCategoryCollectionManager: MainScreenItemCategoryProtocol?
+    var shoppingCart: ShoppingCartManager?
     
     var categorizedFoodItemsCollectionManager: MainScreenCategorizedFoodItemsCollectionProtocol?
     
     var recommendationsUseCase: AsyncUseCase<Void, [CategorizedFoodItems]>?
+    var addToCartUseCase: AsyncUseCase<FoodItem, Any>?
     var fetchCategorizedItemsUseCase: AsyncUseCase<Void, [CategorizedFoodItems]>?
 }
 
@@ -33,6 +35,19 @@ extension StolovkaMainScreenPresenter: MainScreenControllerOutput {
         view.reloadRecommendationsTitles()
         view.reloadRecommendationsCollection()
         view.reloadCategorizedItemsCollection()
+    }
+    
+     func addToShoppingCart(foodItem: FoodItem) {
+        addToCartUseCase?.executeAsync(foodItem, completion: { [weak self] (result: Result<Any, Error>) in
+            switch result {
+            case .success:
+                print("Success")
+                self?.shoppingCart?.shoppingCart?.append(foodItem)
+            case let .failure(error):
+                print(error)
+            }
+        }
+)
     }
 }
 
@@ -80,4 +95,5 @@ extension StolovkaMainScreenPresenter {
             }
         }
     }
+    
 }
