@@ -112,8 +112,9 @@ extension ViewController: FoodItemCarouselDelegate {
 extension ViewController: FoodCollectionViewCellDelegate {
     func foodCollectionViewCellDidPressAddToCartButton(_ foodCollectionViewCell: FoodCollectionViewCell) {
         print("added item to cart")
+    
         guard let foodItem = foodCollectionViewCell.foodItem else { return }
-        presenter?.addToShoppingCart(foodItem: foodItem)
+        presenter?.viewDidTapAddButton(foodItem: foodItem)
     }
     
     func foodCollectionViewCellDidPressLikeButton(foodCollectionViewCell: FoodCollectionViewCell, likeButtonPressedFor foodItem: FoodItem) {

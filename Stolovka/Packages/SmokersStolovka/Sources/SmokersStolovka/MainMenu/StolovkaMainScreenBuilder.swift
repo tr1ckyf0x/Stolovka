@@ -37,6 +37,7 @@ public enum StolovkaMainScreenBuilder {
         presenter.fetchGreetingUseCase = getGreetingUseCase
         presenter.recommendationsUseCase = fetchRecommendationsUseCase
         presenter.fetchCategorizedItemsUseCase = fetchCategorizedItemsUseCase
+        presenter.addToCartUseCase = addToShoppingCartUseCase
         
         presenter.recommendationsCollectionManager = recommendationsCollectionViewManager
         viewController.setRecommendationsDataSource(dataSource: recommendationsCollectionViewManager)
@@ -54,9 +55,6 @@ public enum StolovkaMainScreenBuilder {
         
         presenter.categorizedFoodItemsCollectionManager = categorizedFoodItemsManager
         viewController.setCategorizedItemsDataSource(dataSource: categorizedFoodItemsManager)
-        
-        
-        presenter.addToCartUseCase = addToShoppingCartUseCase
         
         viewController.presenter = presenter
         presenter.viewController = viewController

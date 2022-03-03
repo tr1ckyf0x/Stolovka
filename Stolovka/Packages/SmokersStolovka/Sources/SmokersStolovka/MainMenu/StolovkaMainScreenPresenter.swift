@@ -15,8 +15,6 @@ class StolovkaMainScreenPresenter {
     var fetchGreetingUseCase: UseCase<Void, ChumBucketGreetingModel>?
     var recommendationsCollectionManager: MainScreenRecommendationsCollectionProtocol?
     var itemCategoryCollectionManager: MainScreenItemCategoryProtocol?
-    var shoppingCartManager: ShoppingCartManager?
-    
     var categorizedFoodItemsCollectionManager: MainScreenCategorizedFoodItemsCollectionProtocol?
     
     var recommendationsUseCase: AsyncUseCase<Void, [CategorizedFoodItems]>?
@@ -37,17 +35,16 @@ extension StolovkaMainScreenPresenter: MainScreenControllerOutput {
         view.reloadCategorizedItemsCollection()
     }
     
-     func addToShoppingCart(foodItem: FoodItem) {
-        addToCartUseCase?.executeAsync(foodItem, completion: { [weak self] (result: Result<Any, Error>) in
+    func viewDidTapAddButton(foodItem: FoodItem) {
+        addToCartUseCase?.executeAsync(foodItem, completion: {(result: Result<Any, Error>) in
             switch result {
             case .success:
                 print("Success")
-                self?.shoppingCartManager?.shoppingCart.append(foodItem)
             case let .failure(error):
                 print(error)
             }
         }
-)
+        )
     }
 }
 

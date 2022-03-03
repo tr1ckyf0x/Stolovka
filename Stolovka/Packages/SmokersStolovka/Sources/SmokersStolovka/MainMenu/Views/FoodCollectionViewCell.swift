@@ -123,7 +123,8 @@ extension FoodCollectionViewCell {
     
     @objc private func pressedHeartButton() {
         if let foodItem = foodItem {
-            delegate?.foodCollectionViewCellDidPressLikeButton(foodCollectionViewCell: self, likeButtonPressedFor: foodItem)}
+            delegate?.foodCollectionViewCellDidPressLikeButton(foodCollectionViewCell: self, likeButtonPressedFor: foodItem)
+        }
     }
     
     @objc private func pressedAddToCartButton() {
