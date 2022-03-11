@@ -14,6 +14,7 @@ final class CategoryForItemManager: NSObject {
 
 // MARK: - MainScreenItemCategoryProtocol
 extension CategoryForItemManager: MainScreenItemCategoryProtocol {
+
     func setupItemCategories(_ categorizedFoodItems: [CategorizedFoodItems]) {
         self.categorizedFoodItems = categorizedFoodItems
     }

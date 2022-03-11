@@ -30,6 +30,8 @@ protocol MainScreenRecommendationsCollectionProtocol: AnyObject {
 
 protocol MainScreenCategorizedFoodItemsCollectionProtocol: AnyObject {
     func setupCategorizedItems (_ categorizedFoodItems: [CategorizedFoodItems])
+    func getFoodItem(at indexPath: IndexPath) -> FoodItem
+
 }
 
 protocol MainScreenItemCategoryProtocol: AnyObject {

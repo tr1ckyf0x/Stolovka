@@ -23,7 +23,7 @@ final class FoodItemCarouselManager: NSObject, MainScreenItemCategoryProtocol {
     func setupItemCategories(_ categorizedFoodItems: [CategorizedFoodItems]) {
         self.categorizedFoodItems = categorizedFoodItems
     }
-    
+
     private var categorizedFoodItems = [CategorizedFoodItems]()
     
     private var lastIndexPath = IndexPath(row: 0, section: 0)
@@ -39,10 +39,16 @@ extension FoodItemCarouselManager: SetUpModelProtocol {
 }
 
 extension FoodItemCarouselManager: MainScreenCategorizedFoodItemsCollectionProtocol {
+
+    func getFoodItem(at indexPath: IndexPath) -> FoodItem {
+        let foodItem = categorizedFoodItems[indexPath.section].products[indexPath.item]
+        return foodItem
+    }
     
     func setupCategorizedItems(_ categorizedFoodItems: [CategorizedFoodItems]) {
         self.categorizedFoodItems = categorizedFoodItems
     }
+    
 }
 
 extension FoodItemCarouselManager: MainScreenRecommendationsCollectionProtocol {

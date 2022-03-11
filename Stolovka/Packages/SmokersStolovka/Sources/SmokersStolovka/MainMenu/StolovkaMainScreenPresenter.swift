@@ -36,8 +36,15 @@ extension StolovkaMainScreenPresenter: MainScreenControllerOutput {
     }
     
     func viewDidTapAddButton(indexPath: IndexPath) {
-        categorizedFoodItemsCollectionManager.
-         addToCartUseCase?.executeAsync(<#T##requestArgument: FoodItem##FoodItem#>, completion: <#T##(Result<Void, Error>) -> Void#>)
+        guard let foodItem = categorizedFoodItemsCollectionManager?.getFoodItem(at: indexPath) else { return }
+        addToCartUseCase?.executeAsync(foodItem, completion: { (result: Result<Void, Error>) in
+            switch result {
+            case .success():
+                print("Success")
+            case .failure(_):
+                print("Failure")
+            }
+        })
     }
 }
 
