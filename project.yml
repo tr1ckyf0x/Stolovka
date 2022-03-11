@@ -48,7 +48,10 @@ packages:
     path: Stolovka/Packages/OldsRecommendedProductsProvider
   SmokersStolovka:
     path: Stolovka/Packages/SmokersStolovka
-    
+  CartScreen:
+    path: Stolovka/Packages/CartScreen
+  Models:
+    path: Stolovka/Packages/Models
 
 targets:
   Stolovka:
@@ -69,6 +72,8 @@ targets:
       - package: QuoteOfTheDayProvider
       - package: OldsRecommendedProductsProvider
       - package: SmokersStolovka
+      - package: CartScreen
+      - package: Models
 
     settings:
       base:
