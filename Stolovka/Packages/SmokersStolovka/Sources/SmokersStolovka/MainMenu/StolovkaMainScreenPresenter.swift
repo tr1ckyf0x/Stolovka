@@ -18,7 +18,7 @@ class StolovkaMainScreenPresenter {
     var categorizedFoodItemsCollectionManager: MainScreenCategorizedFoodItemsCollectionProtocol?
     
     var recommendationsUseCase: AsyncUseCase<Void, [CategorizedFoodItems]>?
-    var addToCartUseCase: AsyncUseCase<FoodItem, Any>?
+    var addToCartUseCase: AsyncUseCase<FoodItem, Void>?
     var fetchCategorizedItemsUseCase: AsyncUseCase<Void, [CategorizedFoodItems]>?
 }
 
@@ -35,16 +35,9 @@ extension StolovkaMainScreenPresenter: MainScreenControllerOutput {
         view.reloadCategorizedItemsCollection()
     }
     
-    func viewDidTapAddButton(foodItem: FoodItem) {
-        addToCartUseCase?.executeAsync(foodItem, completion: {(result: Result<Any, Error>) in
-            switch result {
-            case .success:
-                print("Success")
-            case let .failure(error):
-                print(error)
-            }
-        }
-        )
+    func viewDidTapAddButton(indexPath: IndexPath) {
+        categorizedFoodItemsCollectionManager.
+         addToCartUseCase?.executeAsync(<#T##requestArgument: FoodItem##FoodItem#>, completion: <#T##(Result<Void, Error>) -> Void#>)
     }
 }
 

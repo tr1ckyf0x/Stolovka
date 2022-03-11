@@ -6,28 +6,30 @@
 //
 
 import Foundation
+import UIKit
 
 protocol ShoppingCartManagerProtocol {
     
-    func addToCart(foodItem: FoodItem, completion: @escaping (Result<Any, Error>) -> Void)
-    func removeFromCart(foodItem: FoodItem)
-    func fetchCartItems(foodItems: [FoodItem])
+    func addToCart(foodItem: FoodItem, completion: @escaping (Result<Void, Error>) -> Void)
+    func removeFromCart(foodItem: FoodItem, completion: @escaping (Result<Void, Error>) -> Void)
+    func fetchCartItems(completion: @escaping (Result<Void, Error>) -> Void)
 }
 
 class ShoppingCartManager: ShoppingCartManagerProtocol {
     
-    var shoppingCart: [FoodItem] = []
+    private var shoppingCart: [FoodItem] = []
     
-    func addToCart(foodItem: FoodItem, completion: @escaping (Result<Any, Error>) -> Void) {
+    func addToCart(foodItem: FoodItem, completion: @escaping (Result<Void, Error>) -> Void) {
+
         shoppingCart.append(foodItem)
         print("ShoppingCart Items are \(String(describing: shoppingCart))")
     }
-    
-    func removeFromCart(foodItem: FoodItem) {
-        print("Not implemented")
+
+    func removeFromCart(foodItem: FoodItem, completion: @escaping (Result<Void, Error>) -> Void) {
+        print("Not Implemented")
     }
     
-    func fetchCartItems(foodItems: [FoodItem]) {
-        print("Not implemented")
+    func fetchCartItems(completion: @escaping (Result<Void, Error>) -> Void) {
+        print("Not Implemented")
     }
 }

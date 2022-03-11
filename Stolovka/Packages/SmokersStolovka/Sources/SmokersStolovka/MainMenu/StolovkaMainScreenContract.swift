@@ -21,7 +21,7 @@ protocol MainScreenControllerInput: AnyObject {
 
 protocol MainScreenControllerOutput: AnyObject {
     func viewDidLoad(view: MainScreenControllerInput)
-    func viewDidTapAddButton(foodItem: FoodItem)
+    func viewDidTapAddButton(indexPath: IndexPath)
 }
 
 protocol MainScreenRecommendationsCollectionProtocol: AnyObject {

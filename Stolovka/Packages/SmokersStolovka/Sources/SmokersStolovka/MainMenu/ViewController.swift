@@ -111,10 +111,9 @@ extension ViewController: FoodItemCarouselDelegate {
 // MARK: - FoodCollectionViewCellDelegate
 extension ViewController: FoodCollectionViewCellDelegate {
     func foodCollectionViewCellDidPressAddToCartButton(_ foodCollectionViewCell: FoodCollectionViewCell) {
-        print("added item to cart")
-    
-        guard let foodItem = foodCollectionViewCell.foodItem else { return }
-        presenter?.viewDidTapAddButton(foodItem: foodItem)
+        //delete fetchIndexPath Function - wrong implementation.
+        let indexPath = mainScreenView.categorizedFoodItemsSubview.fetchIndexPath(collectionViewCell: foodCollectionViewCell)
+        presenter?.viewDidTapAddButton(indexPath: indexPath)
     }
     
     func foodCollectionViewCellDidPressLikeButton(foodCollectionViewCell: FoodCollectionViewCell, likeButtonPressedFor foodItem: FoodItem) {
