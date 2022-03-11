@@ -20,8 +20,8 @@ class ShoppingCartManager: ShoppingCartManagerProtocol {
     private var shoppingCart: [FoodItem] = []
     
     func addToCart(foodItem: FoodItem, completion: @escaping (Result<Void, Error>) -> Void) {
-
         shoppingCart.append(foodItem)
+        completion(.success(Void()))
         print("ShoppingCart Items are \(String(describing: shoppingCart))")
     }
 

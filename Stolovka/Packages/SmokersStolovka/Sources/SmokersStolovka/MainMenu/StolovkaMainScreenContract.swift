@@ -20,18 +20,14 @@ protocol MainScreenControllerInput: AnyObject {
 }
 
 protocol MainScreenControllerOutput: AnyObject {
-    func viewDidLoad(view: MainScreenControllerInput)
-    func viewDidTapAddButton(indexPath: IndexPath)
+    func viewDidLoad(_ view: MainScreenControllerInput)
+    func view(_ view: MainScreenControllerInput, didTapAddButtonFor foodItem: FoodItem)
+    func view(_ view: MainScreenControllerInput, didTapLikeButtonFor foodItem: FoodItem)
 }
 
-protocol MainScreenRecommendationsCollectionProtocol: AnyObject {
-    func setupRecommendations(_ foodItems: [CategorizedFoodItems])
-}
-
-protocol MainScreenCategorizedFoodItemsCollectionProtocol: AnyObject {
-    func setupCategorizedItems (_ categorizedFoodItems: [CategorizedFoodItems])
+protocol MainScreenFoodItemsCollectionManagerProtocol: AnyObject {
+    func setFoodItems(_ foodItems: [CategorizedFoodItems])
     func getFoodItem(at indexPath: IndexPath) -> FoodItem
-
 }
 
 protocol MainScreenItemCategoryProtocol: AnyObject {

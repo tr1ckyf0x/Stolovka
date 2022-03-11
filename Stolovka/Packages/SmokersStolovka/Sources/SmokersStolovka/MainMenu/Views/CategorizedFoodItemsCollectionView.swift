@@ -76,11 +76,6 @@ extension CategorizedFoodItemsCollectionView {
     func scroll(to indexPath: IndexPath) {
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
-
-    func fetchIndexPath(collectionViewCell: UICollectionViewCell) -> IndexPath {
-        guard let indexPath = collectionView.indexPath(for: collectionViewCell) else { fatalError("Index Path is Nil") }
-        return indexPath
-    }
 }
 
 //MARK: - PrivateMethods

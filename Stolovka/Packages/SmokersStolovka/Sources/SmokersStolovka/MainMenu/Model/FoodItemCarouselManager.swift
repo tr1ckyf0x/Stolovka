@@ -16,7 +16,7 @@ protocol ItemForCategoryDelegate: AnyObject {
 }
 
 protocol FoodItemCarouselDelegate: AnyObject {
-    func categorizedFoodItemsManagerNeedsDelegateForFoodCell(_ categorizedFoodItemsManager: MainScreenCategorizedFoodItemsCollectionProtocol) -> FoodCollectionViewCellDelegate?
+    func foodItemsManagerNeedsDelegateForFoodCell(_ foodItemsCollectionManager: MainScreenFoodItemsCollectionManagerProtocol) -> FoodCollectionViewCellDelegate?
 }
 
 final class FoodItemCarouselManager: NSObject, MainScreenItemCategoryProtocol {
@@ -38,21 +38,13 @@ extension FoodItemCarouselManager: SetUpModelProtocol {
     }
 }
 
-extension FoodItemCarouselManager: MainScreenCategorizedFoodItemsCollectionProtocol {
-
+extension FoodItemCarouselManager: MainScreenFoodItemsCollectionManagerProtocol {
     func getFoodItem(at indexPath: IndexPath) -> FoodItem {
         let foodItem = categorizedFoodItems[indexPath.section].products[indexPath.item]
         return foodItem
     }
-    
-    func setupCategorizedItems(_ categorizedFoodItems: [CategorizedFoodItems]) {
-        self.categorizedFoodItems = categorizedFoodItems
-    }
-    
-}
 
-extension FoodItemCarouselManager: MainScreenRecommendationsCollectionProtocol {
-    func setupRecommendations(_ foodItems: [CategorizedFoodItems]) {
+    func setFoodItems(_ foodItems: [CategorizedFoodItems]) {
         self.categorizedFoodItems = foodItems
     }
 }
@@ -71,8 +63,7 @@ extension FoodItemCarouselManager: UICollectionViewDataSource {
 
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(FoodCollectionViewCell.self)", for: indexPath) as? FoodCollectionViewCell else { fatalError("Could not deque cell") }
             cell.configure(foodItem: categorizedFoodItems[indexPath.section].products[indexPath.item])
-            let cellDelegate = delegate?.categorizedFoodItemsManagerNeedsDelegateForFoodCell(self)
-            cell.foodItem = categorizedFoodItems[indexPath.section].products[indexPath.item]
+            let cellDelegate = delegate?.foodItemsManagerNeedsDelegateForFoodCell(self)
             cell.delegate = cellDelegate
             return cell
     }
