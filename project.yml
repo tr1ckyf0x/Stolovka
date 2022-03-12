@@ -52,6 +52,8 @@ packages:
     path: Stolovka/Packages/CartScreen
   Models:
     path: Stolovka/Packages/Models
+  Managers:
+    path: Stolovka/Packages/Managers
 
 targets:
   Stolovka:
@@ -74,6 +76,7 @@ targets:
       - package: SmokersStolovka
       - package: CartScreen
       - package: Models
+      - package: Managers
 
     settings:
       base:
