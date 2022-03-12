@@ -21,6 +21,9 @@ public enum StolovkaMainScreenBuilder {
         let categorizedFoodProvider = CategorizedItemsProvider()
         let categorizedFoodItemsManager = FoodItemCarouselManager()
         let categoryForItemManager = CategoryForItemManager()
+        let shoppingCart = ShoppingCartManager()
+        
+        
         
         let getGreetingUseCase = GetGreetingUseCase(
             usernameProvider: usernameProvider,
@@ -29,10 +32,12 @@ public enum StolovkaMainScreenBuilder {
         
         let fetchRecommendationsUseCase = NsFetchRecommendationsUseCase(recommendationsProvider: recommendationsProvider)
         let fetchCategorizedItemsUseCase = NSFetchCategorizedItemsUseCase(categorizedItemsProvider: categorizedFoodProvider)
+        let addToShoppingCartUseCase = AddToCartUseCase(shoppingCart: shoppingCart)
         
         presenter.fetchGreetingUseCase = getGreetingUseCase
         presenter.recommendationsUseCase = fetchRecommendationsUseCase
         presenter.fetchCategorizedItemsUseCase = fetchCategorizedItemsUseCase
+        presenter.addToCartUseCase = addToShoppingCartUseCase
         
         presenter.recommendationsCollectionManager = recommendationsCollectionViewManager
         viewController.setRecommendationsDataSource(dataSource: recommendationsCollectionViewManager)

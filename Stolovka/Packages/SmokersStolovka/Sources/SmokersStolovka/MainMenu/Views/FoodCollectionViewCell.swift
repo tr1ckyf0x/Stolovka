@@ -10,12 +10,12 @@ import UIKit
 import SharedResources
 
 protocol FoodCollectionViewCellDelegate: AnyObject {
-    func foodCollectionViewCellDidPressLikeButton( foodCollectionViewCell: FoodCollectionViewCell, likeButtonPressedFor foodItem: FoodItem)
-    func foodCollectionViewCellDidPressAddToCartButton (_ foodCollectionViewCell: FoodCollectionViewCell)
+    func foodCollectionViewCell(_ foodCollectionViewCell: FoodCollectionViewCell, didPressLikeButtonFor foodItem: FoodItem)
+    func foodCollectionViewCell(_ foodCollectionViewCell: FoodCollectionViewCell, didPressAddToCartButtonFor foodItem: FoodItem)
 }
 
 class FoodCollectionViewCell: UICollectionViewCell {
-    var foodItem: FoodItem?
+    private var foodItem: FoodItem?
     weak var delegate: FoodCollectionViewCellDelegate?
     
     private lazy var itemImage: UIImageView = {
@@ -122,12 +122,13 @@ extension FoodCollectionViewCell {
     }
     
     @objc private func pressedHeartButton() {
-        if let foodItem = foodItem {
-            delegate?.foodCollectionViewCellDidPressLikeButton(foodCollectionViewCell: self, likeButtonPressedFor: foodItem)}
+        guard let foodItem = foodItem else { return }
+        delegate?.foodCollectionViewCell(self, didPressLikeButtonFor: foodItem)
     }
     
     @objc private func pressedAddToCartButton() {
-        delegate?.foodCollectionViewCellDidPressAddToCartButton(self)
+        guard let foodItem = foodItem else { return }
+        delegate?.foodCollectionViewCell(self, didPressAddToCartButtonFor: foodItem)
     }
     
     private func configurePriceLabelText(for price: Double) {
@@ -154,6 +155,7 @@ extension FoodCollectionViewCell {
 
 extension FoodCollectionViewCell {
     func configure(foodItem: FoodItem) {
+        self.foodItem = foodItem
         let notLikedByUserImage = UIImage(sfSymbol: SFSymbol.heart)
         let likedByUserImage = UIImage(sfSymbol: SFSymbol.heartFill)
         configurePriceLabelText(for: foodItem.price)

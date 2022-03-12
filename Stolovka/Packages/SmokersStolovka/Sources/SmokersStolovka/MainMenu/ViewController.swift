@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupview()
-        presenter?.viewDidLoad(view: self)
+        presenter?.viewDidLoad(self)
     }
    
     func setRecommendationsDataSource(dataSource: UICollectionViewDataSource) {
@@ -102,22 +102,18 @@ extension ViewController: MainScreenControllerInput {
 
 // MARK: - CategorizedFoodItemsManagerDelegate
 extension ViewController: FoodItemCarouselDelegate {
-
-    func categorizedFoodItemsManagerNeedsDelegateForFoodCell(_ categorizedFoodItemsManager: MainScreenCategorizedFoodItemsCollectionProtocol) -> FoodCollectionViewCellDelegate? {
-        return self
+    func foodItemsManagerNeedsDelegateForFoodCell(_ foodItemsCollectionManager: MainScreenFoodItemsCollectionManagerProtocol) -> FoodCollectionViewCellDelegate? {
+        self
     }
 }
 
 // MARK: - FoodCollectionViewCellDelegate
 extension ViewController: FoodCollectionViewCellDelegate {
-    func foodCollectionViewCellDidPressAddToCartButton(_ foodCollectionViewCell: FoodCollectionViewCell) {
-        print("added to cart")
+    func foodCollectionViewCell(_ foodCollectionViewCell: FoodCollectionViewCell, didPressLikeButtonFor foodItem: FoodItem) {
+        presenter?.view(self, didTapLikeButtonFor: foodItem)
     }
-    
-    func foodCollectionViewCellDidPressLikeButton(foodCollectionViewCell: FoodCollectionViewCell, likeButtonPressedFor foodItem: FoodItem) {
-        print("Liked an Item")
-        print(foodItem)
+
+    func foodCollectionViewCell(_ foodCollectionViewCell: FoodCollectionViewCell, didPressAddToCartButtonFor foodItem: FoodItem) {
+        presenter?.view(self, didTapAddButtonFor: foodItem)
     }
 }
-
-
