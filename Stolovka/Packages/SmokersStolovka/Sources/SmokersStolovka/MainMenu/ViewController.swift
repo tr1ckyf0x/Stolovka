@@ -7,10 +7,12 @@
 
 import UIKit
 import SharedResources
+import NavigationController
 
 class ViewController: UIViewController {
     
     private let mainScreenView = StolovkaMainScreenView()
+    private let mainScreenNavigationController = NavigationController()
     
     var presenter: MainScreenControllerOutput?
     
@@ -50,19 +52,7 @@ class ViewController: UIViewController {
 extension ViewController {
     
     private func setupview() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(sfSymbol: SFSymbol.takeoutbagAndCupAndStraw), style: .plain, target: self, action: #selector (didTapShoppingCart))
-        navigationItem.rightBarButtonItem?.tintColor = SharedResources.Asset.Colors.shoppingCart.color
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(sfSymbol: SFSymbol.threeLinesHorizontal), style: . plain, target: self, action: #selector (didTapMenuButton))
-        navigationItem.leftBarButtonItem?.tintColor = SharedResources.Asset.Colors.menu.color
-    }
-    
-    @objc private func didTapShoppingCart() {
-        print("Tapped Shopping Cart")
-        
-    }
-    
-    @objc private func didTapMenuButton() {
-        print("Tapped Menu Button")
+        mainScreenNavigationController.setupMainScreenNavigation(for: self)
     }
 }
 
