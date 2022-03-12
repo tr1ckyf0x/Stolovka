@@ -14,6 +14,7 @@ class NavigationController: NavigationControllerProtocol {
         viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(sfSymbol: SFSymbol.threeLinesHorizontal), style: . plain, target: self, action: #selector (didTapMenuButton))
         viewController.navigationItem.leftBarButtonItem?.tintColor = SharedResources.Asset.Colors.menu.color
     }
+
     @objc private func didTapShoppingCart() {
         print("Tapped Shopping Cart")
 
