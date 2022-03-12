@@ -39,11 +39,6 @@ extension FoodItemCarouselManager: SetUpModelProtocol {
 }
 
 extension FoodItemCarouselManager: MainScreenFoodItemsCollectionManagerProtocol {
-    func getFoodItem(at indexPath: IndexPath) -> FoodItem {
-        let foodItem = categorizedFoodItems[indexPath.section].products[indexPath.item]
-        return foodItem
-    }
-
     func setFoodItems(_ foodItems: [CategorizedFoodItems]) {
         self.categorizedFoodItems = foodItems
     }

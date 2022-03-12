@@ -12,7 +12,7 @@ protocol ShoppingCartManagerProtocol {
     
     func addToCart(foodItem: FoodItem, completion: @escaping (Result<Void, Error>) -> Void)
     func removeFromCart(foodItem: FoodItem, completion: @escaping (Result<Void, Error>) -> Void)
-    func fetchCartItems(completion: @escaping (Result<Void, Error>) -> Void)
+    func fetchCartItems(completion: @escaping (Result<[FoodItem], Error>) -> Void)
 }
 
 class ShoppingCartManager: ShoppingCartManagerProtocol {
@@ -29,7 +29,7 @@ class ShoppingCartManager: ShoppingCartManagerProtocol {
         print("Not Implemented")
     }
     
-    func fetchCartItems(completion: @escaping (Result<Void, Error>) -> Void) {
+    func fetchCartItems(completion: @escaping (Result<[FoodItem], Error>) -> Void) {
         print("Not Implemented")
     }
 }

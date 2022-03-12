@@ -27,7 +27,6 @@ protocol MainScreenControllerOutput: AnyObject {
 
 protocol MainScreenFoodItemsCollectionManagerProtocol: AnyObject {
     func setFoodItems(_ foodItems: [CategorizedFoodItems])
-    func getFoodItem(at indexPath: IndexPath) -> FoodItem
 }
 
 protocol MainScreenItemCategoryProtocol: AnyObject {
