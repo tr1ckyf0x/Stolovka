@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Models
 import SharedResources
 
 protocol CategorizedItemsProviderProtocol {

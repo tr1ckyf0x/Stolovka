@@ -12,7 +12,7 @@ import NavigationController
 class ViewController: UIViewController {
     
     private let mainScreenView = StolovkaMainScreenView()
-    private let mainScreenNavigationController = NavigationController()
+    var mainScreenNavigationController: NavigationControllerProtocol?
     
     var presenter: MainScreenControllerOutput?
     

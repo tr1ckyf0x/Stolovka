@@ -12,6 +12,7 @@ public enum StolovkaMainScreenBuilder {
     public static func buildStolovkaMainScreen() -> UIViewController {
         let viewController = ViewController()
         let presenter = StolovkaMainScreenPresenter()
+        let mainScreenNavigationController = UINavigationController()
 
         let usernameProvider = UserProfileDataProvider()
         let quoteOfDayProvider = QouteOfDayDataProvider()
@@ -57,6 +58,7 @@ public enum StolovkaMainScreenBuilder {
         viewController.setCategorizedItemsDataSource(dataSource: categorizedFoodItemsManager)
         
         viewController.presenter = presenter
+        viewController.mainScreenNavigationController = mainScreenNavigationController
         presenter.viewController = viewController
 
         return viewController
