@@ -8,6 +8,7 @@
 
 import Foundation
 import SharedResources
+import Models
 
 protocol RecommendationsProviderProtocol {
     func fetchRecommendations (completion: @escaping(Result<[CategorizedFoodItems], Error>) -> Void)

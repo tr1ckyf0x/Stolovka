@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Models
 import UseCase
 
 class NSFetchCategorizedItemsUseCase: AsyncUseCase<Void, [CategorizedFoodItems]> {

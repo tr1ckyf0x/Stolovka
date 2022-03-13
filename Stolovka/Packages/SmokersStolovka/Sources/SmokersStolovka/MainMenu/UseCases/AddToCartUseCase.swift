@@ -1,6 +1,7 @@
 
 import Foundation
 import UseCase
+import Models
 
 class AddToCartUseCase: AsyncUseCase<FoodItem, Void> {
     private let shoppingCart: ShoppingCartManagerProtocol
