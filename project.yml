@@ -54,8 +54,8 @@ packages:
     path: Stolovka/Packages/Models
   Managers:
     path: Stolovka/Packages/Managers
-  NavigationController:
-    path: Stolovka/Packages/NavigationController
+  NavigationBar:
+    path: Stolovka/Packages/NavigationBar
 
 targets:
   Stolovka:
@@ -79,7 +79,7 @@ targets:
       - package: CartScreen
       - package: Models
       - package: Managers
-      - package: NavigationController
+      - package: NavigationBar
 
     settings:
       base:
