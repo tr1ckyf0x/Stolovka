@@ -9,11 +9,27 @@
 import Foundation
 import SharedResources
 
-struct FoodItem {
-    var name: String
-    var price: Double
-    var description: String
-    var pictureUrl: PictureFormat
-    var isLikedByUser: Bool
-    var itemID: String
+public struct FoodItem {
+    public var name: String
+    public var price: Double
+    public var description: String
+    public var pictureUrl: PictureFormat
+    public var isLikedByUser: Bool
+    public var itemID: String
+
+    public init(
+        name: String,
+        price: Double,
+        description: String,
+        pictureUrl: PictureFormat,
+        isLikedByUser: Bool,
+        itemID: String
+    ) {
+        self.name = name
+        self.price = price
+        self.description = description
+        self.pictureUrl = pictureUrl
+        self.isLikedByUser = isLikedByUser
+        self.itemID = itemID
+    }
 }

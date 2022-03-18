@@ -8,6 +8,7 @@
 
 import SharedModels
 import UIKit
+import Models
 
 protocol MainScreenControllerInput: AnyObject {
     func setGreeting(model: ChumBucketGreetingModel)

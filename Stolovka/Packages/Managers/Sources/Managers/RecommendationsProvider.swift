@@ -10,12 +10,15 @@ import Foundation
 import SharedResources
 import Models
 
-protocol RecommendationsProviderProtocol {
+public protocol RecommendationsProviderProtocol {
     func fetchRecommendations (completion: @escaping(Result<[CategorizedFoodItems], Error>) -> Void)
 }
 
-final class RecommendationsProvider: RecommendationsProviderProtocol {
-    func fetchRecommendations(completion: @escaping (Result<[CategorizedFoodItems], Error>) -> Void) {
+public final class RecommendationsProvider: RecommendationsProviderProtocol {
+    public init() {
+    }
+
+    public func fetchRecommendations(completion: @escaping (Result<[CategorizedFoodItems], Error>) -> Void) {
         let foodItems = [
             CategorizedFoodItems(category: .hot, products: [
                 FoodItem(name: "Кофейный напиток", price: 5.000, description: "Хорошо идет под экзамены", pictureUrl: .local(Asset.Assets.Products.cofeinyiNapitok), isLikedByUser: false, itemID: "11123"),
@@ -25,6 +28,4 @@ final class RecommendationsProvider: RecommendationsProviderProtocol {
         ]
         completion(.success(foodItems))
     }
-    
-    
 }

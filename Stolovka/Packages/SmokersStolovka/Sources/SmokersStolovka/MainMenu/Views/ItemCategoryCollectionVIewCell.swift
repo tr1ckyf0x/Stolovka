@@ -8,6 +8,7 @@
 
 import UIKit
 import SharedResources
+import Models
 
 class ItemCategoryCollectionViewCell: UICollectionViewCell {
     

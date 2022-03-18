@@ -7,12 +7,11 @@
 
 import UIKit
 import SharedResources
-import NavigationController
+import Models
 
 class ViewController: UIViewController {
     
     private let mainScreenView = StolovkaMainScreenView()
-    var mainScreenNavigationController: NavigationControllerProtocol?
     
     var presenter: MainScreenControllerOutput?
     
@@ -22,7 +21,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupview()
+        setupView()
         presenter?.viewDidLoad(self)
     }
    
@@ -48,11 +47,48 @@ class ViewController: UIViewController {
     
 }
 
-//MARK: - Navigation Bar Items
+//MARK: - Private methods
 extension ViewController {
     
-    private func setupview() {
-        mainScreenNavigationController.setupMainScreenNavigation(for: self)
+    private func setupView() {
+        setupNavigationBar()
+    }
+
+    private func setupNavigationBar() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: UIImage(sfSymbol: SFSymbol.takeoutbagAndCupAndStraw),
+            style: .plain,
+            target: self,
+            action: #selector(didTapShoppingCart)
+        )
+
+        navigationItem.rightBarButtonItem?.tintColor = SharedResources
+            .Asset
+            .Colors
+            .shoppingCart
+            .color
+
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            image: UIImage(sfSymbol: SFSymbol.threeLinesHorizontal),
+            style: .plain,
+            target: self,
+            action: #selector (didTapMenuButton)
+        )
+
+        navigationItem.leftBarButtonItem?.tintColor = SharedResources
+            .Asset
+            .Colors
+            .menu
+            .color
+    }
+
+    @objc private func didTapShoppingCart() {
+        print("Tapped Shopping Cart")
+
+    }
+
+    @objc private func didTapMenuButton() {
+        print("Tapped Menu Button")
     }
 }
 

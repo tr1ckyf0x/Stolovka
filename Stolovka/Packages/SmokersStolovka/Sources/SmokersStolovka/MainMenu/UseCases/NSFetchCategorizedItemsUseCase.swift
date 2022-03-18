@@ -9,6 +9,7 @@
 import Foundation
 import Models
 import UseCase
+import Managers
 
 class NSFetchCategorizedItemsUseCase: AsyncUseCase<Void, [CategorizedFoodItems]> {
     var categorizedItemsProvider: CategorizedItemsProviderProtocol

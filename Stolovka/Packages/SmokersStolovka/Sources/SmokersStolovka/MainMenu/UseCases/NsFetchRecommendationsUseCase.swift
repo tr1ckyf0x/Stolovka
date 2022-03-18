@@ -8,6 +8,8 @@
 
 import Foundation
 import UseCase
+import Models
+import Managers
 
 class NsFetchRecommendationsUseCase: AsyncUseCase<Void, [CategorizedFoodItems]> {
     let recommendationsProvider: RecommendationsProviderProtocol

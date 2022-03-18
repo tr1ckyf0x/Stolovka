@@ -9,28 +9,30 @@ import Foundation
 import UIKit
 import Models
 
-protocol ShoppingCartManagerProtocol {
-    
+public protocol ShoppingCartManagerProtocol {
     func addToCart(foodItem: FoodItem, completion: @escaping (Result<Void, Error>) -> Void)
     func removeFromCart(foodItem: FoodItem, completion: @escaping (Result<Void, Error>) -> Void)
     func fetchCartItems(completion: @escaping (Result<[FoodItem], Error>) -> Void)
 }
 
-class ShoppingCartManager: ShoppingCartManagerProtocol {
+public final class ShoppingCartManager: ShoppingCartManagerProtocol {
     
     private var shoppingCart: [FoodItem] = []
+
+    public init() {
+    }
     
-    func addToCart(foodItem: FoodItem, completion: @escaping (Result<Void, Error>) -> Void) {
+    public func addToCart(foodItem: FoodItem, completion: @escaping (Result<Void, Error>) -> Void) {
         shoppingCart.append(foodItem)
         completion(.success(Void()))
         print("ShoppingCart Items are \(String(describing: shoppingCart))")
     }
 
-    func removeFromCart(foodItem: FoodItem, completion: @escaping (Result<Void, Error>) -> Void) {
+    public func removeFromCart(foodItem: FoodItem, completion: @escaping (Result<Void, Error>) -> Void) {
         print("Not Implemented")
     }
     
-    func fetchCartItems(completion: @escaping (Result<[FoodItem], Error>) -> Void) {
+    public func fetchCartItems(completion: @escaping (Result<[FoodItem], Error>) -> Void) {
         print("Not Implemented")
     }
 }

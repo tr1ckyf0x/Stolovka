@@ -8,7 +8,15 @@
 
 import Foundation
 
-struct ChumBucketGreetingModel {
-    let greeting: String
-    let quoteOfTheDay: String
+public struct ChumBucketGreetingModel {
+    public let greeting: String
+    public let quoteOfTheDay: String
+
+    public init(
+        greeting: String,
+        quoteOfTheDay: String
+    ) {
+        self.greeting = greeting
+        self.quoteOfTheDay = quoteOfTheDay
+    }
 }

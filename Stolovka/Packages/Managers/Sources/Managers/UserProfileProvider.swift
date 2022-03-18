@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol UserProfileProvider {
+public protocol UserProfileProvider {
     var userName: String { get }
     var birthday: String? { get }
     var email: String? { get }
@@ -16,20 +16,23 @@ protocol UserProfileProvider {
 }
 
 extension UserProfileProvider {
-    var birthday: String? { return nil }
-    var email: String? { return nil}
-    var addresses: [Address]? { return nil }
+    public var birthday: String? { return nil }
+    public var email: String? { return nil}
+    public var addresses: [Address]? { return nil }
 }
 
-struct Address {
-    var city: String
+public struct Address {
+    public var city: String
     
-    init(city: String) {
+    public init(city: String) {
         self.city = city
     }
 }
 
-struct UserProfileDataProvider: UserProfileProvider {
-    var userName: String { return "Аркадий"}
+public final class UserProfileDataProvider: UserProfileProvider {
+    public var userName: String { return "Аркадий" }
+
+    public init() {
+    }
 }
 
