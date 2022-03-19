@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Managers
 
 public enum StolovkaMainScreenBuilder {
     public static func buildStolovkaMainScreen() -> UIViewController {

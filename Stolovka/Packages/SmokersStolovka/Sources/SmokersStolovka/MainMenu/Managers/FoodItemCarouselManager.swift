@@ -6,6 +6,7 @@
 //  Copyright © 2022 Владислав Лисянский. All rights reserved.
 //
 import UIKit
+import Models
 
 protocol SetUpModelProtocol: AnyObject {
     func modelWithDetailedDescription() -> [CategorizedFoodItems]

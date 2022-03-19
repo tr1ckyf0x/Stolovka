@@ -7,14 +7,19 @@
 //
 
 import Foundation
+import Models
 import SharedResources
 
-protocol CategorizedItemsProviderProtocol {
+public protocol CategorizedItemsProviderProtocol {
     func fetchCategorizedItems (completion: @escaping(Result<[CategorizedFoodItems], Error>) -> Void)
 }
 
-final class CategorizedItemsProvider: CategorizedItemsProviderProtocol {
-    func fetchCategorizedItems(completion: @escaping (Result<[CategorizedFoodItems], Error>) -> Void) {
+public final class CategorizedItemsProvider: CategorizedItemsProviderProtocol {
+
+    public init() {
+    }
+
+    public func fetchCategorizedItems(completion: @escaping (Result<[CategorizedFoodItems], Error>) -> Void) {
         
         let categorizedFoodItems: [CategorizedFoodItems] = [
             

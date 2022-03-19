@@ -9,10 +9,13 @@
 import Foundation
 import SharedResources
 
-protocol QouteOfDayProvider {
+public protocol QouteOfDayProvider {
     var qouteOfDay: String { get }
 }
 
-class QouteOfDayDataProvider: QouteOfDayProvider {
-    var qouteOfDay: String { return SharedResources.L10n.willYouEat}
+public final class QouteOfDayDataProvider: QouteOfDayProvider {
+    public var qouteOfDay: String { return SharedResources.L10n.willYouEat}
+
+    public init() {
+    }
 }

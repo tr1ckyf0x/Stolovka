@@ -1,5 +1,6 @@
 
 import UIKit
+import Models
 
 protocol CategoryForItemManagerDelegate: AnyObject {
     func categoryForItemManager(_ categoryForItemManager: MainScreenItemCategoryProtocol, didSelectCellAt indexPath: IndexPath)

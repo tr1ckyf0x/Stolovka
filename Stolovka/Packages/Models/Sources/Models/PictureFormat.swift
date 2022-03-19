@@ -8,6 +8,6 @@
 import Foundation
 import SharedResources
 
-enum PictureFormat {
+public enum PictureFormat {
     case local(SharedResources.ImageAsset)
 }

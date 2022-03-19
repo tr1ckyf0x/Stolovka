@@ -10,6 +10,8 @@ import Foundation
 import UseCase
 import SharedModels
 import SharedResources
+import Models
+import Managers
 
 class GetGreetingUseCase: UseCase<Void, ChumBucketGreetingModel> {
     

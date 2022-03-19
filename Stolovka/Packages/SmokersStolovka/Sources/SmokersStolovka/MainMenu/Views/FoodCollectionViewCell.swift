@@ -8,6 +8,7 @@
 
 import UIKit
 import SharedResources
+import Models
 
 protocol FoodCollectionViewCellDelegate: AnyObject {
     func foodCollectionViewCell(_ foodCollectionViewCell: FoodCollectionViewCell, didPressLikeButtonFor foodItem: FoodItem)

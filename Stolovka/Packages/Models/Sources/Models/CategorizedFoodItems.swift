@@ -9,7 +9,7 @@
 import Foundation
 import SharedResources
 
-enum ProductCategory {
+public enum ProductCategory {
     case bakery
     case hot
     case fromYesterday
@@ -17,7 +17,7 @@ enum ProductCategory {
     case desert
     case beverage
     
-    var title: String {
+    public var title: String {
         switch self {
         case .bakery:
             return L10n.bakery
@@ -40,9 +40,17 @@ enum ProductCategory {
     }
 }
 
-struct CategorizedFoodItems {
-    let category: ProductCategory
-    let products: [FoodItem]
+public struct CategorizedFoodItems {
+    public let category: ProductCategory
+    public let products: [FoodItem]
+
+    public init(
+        category: ProductCategory,
+        products: [FoodItem]
+    ) {
+        self.category = category
+        self.products = products
+    }
 }
 
 
