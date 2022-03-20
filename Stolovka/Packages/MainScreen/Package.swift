@@ -21,7 +21,8 @@ let package = Package(
         .package(path: "../QuoteOfTheDayProvider"),
         .package(path: "../OldsRecommendedProductsProvider"),
         .package(path: "../SharedModels"),
-        .package(path: "../ProductModels")
+        .package(path: "../ProductModels"),
+        .package(url: "https://github.com/SnapKit/SnapKit", from: "5.0.1")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -33,7 +34,8 @@ let package = Package(
                 "QuoteOfTheDayProvider",
                 "OldsRecommendedProductsProvider",
                 "SharedModels",
-                "ProductModels"
+                "ProductModels",
+                "SnapKit"
             ]
         )
     ]

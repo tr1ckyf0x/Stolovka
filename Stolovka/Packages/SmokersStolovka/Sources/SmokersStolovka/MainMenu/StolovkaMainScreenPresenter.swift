@@ -13,6 +13,8 @@ import Models
 class StolovkaMainScreenPresenter {
 
     weak var viewController: MainScreenControllerInput?
+    var router: MainScreenRouterProtocol?
+
     var fetchGreetingUseCase: UseCase<Void, ChumBucketGreetingModel>?
     var recommendationsCollectionManager: MainScreenFoodItemsCollectionManagerProtocol?
     var itemCategoryCollectionManager: MainScreenItemCategoryProtocol?
@@ -49,6 +51,10 @@ extension StolovkaMainScreenPresenter: MainScreenControllerOutput {
 
     func view(_ view: MainScreenControllerInput, didTapLikeButtonFor foodItem: FoodItem) {
     }
+
+    func viewDidTapShoppingCart(_ view: MainScreenControllerInput) {
+        router?.routeToShoppingCart()
+    }
 }
 
 // MARK: - CategoryForItemManagerDelegate
@@ -62,7 +68,7 @@ extension StolovkaMainScreenPresenter: ItemForCategoryDelegate {
         viewController?.scrollItemCategories(to: IndexPath(item: 0, section: indexPath.section))
     }
 }
-// MARK: - Private Functions
+// MARK: - Private methods
 extension StolovkaMainScreenPresenter {
 
     private func setGreeting() {

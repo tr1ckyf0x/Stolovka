@@ -17,7 +17,9 @@ let package = Package(
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
         .package(path: "../SharedResources"),
-        .package(path: "../Managers")
+        .package(path: "../Managers"),
+        .package(path: "../Models"),
+        .package(url: "https://github.com/SnapKit/SnapKit", from: "5.0.1")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -26,7 +28,9 @@ let package = Package(
             name: "CartScreen",
             dependencies: [
                 "SharedResources",
-                "Managers"
+                "Managers",
+                "Models",
+                "SnapKit"
             ]
         )
     ]
