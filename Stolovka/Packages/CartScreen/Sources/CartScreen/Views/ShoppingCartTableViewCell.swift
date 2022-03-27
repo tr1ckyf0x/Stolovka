@@ -106,6 +106,7 @@ class ShoppingCartTableViewCell: UITableViewCell {
 
 // MARK: - Private methods
 extension ShoppingCartTableViewCell {
+    // swiftlint:disable:next function_body_length
     private func setupView() {
         self.backgroundColor = Asset.Colors.tableViewBackground.color
         [
