@@ -59,7 +59,7 @@ class ShoppingCartTableViewCell: UITableViewCell {
         let label = UILabel()
         label.layer.masksToBounds = true
         label.layer.cornerRadius = 8
-        label.tintColor = SharedResources.Asset.Colors.primaryText.color
+        label.layer.borderColor = SharedResources.Asset.Colors.primaryText.color.cgColor
         label.layer.borderWidth = 1
         label.textAlignment = .center
         label.textColor = SharedResources.Asset.Colors.primaryText.color
@@ -97,6 +97,15 @@ class ShoppingCartTableViewCell: UITableViewCell {
         fatalError("Not Implemented")
     }
 
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        guard #available(iOS 13.0, *) else { return }
+        guard traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) else { return }
+        quantityLabel.layer.borderColor = SharedResources.Asset.Colors.primaryText.color.cgColor
+    }
+}
+
+// MARK: - Private methods
+extension ShoppingCartTableViewCell {
     private func setupView() {
         self.backgroundColor = Asset.Colors.tableViewBackground.color
         [
