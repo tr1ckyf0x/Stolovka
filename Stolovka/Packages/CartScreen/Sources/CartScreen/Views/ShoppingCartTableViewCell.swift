@@ -59,7 +59,7 @@ class ShoppingCartTableViewCell: UITableViewCell {
         let label = UILabel()
         label.layer.masksToBounds = true
         label.layer.cornerRadius = 8
-        label.tintColor = SharedResources.Asset.Colors.primaryText.color
+        label.layer.borderColor = SharedResources.Asset.Colors.primaryText.color.cgColor
         label.layer.borderWidth = 1
         label.textAlignment = .center
         label.textColor = SharedResources.Asset.Colors.primaryText.color
