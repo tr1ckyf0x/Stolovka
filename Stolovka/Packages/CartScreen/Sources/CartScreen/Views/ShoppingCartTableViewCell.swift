@@ -36,6 +36,16 @@ class ShoppingCartTableViewCell: UITableViewCell {
         return label
     }()
 
+    private lazy var itemDescriptionLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .left
+        label.textColor = SharedResources.Asset.Colors.secondaryText.color
+        label.font = .systemFont(ofSize: 14)
+        label.minimumScaleFactor = 0.6
+        label.adjustsFontSizeToFitWidth = true
+        return label
+    }()
+
     private lazy var itemPriceLabel: UILabel = {
         var label = UILabel()
         label.textColor = SharedResources.Asset.Colors.primaryText.color
@@ -47,11 +57,16 @@ class ShoppingCartTableViewCell: UITableViewCell {
 
     private lazy var quantityLabel: UILabel = {
         let label = UILabel()
+        label.layer.masksToBounds = true
+        label.layer.cornerRadius = 8
+        label.tintColor = SharedResources.Asset.Colors.primaryText.color
+        label.layer.borderWidth = 1
         label.textAlignment = .center
         label.textColor = SharedResources.Asset.Colors.primaryText.color
         label.font = .systemFont(ofSize: 22)
         label.minimumScaleFactor = 0.6
         label.text = "1"
+        label.backgroundColor = SharedResources.Asset.Colors.tableViewBackground.color
         return label
     }()
 
@@ -83,10 +98,11 @@ class ShoppingCartTableViewCell: UITableViewCell {
     }
 
     private func setupView() {
-        self.backgroundColor = UIColor.red
+        self.backgroundColor = Asset.Colors.tableViewBackground.color
         [
             quantityLabel,
             itemImageView,
+            itemDescriptionLabel,
             itemNameLabel,
             addOneItemButton,
             removeOneItemButton,
@@ -97,6 +113,47 @@ class ShoppingCartTableViewCell: UITableViewCell {
             make.top.bottom.left.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(0.32)
             make.height.equalTo(itemImageView.snp.width).priority(999)
+        }
+
+        itemNameLabel.snp.makeConstraints { make in
+            make.left.equalTo(itemImageView.snp.right).offset(10)
+            make.top.equalToSuperview().offset(8)
+            make.height.equalTo(itemImageView.snp.height).multipliedBy(0.21)
+            make.right.equalTo(quantityLabel.snp.right)
+        }
+
+        itemDescriptionLabel.snp.makeConstraints { make in
+            make.left.equalTo(itemNameLabel.snp.left)
+            make.top.equalTo(itemNameLabel.snp.bottom).offset(8)
+            make.height.equalTo(itemImageView.snp.height).multipliedBy(0.21)
+            make.right.equalTo(quantityLabel.snp.right)
+        }
+
+        quantityLabel.snp.makeConstraints { make in
+            make.right.equalToSuperview().inset(8)
+            make.centerY.equalToSuperview()
+            make.height.equalToSuperview().multipliedBy(0.33)
+            make.width.equalTo(quantityLabel.snp.height)
+        }
+
+        itemPriceLabel.snp.makeConstraints { make in
+            make.left.equalTo(itemNameLabel.snp.left)
+            make.top.equalTo(itemDescriptionLabel.snp.bottom).offset(8)
+            make.height.equalTo(itemImageView.snp.height).multipliedBy(0.21)
+            make.right.equalTo(quantityLabel.snp.right)
+        }
+
+        addOneItemButton.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().inset(8)
+            make.height.equalToSuperview().multipliedBy(0.13)
+            make.width.equalTo(addOneItemButton.snp.height)
+            make.right.equalTo(quantityLabel.snp.right)
+        }
+
+        removeOneItemButton.snp.makeConstraints { make in
+            make.bottom.equalTo(addOneItemButton.snp.bottom)
+            make.height.width.equalTo(addOneItemButton.snp.height)
+            make.left.equalTo(quantityLabel.snp.left)
         }
     }
 
@@ -137,6 +194,7 @@ extension ShoppingCartTableViewCell {
 
     func configure(foodItem: FoodItem) {
         itemNameLabel.text = foodItem.name
+        itemDescriptionLabel.text = foodItem.description
         configurePriceLabelText(for: foodItem.price)
         configureItemImage(for: foodItem.pictureUrl)
     }

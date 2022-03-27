@@ -13,7 +13,7 @@ import SharedResources
 // remove placeholder -> develop use case from shopping cart manager -> presenter
 
 final class ShoppingCartTableViewManager: NSObject {
-    let foodItem = FoodItem(name: "TEST", price: 12, description: "12", pictureUrl: .local(SharedResources.Asset.Assets.Products.bun), isLikedByUser: true, itemID: "333")
+    let foodItem = FoodItem(name: "TEST", price: 12, description: "С мясом. Пахнет как кирпич.", pictureUrl: .local(SharedResources.Asset.Assets.Products.bun), isLikedByUser: true, itemID: "333")
 }
 
 extension ShoppingCartTableViewManager: ShoppingCartTableManagerProtocol {
