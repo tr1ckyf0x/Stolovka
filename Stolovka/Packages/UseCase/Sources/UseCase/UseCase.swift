@@ -13,8 +13,8 @@ open class UseCase<Argument, Res>: UseCaseProtocol {
     }
 }
 
-public extension UseCase where Argument == Void {
-    func execute() -> Res {
+extension UseCase where Argument == Void {
+    public func execute() -> Res {
         execute(Void())
     }
 }

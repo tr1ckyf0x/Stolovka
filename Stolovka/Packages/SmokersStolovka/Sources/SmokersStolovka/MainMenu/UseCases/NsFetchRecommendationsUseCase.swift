@@ -13,11 +13,11 @@ import Managers
 
 class NsFetchRecommendationsUseCase: AsyncUseCase<Void, [CategorizedFoodItems]> {
     let recommendationsProvider: RecommendationsProviderProtocol
-    
+
     init(recommendationsProvider: RecommendationsProviderProtocol) {
         self.recommendationsProvider = recommendationsProvider
     }
-    
+
     override func executeAsync(_ requestArgument: Void, completion: @escaping (Result<[CategorizedFoodItems], Error>) -> Void) {
         recommendationsProvider.fetchRecommendations(completion: completion)
     }

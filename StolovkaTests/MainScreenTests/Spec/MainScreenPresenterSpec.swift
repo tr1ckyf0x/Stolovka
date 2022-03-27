@@ -13,7 +13,6 @@ import Nimble
 
 final class AddHostPresenterSpec: QuickSpec {
 
-    // swiftlint:disable function_body_length
     override func spec() {
         var presenter: MainScreenPresenter!
         var collectionManagerMock: MainScreenProductCarouselCollectionManagerMock!

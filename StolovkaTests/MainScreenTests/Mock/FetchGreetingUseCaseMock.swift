@@ -11,7 +11,6 @@ import UseCase
 @testable import Stolovka
 
 final class FetchGreetingUseCaseMock: UseCase<Void, MainScreenGreetingModel> {
-
     private(set) var didCallExecute = false
 
     override func execute(_ requestArgument: Void) -> MainScreenGreetingModel {

@@ -14,7 +14,7 @@ import ProductModels
 final class ProductCollectionCell: UICollectionViewCell {
 
     private lazy var priceLabel: UILabel = { label in
-        return label
+        label
     }(UILabel())
 
     private lazy var addToCartButton: UIButton = { button in
@@ -109,7 +109,7 @@ extension ProductCollectionCell {
         formatter.maximumFractionDigits = 2
 
         let number = NSNumber(value: price)
-        let formattedValue = formatter.string(from: number)!
+        guard let formattedValue = formatter.string(from: number) else { return }
 
         priceLabel.text = SharedResources.L10n.roubles(formattedValue)
     }

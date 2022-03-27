@@ -25,9 +25,16 @@ extension MainScreenProductCarouselCollectionManager: UICollectionViewDataSource
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(ProductCollectionCell.self)", for: indexPath) as? ProductCollectionCell
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: "\(ProductCollectionCell.self)",
+            for: indexPath
+        ) as? ProductCollectionCell
+
         let product = products[indexPath.item]
         cell?.configure(product: product)
-        return cell!
+
+        guard let cell = cell else { fatalError("Cell can not be dequeued") }
+
+        return cell
     }
 }

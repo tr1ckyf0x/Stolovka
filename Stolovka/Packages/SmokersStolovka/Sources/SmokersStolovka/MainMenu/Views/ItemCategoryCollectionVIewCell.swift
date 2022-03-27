@@ -11,7 +11,7 @@ import SharedResources
 import Models
 
 class ItemCategoryCollectionViewCell: UICollectionViewCell {
-    
+
     private lazy var itemCategoryLabel: UILabel = {
         let itemCategoryLabel = UILabel()
         itemCategoryLabel.textAlignment = .left
@@ -20,8 +20,7 @@ class ItemCategoryCollectionViewCell: UICollectionViewCell {
         itemCategoryLabel.minimumScaleFactor = 0.6
         return itemCategoryLabel
     }()
-    
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -31,32 +30,30 @@ class ItemCategoryCollectionViewCell: UICollectionViewCell {
     }
 }
 
-
-//MARK: - Public Methods
+// MARK: - Public Methods
 extension ItemCategoryCollectionViewCell {
     func configure(productCategory: ProductCategory) {
         itemCategoryLabel.text = productCategory.title
     }
     func configureView(isSelected: Bool) {
         // could not apply ternary operator
-        //isSelected ? itemCategoryLabel.font = .systemFont(ofSize: 22, weight: .bold) : itemCategoryLabel.font = .systemFont(ofSize: 22)
-        
+//        isSelected ? itemCategoryLabel.font = .systemFont(ofSize: 22, weight: .bold) : itemCategoryLabel.font = .systemFont(ofSize: 22)
+
         if isSelected {
             itemCategoryLabel.font = .systemFont(ofSize: 22, weight: .bold)
-        }
-        else {
+        } else {
             itemCategoryLabel.font = .systemFont(ofSize: 22)
         }
     }
 }
-//MARK: - PrivateMethods
+// MARK: - Private methods
 extension ItemCategoryCollectionViewCell {
     private func setupView() {
         addSubview(itemCategoryLabel)
         itemCategoryLabel.snp.makeConstraints { make in
             make.top.bottom.right.equalToSuperview().inset(2)
             make.left.equalToSuperview()
-            
+
         }
     }
 }

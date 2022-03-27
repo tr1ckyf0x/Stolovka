@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 
 class CategorizedFoodItemsCollectionView: UIView {
-    
+
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: self.frame, collectionViewLayout: flowLayout)
         collectionView.showsHorizontalScrollIndicator = false
@@ -18,7 +18,7 @@ class CategorizedFoodItemsCollectionView: UIView {
         collectionView.register(FoodCollectionViewCell.self, forCellWithReuseIdentifier: "\(FoodCollectionViewCell.self)")
         return collectionView
     }()
-    
+
     private lazy var flowLayout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = Constants.spaceBetweenCards
@@ -27,18 +27,18 @@ class CategorizedFoodItemsCollectionView: UIView {
         layout.sectionInset = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 10)
         return layout
     }()
-    
+
     private var collectionViewHeightConstraint: LayoutConstraint?
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("Has not been implemented")
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         let width = collectionView.frame.width
@@ -48,9 +48,9 @@ class CategorizedFoodItemsCollectionView: UIView {
     }
 }
 
-//MARK: - PublicMethods
+// MARK: - Public methods
 extension CategorizedFoodItemsCollectionView {
-    
+
     var dataSource: UICollectionViewDataSource? {
         get {
             collectionView.dataSource
@@ -59,7 +59,7 @@ extension CategorizedFoodItemsCollectionView {
             collectionView.dataSource = newValue
         }
     }
-    
+
     var delegate: UICollectionViewDelegate? {
         get {
             collectionView.delegate
@@ -68,20 +68,19 @@ extension CategorizedFoodItemsCollectionView {
             collectionView.delegate = newValue
         }
     }
-    
+
     func reloadCollection() {
         collectionView.reloadData()
     }
-    
+
     func scroll(to indexPath: IndexPath) {
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
 }
 
-//MARK: - PrivateMethods
-
+// MARK: - PrivateMethods
 extension CategorizedFoodItemsCollectionView {
-    
+
     private func setupViews() {
         addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
@@ -89,14 +88,14 @@ extension CategorizedFoodItemsCollectionView {
             self.collectionViewHeightConstraint = make.height.equalTo(1).constraint.layoutConstraints.first
         }
     }
-    
+
     private func collectionViewHeightForWidth(width: CGFloat) -> CGFloat {
         let spacing = flowLayout.minimumInteritemSpacing
         let availableWidth = width - spacing * Constants.spacesBetweenCardsCount
         let itemDimension = (availableWidth / Constants.shownCardsCount).rounded(.down)
         return itemDimension
     }
-    
+
 }
 
 extension CategorizedFoodItemsCollectionView {

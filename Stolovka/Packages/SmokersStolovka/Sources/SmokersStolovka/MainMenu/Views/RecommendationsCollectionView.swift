@@ -11,7 +11,7 @@ import SnapKit
 import SharedResources
 
 class RecommendationsCollectionView: UIView {
-    
+
     private lazy var headingLabel: UILabel = {
         let label = UILabel()
         label.textColor = SharedResources.Asset.Colors.primaryText.color
@@ -19,7 +19,7 @@ class RecommendationsCollectionView: UIView {
         label.numberOfLines = 1
         return label
     }()
-    
+
     private lazy var recommendationsCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: self.frame, collectionViewLayout: flowLayout)
         collectionView.delegate = self
@@ -28,7 +28,7 @@ class RecommendationsCollectionView: UIView {
         collectionView.register(FoodCollectionViewCell.self, forCellWithReuseIdentifier: "\(FoodCollectionViewCell.self)")
         return collectionView
     }()
-    
+
     private lazy var flowLayout: UICollectionViewFlowLayout = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.minimumInteritemSpacing = Constants.spaceBetweenCards
@@ -37,19 +37,19 @@ class RecommendationsCollectionView: UIView {
         flowLayout.scrollDirection = .horizontal
         return flowLayout
     }()
-    
+
     private var collectionViewHeightConstraint: LayoutConstraint?
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
-        
+
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("Was not implemented")
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         let width = recommendationsCollectionView.frame.width
@@ -57,27 +57,28 @@ class RecommendationsCollectionView: UIView {
         collectionViewHeightConstraint?.constant = height
         self.layoutIfNeeded()
     }
-    
+
 }
-    //MARK: - Private Methods
+
+// MARK: - Private Methods
 extension RecommendationsCollectionView {
-    
+
     private func setupView() {
         addSubview(headingLabel)
         addSubview(recommendationsCollectionView)
-        
+
         headingLabel.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.left.right.equalToSuperview().inset(16)
         }
-        
+
         recommendationsCollectionView.snp.makeConstraints { make in
             make.top.equalTo(headingLabel.snp.bottom).offset(8)
             make.leading.trailing.bottom.equalToSuperview()
             self.collectionViewHeightConstraint = make.height.equalTo(1).constraint.layoutConstraints.first
         }
     }
-    
+
     private func collectionViewHeightForWidth(width: CGFloat) -> CGFloat {
         let spacing = flowLayout.minimumInteritemSpacing
         let availableWidth = width - spacing * Constants.spacesBetweenCardsCount
@@ -101,9 +102,9 @@ extension RecommendationsCollectionView {
         static let spacesBetweenCardsCount: CGFloat = shownCardsCount.rounded() - 1
     }
 }
-//MARK: - Public Methods
+// MARK: - Public Methods
 extension RecommendationsCollectionView {
-   
+
     var title: String? {
         get {
             headingLabel.text
@@ -112,19 +113,18 @@ extension RecommendationsCollectionView {
             headingLabel.text = newValue
         }
     }
-   
+
     var dataSource: UICollectionViewDataSource? {
         get {
             recommendationsCollectionView.dataSource
         }
         set {
             recommendationsCollectionView.dataSource = newValue
-            
+
         }
     }
-    
+
     func reloadCollection() {
         recommendationsCollectionView.reloadData()
     }
 }
-

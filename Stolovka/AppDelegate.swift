@@ -28,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private lazy var assembler = Assembler(assemblies)
 
+    // swiftlint:disable:next discouraged_optional_collection
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         let window = UIWindow(frame: UIScreen.main.bounds)
 
@@ -56,4 +57,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 }
-

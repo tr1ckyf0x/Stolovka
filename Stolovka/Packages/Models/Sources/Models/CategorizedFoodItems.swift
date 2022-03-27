@@ -14,26 +14,26 @@ public enum ProductCategory {
     case hot
     case fromYesterday
     case soup
-    case desert
+    case dessert
     case beverage
-    
+
     public var title: String {
         switch self {
         case .bakery:
             return L10n.bakery
-            
+
         case .hot:
             return L10n.hot
-            
+
         case .fromYesterday:
             return L10n.fromYesterday
-            
+
         case .soup:
             return L10n.soup
-            
-        case .desert:
+
+        case .dessert:
             return L10n.desert
-            
+
         case .beverage:
             return L10n.beverage
         }
@@ -52,5 +52,3 @@ public struct CategorizedFoodItems {
         self.products = products
     }
 }
-
-

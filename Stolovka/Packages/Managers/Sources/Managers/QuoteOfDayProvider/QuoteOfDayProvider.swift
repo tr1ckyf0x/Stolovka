@@ -14,8 +14,7 @@ public protocol QouteOfDayProvider {
 }
 
 public final class QouteOfDayDataProvider: QouteOfDayProvider {
-    public var qouteOfDay: String { return SharedResources.L10n.willYouEat}
+    public var qouteOfDay: String { SharedResources.L10n.willYouEat }
 
-    public init() {
-    }
+    public init() { }
 }

@@ -1,4 +1,3 @@
-
 import UIKit
 import Models
 
@@ -27,16 +26,22 @@ extension CategoryForItemManager: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         categorizedFoodItems.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         1
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(ItemCategoryCollectionViewCell.self)", for: indexPath) as? ItemCategoryCollectionViewCell else { fatalError("Could not deque cell") }
-            cell.configure(productCategory: categorizedFoodItems[indexPath.section].category)
-            return cell
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: "\(ItemCategoryCollectionViewCell.self)",
+            for: indexPath
+        ) as? ItemCategoryCollectionViewCell else {
+            fatalError("Could not deque cell")
         }
+
+        cell.configure(productCategory: categorizedFoodItems[indexPath.section].category)
+        return cell
+    }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout

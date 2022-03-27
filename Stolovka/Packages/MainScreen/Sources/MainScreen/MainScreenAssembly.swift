@@ -13,6 +13,7 @@ import UsernameProvider
 import QuoteOfTheDayProvider
 import OldsRecommendedProductsProvider
 
+// swiftlint:disable force_unwrapping
 public struct MainScreenAssembly: Assembly {
 
     public init() { }
@@ -62,9 +63,10 @@ public struct MainScreenAssembly: Assembly {
             return FetchOldsRecommendedProductsUseCase(oldsRecommendedProductsProvider: oldsRecommendedProductsProvider)
         }
 
-        container.register(MainScreenProductCarouselCollectionManager.self, name: Constants.oldsRecommendedCollectionManagerKey) { (
-            resolver: Resolver
-        ) -> MainScreenProductCarouselCollectionManager in
+        container.register(
+            MainScreenProductCarouselCollectionManager.self,
+            name: Constants.oldsRecommendedCollectionManagerKey
+        ) { _ -> MainScreenProductCarouselCollectionManager in
             MainScreenProductCarouselCollectionManager()
         }
         .implements(MainScreenProductCarouselCollectionManagerProtocol.self, name: Constants.oldsRecommendedCollectionManagerKey)

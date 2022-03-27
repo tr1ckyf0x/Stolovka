@@ -10,7 +10,7 @@ import SnapKit
 import SharedResources
 
 class SearchBarView: UIView {
-    
+
     private lazy var searchBarButton: UIButton = {
         let searchBarButton = UIButton(type: .system)
         searchBarButton.addTarget(self, action: #selector(didTapSearchButton), for: .touchUpInside)
@@ -18,7 +18,7 @@ class SearchBarView: UIView {
         searchBarButton.setBackgroundImage(UIImage(sfSymbol: SFSymbol.sliderHorizontal), for: .normal)
         return searchBarButton
     }()
-    
+
     private lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.searchTextField.font = .systemFont(ofSize: 14, weight: .light)
@@ -28,16 +28,16 @@ class SearchBarView: UIView {
         searchBar.placeholder = SharedResources.L10n.searchBarMessage
         return searchBar
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("Has Not Been Implemented.")
     }
-    
+
     private func setupView() {
 
         [
@@ -56,9 +56,11 @@ class SearchBarView: UIView {
             make.top.greaterThanOrEqualToSuperview()
             make.centerY.equalToSuperview()
         }
-        
-}
-    @objc func didTapSearchButton () {
+
+    }
+
+    @objc
+    func didTapSearchButton () {
         print("Tapped Search Settings Button")
     }
 

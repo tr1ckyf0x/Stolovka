@@ -12,27 +12,26 @@ public protocol UserProfileProvider {
     var userName: String { get }
     var birthday: String? { get }
     var email: String? { get }
-    var addresses: [Address]? { get }
+    var addresses: [Address] { get }
 }
 
 extension UserProfileProvider {
-    public var birthday: String? { return nil }
-    public var email: String? { return nil}
-    public var addresses: [Address]? { return nil }
+    public var birthday: String? { nil }
+    public var email: String? { nil }
+    public var addresses: [Address] { [] }
 }
 
 public struct Address {
     public var city: String
-    
+
     public init(city: String) {
         self.city = city
     }
 }
 
 public final class UserProfileDataProvider: UserProfileProvider {
-    public var userName: String { return "Аркадий" }
+    public var userName: String { "Аркадий" }
 
     public init() {
     }
 }
-

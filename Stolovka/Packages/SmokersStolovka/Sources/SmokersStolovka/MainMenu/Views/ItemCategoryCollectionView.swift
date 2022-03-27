@@ -11,7 +11,7 @@ import SnapKit
 import SharedResources
 
 class ItemCategoryCollectionView: UIView {
-    
+
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: self.frame, collectionViewLayout: flowLayout)
         collectionView.register(ItemCategoryCollectionViewCell.self, forCellWithReuseIdentifier: "\(ItemCategoryCollectionViewCell.self)")
@@ -19,8 +19,7 @@ class ItemCategoryCollectionView: UIView {
         collectionView.showsVerticalScrollIndicator = false
         return collectionView
     }()
-    
-    
+
     private lazy var flowLayout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -29,63 +28,61 @@ class ItemCategoryCollectionView: UIView {
         layout.sectionInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
         return layout
     }()
-    
+
     private var collectionViewHeightConstraint: LayoutConstraint?
-    
+
     override func layoutSubviews() {
         let width = self.bounds.width
         let height = collectionviewHeightForWidth(width: width)
         collectionViewHeightConstraint?.constant = height
         self.layoutIfNeeded()
     }
-    
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("Was not implemented")
     }
 }
-//MARK: - Public Methods
 
+// MARK: - Public Methods
 extension ItemCategoryCollectionView {
     var dataSource: UICollectionViewDataSource? {
-        
+
         get {
-            return collectionView.dataSource
+            collectionView.dataSource
         }
-        
+
         set {
-            return collectionView.dataSource = newValue
+            collectionView.dataSource = newValue
         }
     }
-    
+
     var delegate: UICollectionViewDelegate? {
-        
         get {
-            return collectionView.delegate
+            collectionView.delegate
         }
-        
+
         set {
-            return collectionView.delegate = newValue
+            collectionView.delegate = newValue
         }
     }
-    
+
     func reloadCollection() {
         collectionView.reloadData()
     }
-    
+
     func scroll(to indexPath: IndexPath) {
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
 }
 
-//MARK: - private methods
+// MARK: - Private methods
 extension ItemCategoryCollectionView {
-    
+
     private func setupView() {
         addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
@@ -94,7 +91,7 @@ extension ItemCategoryCollectionView {
             self.collectionViewHeightConstraint = make.height.equalTo(1).constraint.layoutConstraints.first
         }
     }
-    
+
     private func collectionviewHeightForWidth(width: CGFloat) -> CGFloat {
         let spacing = flowLayout.minimumInteritemSpacing
         let totalAvailibleWidth = width - (Constants.spacesBetweenItems * spacing)
@@ -111,4 +108,3 @@ extension ItemCategoryCollectionView {
         static let spacesBetweenItems: CGFloat = numberOfItemsOnScreen.rounded() - 1
     }
 }
-

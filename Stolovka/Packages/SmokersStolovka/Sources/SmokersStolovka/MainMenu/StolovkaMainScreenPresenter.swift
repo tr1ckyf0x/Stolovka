@@ -11,13 +11,13 @@ import SharedModels
 import Models
 
 class StolovkaMainScreenPresenter {
-    
+
     weak var viewController: MainScreenControllerInput?
     var fetchGreetingUseCase: UseCase<Void, ChumBucketGreetingModel>?
     var recommendationsCollectionManager: MainScreenFoodItemsCollectionManagerProtocol?
     var itemCategoryCollectionManager: MainScreenItemCategoryProtocol?
     var categorizedFoodItemsCollectionManager: MainScreenFoodItemsCollectionManagerProtocol?
-    
+
     var recommendationsUseCase: AsyncUseCase<Void, [CategorizedFoodItems]>?
     var addToCartUseCase: AsyncUseCase<FoodItem, Void>?
     var fetchCategorizedItemsUseCase: AsyncUseCase<Void, [CategorizedFoodItems]>?
@@ -36,14 +36,15 @@ extension StolovkaMainScreenPresenter: MainScreenControllerOutput {
     }
 
     func view(_ view: MainScreenControllerInput, didTapAddButtonFor foodItem: FoodItem) {
-        addToCartUseCase?.executeAsync(foodItem, completion: { (result: Result<Void, Error>) in
+        addToCartUseCase?.executeAsync(foodItem) { (result: Result<Void, Error>) in
             switch result {
-            case .success():
+            case .success:
                 print("Success")
-            case .failure(_):
+
+            case .failure:
                 print("Failure")
             }
-        })
+        }
     }
 
     func view(_ view: MainScreenControllerInput, didTapLikeButtonFor foodItem: FoodItem) {
@@ -61,26 +62,27 @@ extension StolovkaMainScreenPresenter: ItemForCategoryDelegate {
         viewController?.scrollItemCategories(to: IndexPath(item: 0, section: indexPath.section))
     }
 }
-//MARK: - Private Functions
+// MARK: - Private Functions
 extension StolovkaMainScreenPresenter {
-    
+
     private func setGreeting() {
         guard let greetingModel = fetchGreetingUseCase?.execute() else { return }
         viewController?.setGreeting(model: greetingModel)
     }
-    
+
     private func fetchRecommendations() {
         recommendationsUseCase?.executeAsync { [weak self] (result: Result<[CategorizedFoodItems], Error>) in
             switch result {
             case let .success(products):
                 self?.recommendationsCollectionManager?.setFoodItems(products)
                 self?.viewController?.reloadRecommendationsCollection()
+
             case let .failure(error):
                 print(error)
             }
         }
     }
-    
+
     private func fetchCategorizedItems() {
         fetchCategorizedItemsUseCase?.executeAsync { [weak self] (result: Result<[CategorizedFoodItems], Error>) in
             switch result {
@@ -89,10 +91,11 @@ extension StolovkaMainScreenPresenter {
                 self?.itemCategoryCollectionManager?.setupItemCategories(products)
                 self?.viewController?.reloadRecommendationsCollection()
                 self?.viewController?.reloadRecommendationsTitles()
+
             case let .failure(error):
                 print(error)
             }
         }
     }
-    
+
 }

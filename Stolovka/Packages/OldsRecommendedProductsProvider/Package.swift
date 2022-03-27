@@ -10,7 +10,8 @@ let package = Package(
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "OldsRecommendedProductsProvider",
-            targets: ["OldsRecommendedProductsProvider"]),
+            targets: ["OldsRecommendedProductsProvider"]
+        )
     ],
     dependencies: [
         .package(url: "https://github.com/Swinject/Swinject", from: "2.8.0"),
@@ -24,6 +25,7 @@ let package = Package(
             dependencies: [
                 "Swinject",
                 "ProductModels"
-            ])
+            ]
+        )
     ]
 )

@@ -13,14 +13,12 @@ import Managers
 
 class NSFetchCategorizedItemsUseCase: AsyncUseCase<Void, [CategorizedFoodItems]> {
     var categorizedItemsProvider: CategorizedItemsProviderProtocol
-    
+
     init(categorizedItemsProvider: CategorizedItemsProviderProtocol) {
         self.categorizedItemsProvider = categorizedItemsProvider
     }
-    
+
     override func executeAsync(_ requestArgument: Void, completion: @escaping (Result<[CategorizedFoodItems], Error>) -> Void) {
         categorizedItemsProvider.fetchCategorizedItems(completion: completion)
     }
 }
-
-

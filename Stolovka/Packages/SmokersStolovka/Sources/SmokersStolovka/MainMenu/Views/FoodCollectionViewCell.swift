@@ -18,13 +18,13 @@ protocol FoodCollectionViewCellDelegate: AnyObject {
 class FoodCollectionViewCell: UICollectionViewCell {
     private var foodItem: FoodItem?
     weak var delegate: FoodCollectionViewCellDelegate?
-    
+
     private lazy var itemImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
         return image
     }()
-    
+
     private lazy var productTitleLabel: UILabel = {
         let label = UILabel()
         label.textColor = SharedResources.Asset.Colors.primaryText.color
@@ -35,7 +35,7 @@ class FoodCollectionViewCell: UICollectionViewCell {
         label.textAlignment = .center
         return label
     }()
-    
+
     private lazy var productPriceLabel: UILabel = {
         var label = UILabel()
         label.textColor = SharedResources.Asset.Colors.primaryText.color
@@ -44,7 +44,7 @@ class FoodCollectionViewCell: UICollectionViewCell {
         label.textAlignment = .left
         return label
     }()
-    
+
     private lazy var addToCartButton: UIButton = {
         let button = UIButton(type: .system)
         let image = UIImage(sfSymbol: SFSymbol.plusCircle)
@@ -53,7 +53,7 @@ class FoodCollectionViewCell: UICollectionViewCell {
         button.addTarget(self, action: #selector(pressedAddToCartButton), for: .touchUpInside)
         return button
     }()
-    
+
     private lazy var likeButton: UIButton = {
         let button = UIButton(type: .system)
         let image = UIImage(sfSymbol: SFSymbol.heart)
@@ -62,57 +62,57 @@ class FoodCollectionViewCell: UICollectionViewCell {
         button.addTarget(self, action: #selector(pressedHeartButton), for: .touchUpInside)
         return button
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("Not Implemented")
     }
 }
 
-//MARK: - Private Methods
-
+// MARK: - Private Methods
 extension FoodCollectionViewCell {
     private func setupView() {
         contentView.backgroundColor = .secondarySystemBackground
         contentView.layer.cornerRadius = 10
-        
-        [likeButton,
-        itemImage,
-        productTitleLabel,
-        productPriceLabel,
-        addToCartButton,
+
+        [
+            likeButton,
+            itemImage,
+            productTitleLabel,
+            productPriceLabel,
+            addToCartButton
         ].forEach(addSubview(_:))
-        
+
         productPriceLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(10)
             make.trailing.lessThanOrEqualTo(addToCartButton).inset(8)
             make.bottom.equalToSuperview().inset(8)
         }
-        
+
         addToCartButton.snp.makeConstraints { make in
             make.trailing.equalToSuperview().offset(6)
             make.height.equalTo(productPriceLabel)
             make.width.equalTo(productPriceLabel)
             make.centerY.equalTo(productPriceLabel)
         }
-        
+
         productTitleLabel.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(8)
             make.height.equalTo(productPriceLabel.snp.height)
             make.bottom.equalTo(addToCartButton.snp.top).offset(-4)
         }
-        
+
         itemImage.snp.makeConstraints { make in
             make.bottom.equalTo(productTitleLabel.snp.top)
             make.centerX.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(0.52)
             make.height.equalTo(itemImage.snp.width)
         }
-        
+
         likeButton.snp.makeConstraints { make in
             make.bottom.equalTo(itemImage.snp.top)
             make.top.equalToSuperview().inset(5)
@@ -121,17 +121,19 @@ extension FoodCollectionViewCell {
         }
 
     }
-    
-    @objc private func pressedHeartButton() {
+
+    @objc
+    private func pressedHeartButton() {
         guard let foodItem = foodItem else { return }
         delegate?.foodCollectionViewCell(self, didPressLikeButtonFor: foodItem)
     }
-    
-    @objc private func pressedAddToCartButton() {
+
+    @objc
+    private func pressedAddToCartButton() {
         guard let foodItem = foodItem else { return }
         delegate?.foodCollectionViewCell(self, didPressAddToCartButtonFor: foodItem)
     }
-    
+
     private func configurePriceLabelText(for price: Double) {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
@@ -139,7 +141,7 @@ extension FoodCollectionViewCell {
         formatter.minimumFractionDigits = 3
 
         let number = NSNumber(value: price)
-        let formattedValue = formatter.string(from: number)!
+        guard let formattedValue = formatter.string(from: number) else { return }
 
         productPriceLabel.text = SharedResources.L10n.roubles(formattedValue)
     }
@@ -152,8 +154,7 @@ extension FoodCollectionViewCell {
     }
 }
 
-//MARK: - Public Methods
-
+// MARK: - Public Methods
 extension FoodCollectionViewCell {
     func configure(foodItem: FoodItem) {
         self.foodItem = foodItem

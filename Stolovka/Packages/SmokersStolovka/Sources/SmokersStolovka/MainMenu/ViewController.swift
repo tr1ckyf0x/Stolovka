@@ -10,46 +10,46 @@ import SharedResources
 import Models
 
 class ViewController: UIViewController {
-    
+
     private let mainScreenView = StolovkaMainScreenView()
-    
+
     var presenter: MainScreenControllerOutput?
-    
+
     override func loadView() {
         view = mainScreenView
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         presenter?.viewDidLoad(self)
     }
-   
+
     func setRecommendationsDataSource(dataSource: UICollectionViewDataSource) {
         mainScreenView.recommendationsSubview.dataSource = dataSource
     }
-    
+
     func setItemCategoryCollectionViewDataSource(dataSource: UICollectionViewDataSource) {
         mainScreenView.itemCategoryCollectionView.dataSource = dataSource
     }
-    
+
     func setItemCategoryDelegate(delegate: UICollectionViewDelegate) {
         mainScreenView.itemCategoryCollectionView.delegate = delegate
     }
-    
+
     func setCategorizedFoodItemsDelegate(delegate: UICollectionViewDelegate) {
         mainScreenView.categorizedFoodItemsSubview.delegate = delegate
     }
-    
+
     func setCategorizedItemsDataSource(dataSource: UICollectionViewDataSource) {
         mainScreenView.categorizedFoodItemsSubview.dataSource = dataSource
     }
-    
+
 }
 
-//MARK: - Private methods
+// MARK: - Private methods
 extension ViewController {
-    
+
     private func setupView() {
         setupNavigationBar()
     }
@@ -82,36 +82,36 @@ extension ViewController {
             .color
     }
 
-    @objc private func didTapShoppingCart() {
+    @objc
+    private func didTapShoppingCart() {
         print("Tapped Shopping Cart")
 
     }
 
-    @objc private func didTapMenuButton() {
+    @objc
+    private func didTapMenuButton() {
         print("Tapped Menu Button")
     }
 }
 
 extension ViewController: MainScreenControllerInput {
-    
+
     func reloadRecommendationsTitles() {
         mainScreenView.itemCategoryCollectionView.reloadCollection()
     }
-    
-    
+
     func reloadCategorizedItemsCollection() {
         mainScreenView.categorizedFoodItemsSubview.reloadCollection()
     }
-    
-    
+
     func reloadRecommendationsCollection() {
         mainScreenView.recommendationsSubview.reloadCollection()
     }
-    
+
     func loadViews() {
         mainScreenView.recommendationsSubview.title = SharedResources.L10n.recommendations
     }
-    
+
     func setGreeting(model: ChumBucketGreetingModel) {
         mainScreenView.greetingSubview.greetingText = model.greeting
         mainScreenView.greetingSubview.quoteOfTheDayText = model.quoteOfTheDay
@@ -120,7 +120,7 @@ extension ViewController: MainScreenControllerInput {
     func scrollCategorizedItems(to indexPath: IndexPath) {
         mainScreenView.categorizedFoodItemsSubview.scroll(to: indexPath)
     }
-    
+
     func scrollItemCategories(to indexPath: IndexPath) {
         mainScreenView.itemCategoryCollectionView.scroll(to: indexPath)
     }

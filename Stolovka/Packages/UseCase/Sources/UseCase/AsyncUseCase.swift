@@ -22,10 +22,8 @@ open class AsyncUseCase<Argument, Res>: AsyncUseCaseProtocol {
     }
 }
 
-public extension AsyncUseCase where Argument == Void {
-    func executeAsync(completion: @escaping (Result<Res, Error>) -> Void) {
+extension AsyncUseCase where Argument == Void {
+    public func executeAsync(completion: @escaping (Result<Res, Error>) -> Void) {
         executeAsync(Void(), completion: completion)
     }
 }
-
-

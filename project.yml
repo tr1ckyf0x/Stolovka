@@ -95,6 +95,16 @@ targets:
           CODE_SIGN_IDENTITY: "Apple Distribution"
           PROVISIONING_PROFILE_SPECIFIER: "Stolovka AppStore"
 
+    preBuildScripts:
+    - name: "Swiftlint"
+      script: |
+              export PATH="$PATH:/opt/homebrew/bin"
+              if which swiftlint >/dev/null; then
+                swiftlint
+              else
+                echo "warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint"
+              fi
+
   StolovkaTests:
     type: bundle.unit-test
     platform: iOS

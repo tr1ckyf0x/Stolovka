@@ -22,6 +22,6 @@ public protocol SFSymbolRepresentable {
     var systemName: String { get }
 }
 
-public extension SFSymbolRepresentable where Self: RawRepresentable, RawValue == String {
-    var systemName: String { rawValue }
+extension SFSymbolRepresentable where Self: RawRepresentable, RawValue == String {
+    public var systemName: String { rawValue }
 }

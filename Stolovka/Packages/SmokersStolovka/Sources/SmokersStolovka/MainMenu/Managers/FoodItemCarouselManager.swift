@@ -26,16 +26,16 @@ final class FoodItemCarouselManager: NSObject, MainScreenItemCategoryProtocol {
     }
 
     private var categorizedFoodItems = [CategorizedFoodItems]()
-    
+
     private var lastIndexPath = IndexPath(row: 0, section: 0)
-    
+
     weak var itemForCategoryDelegate: ItemForCategoryDelegate?
     weak var delegate: FoodItemCarouselDelegate?
 }
 
 extension FoodItemCarouselManager: SetUpModelProtocol {
     func modelWithDetailedDescription() -> [CategorizedFoodItems] {
-        return categorizedFoodItems
+        categorizedFoodItems
     }
 }
 
@@ -46,42 +46,48 @@ extension FoodItemCarouselManager: MainScreenFoodItemsCollectionManagerProtocol 
 }
 
 extension FoodItemCarouselManager: UICollectionViewDataSource {
-    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return categorizedFoodItems.count
+        categorizedFoodItems.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return categorizedFoodItems[section].products.count
+        categorizedFoodItems[section].products.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(FoodCollectionViewCell.self)", for: indexPath) as? FoodCollectionViewCell else { fatalError("Could not deque cell") }
-            cell.configure(foodItem: categorizedFoodItems[indexPath.section].products[indexPath.item])
-            let cellDelegate = delegate?.foodItemsManagerNeedsDelegateForFoodCell(self)
-            cell.delegate = cellDelegate
-            return cell
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: "\(FoodCollectionViewCell.self)",
+            for: indexPath
+        ) as? FoodCollectionViewCell
+        else {
+            fatalError("Could not deque cell")
+        }
+
+        cell.configure(foodItem: categorizedFoodItems[indexPath.section].products[indexPath.item])
+        let cellDelegate = delegate?.foodItemsManagerNeedsDelegateForFoodCell(self)
+        cell.delegate = cellDelegate
+        return cell
     }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
 extension FoodItemCarouselManager: UICollectionViewDelegateFlowLayout {
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width: CGFloat = (collectionView.bounds.width - (Constants.numberOfItemsOnScreen * Constants.minimalItemSpacing)) / Constants.numberOfItemsOnScreen
         let height = collectionView.bounds.height
         return CGSize(width: width, height: height)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: lastIndexPath, animated: true)
-       
+
         if indexPath == lastIndexPath {
             collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
             return
         }
-        
+
         lastIndexPath = indexPath
         itemForCategoryDelegate?.itemForCategory(self, didSelectCellAt: indexPath)
         collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)

@@ -14,15 +14,15 @@ import Models
 import Managers
 
 class GetGreetingUseCase: UseCase<Void, ChumBucketGreetingModel> {
-    
+
     private let usernameProvider: UserProfileProvider
     private let quoteOfDayProvider: QouteOfDayProvider
-    
+
     init(usernameProvider: UserProfileProvider, quoteOfDayProvider: QouteOfDayProvider) {
         self.usernameProvider = usernameProvider
         self.quoteOfDayProvider = quoteOfDayProvider
     }
-    
+
     override func execute(_ requestArgument: Void) -> ChumBucketGreetingModel {
         let name = usernameProvider.userName
         let greetingText = SharedResources.L10n.standardGreeting(name)
