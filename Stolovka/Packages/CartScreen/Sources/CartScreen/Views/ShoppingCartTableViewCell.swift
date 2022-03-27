@@ -12,8 +12,8 @@ import Models
 
 // TODO: remove quantity placeholder, arrangeViews, implement correct constraints for items.
 protocol ShoppingCartViewCellDelegate: AnyObject {
-    func shoppingCartViewCell(_ foodCollectionViewCell: ShoppingCartTableViewCell, pressedAddOneItem foodItem: FoodItem)
-    func shoppingCartViewCell(_ foodCollectionViewCell: ShoppingCartTableViewCell, pressedRemoveOneItem foodItem: FoodItem)
+    func shoppingCartViewCell(_ foodCollectionViewCell: ShoppingCartTableViewCell, didPressAddOneItem foodItem: FoodItem)
+    func shoppingCartViewCell(_ foodCollectionViewCell: ShoppingCartTableViewCell, didPressRemoveOneItem foodItem: FoodItem)
 }
 
 class ShoppingCartTableViewCell: UITableViewCell {
@@ -169,13 +169,13 @@ extension ShoppingCartTableViewCell {
     @objc
     private func pressedAddOneItem() {
         guard let foodItem = foodItem else { return }
-        delegate?.shoppingCartViewCell(self, pressedAddOneItem: foodItem)
+        delegate?.shoppingCartViewCell(self, didPressAddOneItem: foodItem)
     }
 
     @objc
     private func pressedRemoveOneItem() {
         guard let foodItem = foodItem else { return }
-        delegate?.shoppingCartViewCell(self, pressedRemoveOneItem: foodItem)
+        delegate?.shoppingCartViewCell(self, didPressRemoveOneItem: foodItem)
     }
 
     private func configureItemImage(for imageSource: PictureFormat) {
