@@ -42,7 +42,6 @@ class ShoppingCartTableViewCell: UITableViewCell {
         label.textColor = SharedResources.Asset.Colors.secondaryText.color
         label.font = .systemFont(ofSize: 14)
         label.minimumScaleFactor = 0.6
-        label.numberOfLines = 0
         label.adjustsFontSizeToFitWidth = true
         return label
     }()
@@ -60,7 +59,7 @@ class ShoppingCartTableViewCell: UITableViewCell {
         let label = UILabel()
         label.layer.masksToBounds = true
         label.layer.cornerRadius = 8
-        label.layer.borderColor = SharedResources.Asset.Colors.primaryText.color.cgColor
+        label.tintColor = SharedResources.Asset.Colors.primaryText.color
         label.layer.borderWidth = 1
         label.textAlignment = .center
         label.textColor = SharedResources.Asset.Colors.primaryText.color
