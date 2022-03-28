@@ -42,6 +42,7 @@ class ShoppingCartTableViewCell: UITableViewCell {
         label.textColor = SharedResources.Asset.Colors.secondaryText.color
         label.font = .systemFont(ofSize: 14)
         label.minimumScaleFactor = 0.6
+        label.numberOfLines = 0
         label.adjustsFontSizeToFitWidth = true
         return label
     }()
