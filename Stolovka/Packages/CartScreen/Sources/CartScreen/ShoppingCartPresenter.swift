@@ -1,7 +1,5 @@
 //  Created by Nikita Shvad on 20.03.2022.
 //
-
-import Foundation
 import UIKit
 import Managers
 import UseCase
@@ -20,7 +18,6 @@ extension ShoppingCartPresenter: ShoppingCartControllerOutput {
 
     func viewDidLoad(_ view: ShoppingCartControllerInput) {
         fetchShoppingCartItems()
-        view.reloadShoppingCartTableView()
     }
 }
 

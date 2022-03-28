@@ -11,8 +11,6 @@ public final class ManagerFactory {
 
     public static let shared = ManagerFactory()
 
-    private init() {}
-
     public private(set) lazy var shoppingCartManager: ShoppingCartManagerProtocol = {
         ShoppingCartManager()
     }()

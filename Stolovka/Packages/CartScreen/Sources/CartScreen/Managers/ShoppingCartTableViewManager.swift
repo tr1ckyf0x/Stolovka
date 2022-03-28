@@ -4,8 +4,6 @@
 //
 //  Created by Nikita Shvad on 21.03.2022.
 //
-
-import Foundation
 import UIKit
 import Models
 import SharedResources
@@ -28,14 +26,11 @@ extension ShoppingCartTableViewManager: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "\(ShoppingCartTableViewCell.self)", for: indexPath) as? ShoppingCartTableViewCell {
-            let foodItem = foodItems[indexPath.row]
-            cell.configure(foodItem: foodItem)
-            return cell
-        } else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(ShoppingCartTableViewCell.self)", for: indexPath) as? ShoppingCartTableViewCell else {
             fatalError("Could not deque cell")
         }
+        let foodItem = foodItems[indexPath.row]
+        cell.configure(foodItem: foodItem)
+        return cell
     }
 }
-
-
