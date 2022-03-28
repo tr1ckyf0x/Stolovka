@@ -3,17 +3,20 @@
 
 import Foundation
 import UIKit
+import Managers
 
 public enum ShoppingCartAssembly {
     public static func assembleShoppingCart() -> UIViewController {
+
         let viewController = ShoppingCartViewController()
         let presenter = ShoppingCartPresenter()
 
-        let shoppingCartManager = ShoppingCartTableViewManager()
-
-        viewController.setShoppingCartDataSource(dataSource: shoppingCartManager)
-
-        presenter.tableViewManager = shoppingCartManager
+        let shoppingCartTableViewManager = ShoppingCartTableViewManager()
+        let shoppingCartManager = ShoppingCartManager()
+        let fetchShoppingCartUseCase = 
+        viewController.setShoppingCartDataSource(dataSource: shoppingCartTableViewManager)
+        presenter.shoppingCartManager = shoppingCartManager
+        
         viewController.presenter = presenter
 
         return viewController

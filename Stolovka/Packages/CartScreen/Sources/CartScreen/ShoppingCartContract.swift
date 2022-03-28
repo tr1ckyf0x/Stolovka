@@ -3,6 +3,7 @@
 
 import Foundation
 import UIKit
+import Models
 
 protocol ShoppingCartControllerInput: AnyObject {
     func reloadShoppingCartTableView()
@@ -14,4 +15,5 @@ protocol ShoppingCartControllerOutput: AnyObject {
 }
 
 protocol ShoppingCartTableManagerProtocol: AnyObject {
+    func setFoodItems(_ foodItems: [FoodItem])
 }
