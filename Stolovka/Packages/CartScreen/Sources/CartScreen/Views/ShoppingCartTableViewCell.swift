@@ -42,6 +42,7 @@ class ShoppingCartTableViewCell: UITableViewCell {
         label.textColor = SharedResources.Asset.Colors.secondaryText.color
         label.font = .systemFont(ofSize: 14)
         label.minimumScaleFactor = 0.6
+        label.numberOfLines = 0
         label.adjustsFontSizeToFitWidth = true
         return label
     }()
@@ -132,18 +133,18 @@ extension ShoppingCartTableViewCell {
             make.right.equalTo(quantityLabel.snp.right)
         }
 
-        itemDescriptionLabel.snp.makeConstraints { make in
-            make.left.equalTo(itemNameLabel.snp.left)
-            make.top.equalTo(itemNameLabel.snp.bottom).offset(8)
-            make.height.equalTo(itemImageView.snp.height).multipliedBy(0.21)
-            make.right.equalTo(quantityLabel.snp.right)
-        }
-
         quantityLabel.snp.makeConstraints { make in
             make.right.equalToSuperview().inset(8)
             make.centerY.equalToSuperview()
             make.height.equalToSuperview().multipliedBy(0.33)
             make.width.equalTo(quantityLabel.snp.height)
+        }
+
+        itemDescriptionLabel.snp.makeConstraints { make in
+            make.left.equalTo(itemNameLabel.snp.left)
+            make.top.equalTo(itemNameLabel.snp.bottom).offset(8)
+            make.height.equalTo(itemImageView.snp.height).multipliedBy(0.21)
+            make.right.equalTo(quantityLabel.snp.left)
         }
 
         itemPriceLabel.snp.makeConstraints { make in

@@ -24,7 +24,7 @@ public enum StolovkaMainScreenBuilder {
         let categorizedFoodProvider = CategorizedItemsProvider()
         let categorizedFoodItemsManager = FoodItemCarouselManager()
         let categoryForItemManager = CategoryForItemManager()
-        let shoppingCart = ShoppingCartManager()
+        let shoppingCart = ManagerFactory.shared.shoppingCartManager
         let getGreetingUseCase = GetGreetingUseCase(
             usernameProvider: usernameProvider,
             quoteOfDayProvider: quoteOfDayProvider

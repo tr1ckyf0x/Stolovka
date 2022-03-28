@@ -13,7 +13,7 @@ public enum ShoppingCartAssembly {
         let presenter = ShoppingCartPresenter()
 
         let shoppingCartTableViewManager = ShoppingCartTableViewManager()
-        let shoppingCartManager = ShoppingCartManager()
+        let shoppingCartManager = ManagerFactory.shared.shoppingCartManager
         let fetchShoppingCartUseCase = FetchShoppingCartUseCase(shoppingCart: shoppingCartManager)
 
         viewController.setShoppingCartDataSource(dataSource: shoppingCartTableViewManager)

@@ -11,7 +11,7 @@ final class ShoppingCartPresenter {
 
     weak var viewController: ShoppingCartControllerInput?
 
-    var shoppingCartManager: ShoppingCartManager?
+    var shoppingCartManager: ShoppingCartManagerProtocol?
     var fetchCartItemsUseCase: AsyncUseCase<Void, [FoodItem]>?
     var shoppingCartTableViewManager: ShoppingCartTableViewManager?
 }

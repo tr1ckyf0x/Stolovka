@@ -24,7 +24,6 @@ public final class ShoppingCartManager: ShoppingCartManagerProtocol {
     public func addToCart(foodItem: FoodItem, completion: @escaping (Result<Void, Error>) -> Void) {
         shoppingCart.append(foodItem)
         completion(.success(Void()))
-        print("ShoppingCart Items are \(String(describing: shoppingCart))")
     }
 
     public func removeFromCart(foodItem: FoodItem, completion: @escaping (Result<Void, Error>) -> Void) {
@@ -33,6 +32,5 @@ public final class ShoppingCartManager: ShoppingCartManagerProtocol {
 
     public func fetchCartItems(completion: @escaping (Result<[FoodItem], Error>) -> Void) {
         completion(.success(shoppingCart))
-        print("Fetched Cart Items, ", (shoppingCart))
     }
 }
