@@ -9,6 +9,7 @@ import Foundation
 import UseCase
 import SharedModels
 import Models
+import ShoppingCartUseCase
 
 class StolovkaMainScreenPresenter {
 

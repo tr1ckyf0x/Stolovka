@@ -8,6 +8,7 @@
 
 import UIKit
 import Managers
+import ShoppingCartUseCase
 
 public enum StolovkaMainScreenBuilder {
     public static func buildStolovkaMainScreen() -> UIViewController {
