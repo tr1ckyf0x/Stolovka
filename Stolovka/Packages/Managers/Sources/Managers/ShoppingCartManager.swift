@@ -32,6 +32,6 @@ public final class ShoppingCartManager: ShoppingCartManagerProtocol {
 
     public func fetchCartItems(completion: @escaping (Result<[FoodItem], Error>) -> Void) {
         completion(.success(shoppingCart))
-        print("Fetched Cart Items")
+        print("Fetched Cart Items, ", (shoppingCart))
     }
 }
