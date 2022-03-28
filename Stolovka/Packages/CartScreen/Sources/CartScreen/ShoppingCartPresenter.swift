@@ -8,13 +8,18 @@ import UseCase
 import Models
 
 final class ShoppingCartPresenter {
+
+    weak var viewController: ShoppingCartControllerInput?
+
     var shoppingCartManager: ShoppingCartManager?
-    var fetchCartItemsUseCase: AsyncUseCase<[FoodItem], Void>?
+    var fetchCartItemsUseCase: AsyncUseCase<Void, [FoodItem]>?
+    var shoppingCartTableViewManager: ShoppingCartTableViewManager?
 }
 
 extension ShoppingCartPresenter: ShoppingCartControllerOutput {
 
     func viewDidLoad(_ view: ShoppingCartControllerInput) {
+        fetchShoppingCartItems()
         view.reloadShoppingCartTableView()
     }
 }
@@ -22,6 +27,15 @@ extension ShoppingCartPresenter: ShoppingCartControllerOutput {
 // MARK: - Private Methods
 extension ShoppingCartPresenter {
     private func fetchShoppingCartItems() {
-        print("fetching")
+        fetchCartItemsUseCase?.executeAsync { [weak self] (result: Result<[FoodItem], Error>) in
+            switch result {
+            case let .success(foodItems):
+                self?.shoppingCartTableViewManager?.foodItems = foodItems
+                self?.viewController?.reloadShoppingCartTableView()
+
+            case let .failure(error):
+                print(error)
+            }
+        }
     }
 }
