@@ -1,6 +1,6 @@
 //  Created by Nikita Shvad on 20.03.2022.
 //
-import UIKit
+
 import Managers
 import UseCase
 import Models

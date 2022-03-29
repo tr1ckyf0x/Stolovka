@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  ShoppingCartTableViewManager.swift
 //  
 //
 //  Created by Nikita Shvad on 21.03.2022.
