@@ -8,11 +8,13 @@
 
 import UIKit
 import Managers
+import ShoppingCartUseCase
 
 public enum StolovkaMainScreenBuilder {
     public static func buildStolovkaMainScreen() -> UIViewController {
-        let viewController = ViewController()
+        let viewController = MainScreenViewController()
         let presenter = StolovkaMainScreenPresenter()
+        let router = MainScreenRouter()
 
         let usernameProvider = UserProfileDataProvider()
         let quoteOfDayProvider = QouteOfDayDataProvider()
@@ -22,8 +24,7 @@ public enum StolovkaMainScreenBuilder {
         let categorizedFoodProvider = CategorizedItemsProvider()
         let categorizedFoodItemsManager = FoodItemCarouselManager()
         let categoryForItemManager = CategoryForItemManager()
-        let shoppingCart = ShoppingCartManager()
-
+        let shoppingCart = ManagerFactory.shared.shoppingCartManager
         let getGreetingUseCase = GetGreetingUseCase(
             usernameProvider: usernameProvider,
             quoteOfDayProvider: quoteOfDayProvider
@@ -37,6 +38,9 @@ public enum StolovkaMainScreenBuilder {
         presenter.recommendationsUseCase = fetchRecommendationsUseCase
         presenter.fetchCategorizedItemsUseCase = fetchCategorizedItemsUseCase
         presenter.addToCartUseCase = addToShoppingCartUseCase
+
+        presenter.router = router
+        router.viewController = viewController
 
         presenter.recommendationsCollectionManager = recommendationsCollectionViewManager
         viewController.setRecommendationsDataSource(dataSource: recommendationsCollectionViewManager)

@@ -54,6 +54,8 @@ packages:
     path: Stolovka/Packages/Models
   Managers:
     path: Stolovka/Packages/Managers
+  ShoppingCartUseCase:
+    path: Stolovka/Packages/ShoppingCartUseCase
 
 targets:
   Stolovka:
@@ -77,6 +79,7 @@ targets:
       - package: CartScreen
       - package: Models
       - package: Managers
+      - package: ShoppingCartUseCase
 
     settings:
       base:

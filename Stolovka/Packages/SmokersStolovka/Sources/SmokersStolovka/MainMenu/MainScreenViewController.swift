@@ -9,7 +9,7 @@ import UIKit
 import SharedResources
 import Models
 
-class ViewController: UIViewController {
+class MainScreenViewController: UIViewController {
 
     private let mainScreenView = StolovkaMainScreenView()
 
@@ -48,7 +48,7 @@ class ViewController: UIViewController {
 }
 
 // MARK: - Private methods
-extension ViewController {
+extension MainScreenViewController {
 
     private func setupView() {
         setupNavigationBar()
@@ -84,8 +84,7 @@ extension ViewController {
 
     @objc
     private func didTapShoppingCart() {
-        print("Tapped Shopping Cart")
-
+        presenter?.viewDidTapShoppingCart(self)
     }
 
     @objc
@@ -94,7 +93,7 @@ extension ViewController {
     }
 }
 
-extension ViewController: MainScreenControllerInput {
+extension MainScreenViewController: MainScreenControllerInput {
 
     func reloadRecommendationsTitles() {
         mainScreenView.itemCategoryCollectionView.reloadCollection()
@@ -127,14 +126,14 @@ extension ViewController: MainScreenControllerInput {
 }
 
 // MARK: - CategorizedFoodItemsManagerDelegate
-extension ViewController: FoodItemCarouselDelegate {
+extension MainScreenViewController: FoodItemCarouselDelegate {
     func foodItemsManagerNeedsDelegateForFoodCell(_ foodItemsCollectionManager: MainScreenFoodItemsCollectionManagerProtocol) -> FoodCollectionViewCellDelegate? {
         self
     }
 }
 
 // MARK: - FoodCollectionViewCellDelegate
-extension ViewController: FoodCollectionViewCellDelegate {
+extension MainScreenViewController: FoodCollectionViewCellDelegate {
     func foodCollectionViewCell(_ foodCollectionViewCell: FoodCollectionViewCell, didPressLikeButtonFor foodItem: FoodItem) {
         presenter?.view(self, didTapLikeButtonFor: foodItem)
     }

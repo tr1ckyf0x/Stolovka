@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  PictureFormat.swift
 //  
 //
 //  Created by Nikita Shvad on 22.01.2022.

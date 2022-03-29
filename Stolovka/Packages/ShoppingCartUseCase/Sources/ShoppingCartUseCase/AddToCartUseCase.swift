@@ -3,14 +3,14 @@ import UseCase
 import Models
 import Managers
 
-class AddToCartUseCase: AsyncUseCase<FoodItem, Void> {
+public final class AddToCartUseCase: AsyncUseCase<FoodItem, Void> {
     private let shoppingCart: ShoppingCartManagerProtocol
 
-    init(shoppingCart: ShoppingCartManagerProtocol) {
+    public init(shoppingCart: ShoppingCartManagerProtocol) {
         self.shoppingCart = shoppingCart
     }
 
-    override func executeAsync(_ requestArgument: FoodItem, completion: @escaping (Result<Void, Error>) -> Void) {
+    override public func executeAsync(_ requestArgument: FoodItem, completion: @escaping (Result<Void, Error>) -> Void) {
         shoppingCart.addToCart(foodItem: requestArgument, completion: completion)
     }
 }

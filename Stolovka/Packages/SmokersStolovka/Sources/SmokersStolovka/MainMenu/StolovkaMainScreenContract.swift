@@ -24,6 +24,7 @@ protocol MainScreenControllerOutput: AnyObject {
     func viewDidLoad(_ view: MainScreenControllerInput)
     func view(_ view: MainScreenControllerInput, didTapAddButtonFor foodItem: FoodItem)
     func view(_ view: MainScreenControllerInput, didTapLikeButtonFor foodItem: FoodItem)
+    func viewDidTapShoppingCart(_ view: MainScreenControllerInput)
 }
 
 protocol MainScreenFoodItemsCollectionManagerProtocol: AnyObject {
@@ -32,4 +33,8 @@ protocol MainScreenFoodItemsCollectionManagerProtocol: AnyObject {
 
 protocol MainScreenItemCategoryProtocol: AnyObject {
     func setupItemCategories(_ categorizedFoodItems: [CategorizedFoodItems])
+}
+
+protocol MainScreenRouterProtocol: AnyObject {
+    func routeToShoppingCart()
 }
