@@ -18,4 +18,16 @@ public struct ShoppingCartFoodItem {
         self.quantity = quantity
         self.shoppingCartFoodItem = shoppingCartFoodItem
         }
+
+}
+
+extension ShoppingCartFoodItem: Hashable {
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(shoppingCartFoodItem.itemID)
+    }
+
+    public static func == (lhs: ShoppingCartFoodItem, rhs: ShoppingCartFoodItem) -> Bool {
+         lhs.shoppingCartFoodItem.itemID == rhs.shoppingCartFoodItem.itemID
+    }
 }

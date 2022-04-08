@@ -33,7 +33,7 @@ public final class CategorizedItemsProvider: CategorizedItemsProviderProtocol {
                         description: "Былочка с присыпкой.",
                         pictureUrl: .local(SharedResources.Asset.Assets.Products.bun),
                         isLikedByUser: false,
-                        itemID: "113"
+                        itemID: "bun"
                     ),
                     FoodItem(
                         name: "Пирожок с мясом",
@@ -41,7 +41,7 @@ public final class CategorizedItemsProvider: CategorizedItemsProviderProtocol {
                         description: "Ты никогда не узнаешь, чье это мясо.",
                         pictureUrl: .local(Asset.Assets.Products.meatPie),
                         isLikedByUser: false,
-                        itemID: "112312"
+                        itemID: "pirog"
                     ),
                     FoodItem(
                         name: "Пицца",
@@ -49,7 +49,7 @@ public final class CategorizedItemsProvider: CategorizedItemsProviderProtocol {
                         description: "Быстро заканчивается",
                         pictureUrl: .local(Asset.Assets.Products.pizza),
                         isLikedByUser: false,
-                        itemID: "12333"
+                        itemID: "pizza"
                     ),
                     FoodItem(
                         name: "Сосиска в тесте",
@@ -57,7 +57,7 @@ public final class CategorizedItemsProvider: CategorizedItemsProviderProtocol {
                         description: "Старшаки очень любят",
                         pictureUrl: .local(Asset.Assets.Products.sosiskaVTeste),
                         isLikedByUser: false,
-                        itemID: "123123"
+                        itemID: "sausage"
                     ),
                     FoodItem(
                         name: "Белый хлеб",
@@ -65,7 +65,7 @@ public final class CategorizedItemsProvider: CategorizedItemsProviderProtocol {
                         description: "Можно и без супа",
                         pictureUrl: .local(Asset.Assets.Products.whiteBread),
                         isLikedByUser: false,
-                        itemID: "132111"
+                        itemID: "bread"
                     )
                 ]
             ),
@@ -79,7 +79,7 @@ public final class CategorizedItemsProvider: CategorizedItemsProviderProtocol {
                         description: "Каждый годо дорожает",
                         pictureUrl: .local(Asset.Assets.Products.buckwheat),
                         isLikedByUser: false,
-                        itemID: "1114"
+                        itemID: "buckwheat"
                     ),
                     FoodItem(
                         name: "Макарошки с чем-то",
@@ -87,7 +87,7 @@ public final class CategorizedItemsProvider: CategorizedItemsProviderProtocol {
                         description: "Скорее всего с курицей.",
                         pictureUrl: .local(Asset.Assets.Products.pasta),
                         isLikedByUser: false,
-                        itemID: "1116"
+                        itemID: "pasta"
                     )
                 ]
             ),
@@ -101,7 +101,7 @@ public final class CategorizedItemsProvider: CategorizedItemsProviderProtocol {
                         description: "Красный горячий борщ",
                         pictureUrl: .local(Asset.Assets.Products.borsh),
                         isLikedByUser: false,
-                        itemID: "r3r3r"
+                        itemID: "borch"
                     ),
                     FoodItem(
                         name: "Щи",
@@ -109,7 +109,7 @@ public final class CategorizedItemsProvider: CategorizedItemsProviderProtocol {
                         description: "Борщ, с капусткой, но не красный. Вообще он меня бесит.",
                         pictureUrl: .local(Asset.Assets.Products.shi),
                         isLikedByUser: false,
-                        itemID: "1114"
+                        itemID: "whiteBorch"
                     )
                 ]
             ),
@@ -123,7 +123,7 @@ public final class CategorizedItemsProvider: CategorizedItemsProviderProtocol {
                         description: "Для маленьких экстремистов",
                         pictureUrl: .local(Asset.Assets.Products.juiceApple),
                         isLikedByUser: false,
-                        itemID: "148888"
+                        itemID: "juiceApple"
                     ),
                     FoodItem(
                         name: "Сок персиковый",
@@ -131,7 +131,7 @@ public final class CategorizedItemsProvider: CategorizedItemsProviderProtocol {
                         description: "Нектар со вкусом персика",
                         pictureUrl: .local(Asset.Assets.Products.juicePeach),
                         isLikedByUser: false,
-                        itemID: "21"
+                        itemID: "juicePeach"
                     ),
                     FoodItem(
                         name: "Кофейный Напиток",
@@ -139,7 +139,7 @@ public final class CategorizedItemsProvider: CategorizedItemsProviderProtocol {
                         description: "Старшаки очень любят",
                         pictureUrl: .local(Asset.Assets.Products.cofeinyiNapitok),
                         isLikedByUser: false,
-                        itemID: "11"
+                        itemID: "coffee"
                     )
                 ]
             ),
@@ -153,7 +153,7 @@ public final class CategorizedItemsProvider: CategorizedItemsProviderProtocol {
                         description: "Лучше сдачи",
                         pictureUrl: .local(Asset.Assets.Products.fudge),
                         isLikedByUser: false,
-                        itemID: "12443"
+                        itemID: "fudge"
                     ),
                     FoodItem(
                         name: "Твикс",
@@ -161,7 +161,7 @@ public final class CategorizedItemsProvider: CategorizedItemsProviderProtocol {
                         description: "Импортный Золотой Ключик в шоколаде",
                         pictureUrl: .local(Asset.Assets.Products.twix),
                         isLikedByUser: false,
-                        itemID: "re2"
+                        itemID: "twix"
                     ),
                     FoodItem(
                         name: "Сникерс",
@@ -169,7 +169,7 @@ public final class CategorizedItemsProvider: CategorizedItemsProviderProtocol {
                         description: "Марс с орешками",
                         pictureUrl: .local(Asset.Assets.Products.snikers),
                         isLikedByUser: false,
-                        itemID: "333333"
+                        itemID: "snickers"
                     )
                 ]
             ),
@@ -183,7 +183,7 @@ public final class CategorizedItemsProvider: CategorizedItemsProviderProtocol {
                         description: "Чуть теплая и комковатая. Как и твоя жизнь.",
                         pictureUrl: .local(Asset.Assets.Products.semolinaPorrige),
                         isLikedByUser: false,
-                        itemID: "114"
+                        itemID: "semolina"
                     ),
                     FoodItem(
                         name: "Пюрешка с котлеткой",
@@ -191,7 +191,7 @@ public final class CategorizedItemsProvider: CategorizedItemsProviderProtocol {
                         description: "Уважаемая еда. Текстура великолепна.",
                         pictureUrl: .local(Asset.Assets.Products.pyreshkaSKotletkoi),
                         isLikedByUser: false,
-                        itemID: "115"
+                        itemID: "mashedPotato"
                     ),
                     FoodItem(
                         name: "Оливье",
@@ -199,7 +199,7 @@ public final class CategorizedItemsProvider: CategorizedItemsProviderProtocol {
                         description: "Прошлогодний",
                         pictureUrl: .local(Asset.Assets.Products.olivie),
                         isLikedByUser: false,
-                        itemID: "3e4324e"
+                        itemID: "olivie"
                     ),
                     FoodItem(
                         name: "Винегрет",
@@ -207,7 +207,7 @@ public final class CategorizedItemsProvider: CategorizedItemsProviderProtocol {
                         description: "Оливье в уксусе со свеколкой",
                         pictureUrl: .local(Asset.Assets.Products.vinegret),
                         isLikedByUser: false,
-                        itemID: "3333"
+                        itemID: "otherSalad1"
                     )
                 ]
             )

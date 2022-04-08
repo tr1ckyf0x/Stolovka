@@ -11,11 +11,11 @@ import SharedResources
 // remove placeholder -> develop use case from shopping cart manager -> presenter
 
 final class ShoppingCartTableViewManager: NSObject {
-    var foodItems: [FoodItem] = []
+    var foodItems: [ShoppingCartFoodItem] = []
 }
 
 extension ShoppingCartTableViewManager: ShoppingCartTableManagerProtocol {
-    func setFoodItems(_ foodItems: [FoodItem]) {
+    func setFoodItems(_ foodItems: [ShoppingCartFoodItem]) {
         self.foodItems = foodItems
     }
 }
@@ -30,7 +30,7 @@ extension ShoppingCartTableViewManager: UITableViewDataSource {
             fatalError("Could not deque cell")
         }
         let foodItem = foodItems[indexPath.row]
-        cell.configure(foodItem: foodItem)
+        cell.configure(foodItem: foodItem.shoppingCartFoodItem, shoppingCartFoodItem: foodItem)
         return cell
     }
 }

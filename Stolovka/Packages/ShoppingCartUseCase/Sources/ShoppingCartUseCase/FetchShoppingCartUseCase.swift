@@ -6,7 +6,7 @@ import UseCase
 import Models
 import Managers
 
-public final class FetchShoppingCartUseCase: AsyncUseCase<Void, [FoodItem]> {
+public final class FetchShoppingCartUseCase: AsyncUseCase<Void, [ShoppingCartFoodItem]> {
 
     private let shoppingCart: ShoppingCartManagerProtocol
 
@@ -14,7 +14,7 @@ public final class FetchShoppingCartUseCase: AsyncUseCase<Void, [FoodItem]> {
         self.shoppingCart = shoppingCart
     }
 
-    override public func executeAsync(_ requestArgument: Void, completion: @escaping (Result<[FoodItem], Error>) -> Void) {
+    override public func executeAsync(_ requestArgument: Void, completion: @escaping (Result<[ShoppingCartFoodItem], Error>) -> Void) {
         shoppingCart.fetchCartItems(completion: completion)
     }
 }

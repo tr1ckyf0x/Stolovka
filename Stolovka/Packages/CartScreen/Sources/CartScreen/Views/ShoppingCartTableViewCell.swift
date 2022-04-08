@@ -66,7 +66,6 @@ class ShoppingCartTableViewCell: UITableViewCell {
         label.textColor = SharedResources.Asset.Colors.primaryText.color
         label.font = .systemFont(ofSize: 22)
         label.minimumScaleFactor = 0.6
-        label.text = "1"
         label.backgroundColor = SharedResources.Asset.Colors.tableViewBackground.color
         return label
     }()
@@ -198,15 +197,20 @@ extension ShoppingCartTableViewCell {
 
         itemPriceLabel.text = SharedResources.L10n.roubles(formattedValue)
     }
+
+    private func configureItemQuantity (for shoppingCartFoodItem: ShoppingCartFoodItem) {
+        quantityLabel.text = String(shoppingCartFoodItem.quantity)
+    }
 }
 
 // MARK: - Public methods
 extension ShoppingCartTableViewCell {
 
-    func configure(foodItem: FoodItem) {
+    func configure(foodItem: FoodItem, shoppingCartFoodItem: ShoppingCartFoodItem) {
         itemNameLabel.text = foodItem.name
         itemDescriptionLabel.text = foodItem.description
         configurePriceLabelText(for: foodItem.price)
         configureItemImage(for: foodItem.pictureUrl)
+        configureItemQuantity(for: shoppingCartFoodItem)
     }
 }
