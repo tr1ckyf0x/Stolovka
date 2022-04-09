@@ -11,26 +11,35 @@ final class ShoppingCartPresenter {
 
     var fetchCartItemsUseCase: AsyncUseCase<Void, [CountableContainer<FoodItem>]>?
     var shoppingCartTableViewManager: ShoppingCartTableManagerProtocol?
+    var addToCartUseCase: AsyncUseCase<FoodItem, Void>?
+    var removeFromCartUseCase: AsyncUseCase<FoodItem, Void>?
 }
 
 // MARK: - ShoppingCartControllerOutput
 extension ShoppingCartPresenter: ShoppingCartControllerOutput {
 
     func view(_ view: ShoppingCartControllerInput, didTapAddButtonFor foodItem: FoodItem) {
-        addToCartItemUseCase?.executeAsync(foodItem) {[weak self] (result: Result<Void, Error>) in
+        addToCartUseCase?.executeAsync(foodItem) {[weak self] (result: Result<Void, Error>) in
             switch result {
             case .success:
-                print("Success")
                 self?.fetchShoppingCartItems()
 
             case .failure:
-                print("Failure")
+                print("Failed to add an item")
             }
         }
     }
 
     func view(_ view: ShoppingCartControllerInput, didTapLikeButtonFor foodItem: FoodItem) {
-        print("Did tap remove button")
+        removeFromCartUseCase?.executeAsync(foodItem) {[weak self] (result: Result<Void, Error>) in
+            switch result {
+            case .success:
+                self?.fetchShoppingCartItems()
+
+            case .failure:
+                print("failed to remove an item")
+            }
+        }
     }
 
     func viewDidLoad(_ view: ShoppingCartControllerInput) {
