@@ -6,27 +6,13 @@
 //
 
 import UIKit
-import Swinject
 import SharedResources
-import MainScreen
-import UsernameProvider
-import QuoteOfTheDayProvider
-import OldsRecommendedProductsProvider
 import SmokersStolovka
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-    private lazy var assemblies: [Assembly] = [
-        MainScreenAssembly(),
-        UsernameProviderAssembly(),
-        QuoteOfTheDayProviderAssembly(),
-        OldsRecommendedProductsProviderAssembly()
-    ]
-
-    private lazy var assembler = Assembler(assemblies)
 
     // swiftlint:disable:next discouraged_optional_collection
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -37,13 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         var viewControllers = [UIViewController]()
 
-        if let mainViewController = assembler.resolver.resolve(
-            UIViewController.self,
-            name: MainScreenAssembly.Constants.viewControllerKey
-        ) {
-            let navigationController = UINavigationController(rootViewController: mainViewController)
-            viewControllers.append(navigationController)
-        }
         let nikitaViewController = StolovkaMainScreenBuilder.buildStolovkaMainScreen()
         nikitaViewController.tabBarItem.title = SharedResources.L10n.nikitaScreenTitle
         nikitaViewController.tabBarItem.image = UIImage(asset: SharedResources.Asset.Assets.plankton)?.withRenderingMode(.alwaysOriginal)
