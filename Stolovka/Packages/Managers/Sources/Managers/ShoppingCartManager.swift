@@ -37,23 +37,15 @@ public final class ShoppingCartManager: ShoppingCartManagerProtocol {
     }
 
     private func shoppingCartFoodItem(from shoppingCartUnsorted: [FoodItem]) -> [ShoppingCartFoodItem] {
-        var shoppingCartSorted: [ShoppingCartFoodItem] = []
-        for foodItem in shoppingCartUnsorted {
-            shoppingCartSorted.append(ShoppingCartFoodItem(quantity: 0, shoppingCartFoodItem: foodItem))
+        let foodItemsByID = Dictionary(grouping: shoppingCartUnsorted) { (foodItem: FoodItem) -> String in
+            foodItem.itemID
         }
 
-        for foodItem in shoppingCartSorted {
-            for itemNumber in 0...shoppingCartSorted.count - 1  where foodItem.shoppingCartFoodItem.itemID == shoppingCartSorted[itemNumber].shoppingCartFoodItem.itemID {
-                shoppingCartSorted[itemNumber].quantity += 1
-            }
+        let shoppingCartSorted = foodItemsByID.values.compactMap { (foodItems: [FoodItem]) -> ShoppingCartFoodItem? in
+            guard let foodItem = foodItems.first else { return nil }
+            return ShoppingCartFoodItem(quantity: foodItems.count, shoppingCartFoodItem: foodItem)
         }
-        return shoppingCartSorted.uniqued()
-    }
-}
 
-extension Sequence where Element: Hashable {
-    func uniqued() -> [Element] {
-        var set = Set<Element>()
-        return filter { set.insert($0).inserted }
+        return shoppingCartSorted
     }
 }
