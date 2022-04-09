@@ -10,4 +10,8 @@ import SharedResources
 
 public enum PictureFormat {
     case local(SharedResources.ImageAsset)
+
+    #if DEBUG
+    case test
+    #endif
 }
