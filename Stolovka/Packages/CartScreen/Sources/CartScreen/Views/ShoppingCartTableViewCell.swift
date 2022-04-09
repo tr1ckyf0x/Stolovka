@@ -189,8 +189,8 @@ extension ShoppingCartTableViewCell {
     private func configurePriceLabelText(for price: Double) {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
-        formatter.maximumFractionDigits = 3
-        formatter.minimumFractionDigits = 3
+        formatter.maximumFractionDigits = 2
+        formatter.minimumFractionDigits = 0
 
         let number = NSNumber(value: price)
         guard let formattedValue = formatter.string(from: number) else { return }
