@@ -12,31 +12,31 @@ import Models
 public protocol ShoppingCartManagerProtocol {
     func addToCart(foodItem: FoodItem, completion: @escaping (Result<Void, Error>) -> Void)
     func removeFromCart(foodItem: FoodItem, completion: @escaping (Result<Void, Error>) -> Void)
-    func fetchCartItems(completion: @escaping (Result<[ShoppingCartFoodItem], Error>) -> Void)
+    func fetchCartItems(completion: @escaping (Result<[CountableContainer<FoodItem>], Error>) -> Void)
 }
 
 public final class ShoppingCartManager: ShoppingCartManagerProtocol {
-    private var items: [ShoppingCartFoodItem] = []
+    private var items: [CountableContainer<FoodItem>] = []
 
     public init() { }
 
     public func addToCart(foodItem: FoodItem, completion: @escaping (Result<Void, Error>) -> Void) {
-        let index = items.firstIndex { (shoppingCartFoodItem: ShoppingCartFoodItem) -> Bool in
-            shoppingCartFoodItem.foodItem == foodItem
+        let index = items.firstIndex { (shoppingCartFoodItem: CountableContainer<FoodItem>) -> Bool in
+            shoppingCartFoodItem.item == foodItem
         }
 
         if let index = index {
             items[index].quantity += 1
         } else {
-            items.append(ShoppingCartFoodItem(quantity: 1, foodItem: foodItem))
+            items.append(CountableContainer(item: foodItem, quantity: 1))
         }
 
         completion(.success(Void()))
     }
 
     public func removeFromCart(foodItem: FoodItem, completion: @escaping (Result<Void, Error>) -> Void) {
-        let index = items.firstIndex { (shoppingCartFoodItem: ShoppingCartFoodItem) -> Bool in
-            shoppingCartFoodItem.foodItem == foodItem
+        let index = items.firstIndex { (shoppingCartFoodItem: CountableContainer<FoodItem>) -> Bool in
+            shoppingCartFoodItem.item == foodItem
         }
 
         guard let index = index else {
@@ -53,7 +53,7 @@ public final class ShoppingCartManager: ShoppingCartManagerProtocol {
         completion(.success(Void()))
     }
 
-    public func fetchCartItems(completion: @escaping (Result<[ShoppingCartFoodItem], Error>) -> Void) {
+    public func fetchCartItems(completion: @escaping (Result<[CountableContainer<FoodItem>], Error>) -> Void) {
         completion(.success(items))
     }
 }

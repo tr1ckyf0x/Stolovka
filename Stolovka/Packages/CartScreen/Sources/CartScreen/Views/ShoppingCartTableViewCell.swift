@@ -198,19 +198,20 @@ extension ShoppingCartTableViewCell {
         itemPriceLabel.text = SharedResources.L10n.roubles(formattedValue)
     }
 
-    private func configureItemQuantity (for shoppingCartFoodItem: ShoppingCartFoodItem) {
-        quantityLabel.text = String(shoppingCartFoodItem.quantity)
+    private func configureItemQuantity(for quantity: Int) {
+        quantityLabel.text = String(quantity)
     }
 }
 
 // MARK: - Public methods
 extension ShoppingCartTableViewCell {
 
-    func configure(foodItem: FoodItem, shoppingCartFoodItem: ShoppingCartFoodItem) {
+    func configure(shoppingCartFoodItem: CountableContainer<FoodItem>) {
+        let foodItem = shoppingCartFoodItem.item
         itemNameLabel.text = foodItem.name
         itemDescriptionLabel.text = foodItem.description
         configurePriceLabelText(for: foodItem.price)
         configureItemImage(for: foodItem.pictureUrl)
-        configureItemQuantity(for: shoppingCartFoodItem)
+        configureItemQuantity(for: shoppingCartFoodItem.quantity)
     }
 }
