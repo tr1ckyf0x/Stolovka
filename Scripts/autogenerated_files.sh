@@ -2,7 +2,6 @@
 
 MODULES=(
 	"SharedResources"
-	"MainScreen"
 	)
 
 MODULES_FOLDER="./Stolovka/Packages"

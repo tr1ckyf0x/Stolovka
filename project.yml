@@ -22,9 +22,6 @@ packages:
   Moya:
     url: https://github.com/Moya/Moya
     from: 15.0.0
-  Swinject:
-    url: https://github.com/Swinject/Swinject
-    from: 2.8.0
   Nimble:
     url: https://github.com/Quick/Nimble
     from: 9.2.0
@@ -38,14 +35,6 @@ packages:
     path: Stolovka/Packages/UseCase
   SharedResources:
     path: Stolovka/Packages/SharedResources
-  MainScreen:
-    path: Stolovka/Packages/MainScreen
-  UsernameProvider:
-    path: Stolovka/Packages/UsernameProvider
-  QuoteOfTheDayProvider:
-    path: Stolovka/Packages/QuoteOfTheDayProvider
-  OldsRecommendedProductsProvider:
-    path: Stolovka/Packages/OldsRecommendedProductsProvider
   SmokersStolovka:
     path: Stolovka/Packages/SmokersStolovka
   CartScreen:
@@ -68,13 +57,8 @@ targets:
     dependencies:
       - package: SnapKit
       - package: Moya
-      - package: Swinject
       - package: UseCase
       - package: SharedResources
-      - package: MainScreen
-      - package: UsernameProvider
-      - package: QuoteOfTheDayProvider
-      - package: OldsRecommendedProductsProvider
       - package: SmokersStolovka
       - package: CartScreen
       - package: Models
