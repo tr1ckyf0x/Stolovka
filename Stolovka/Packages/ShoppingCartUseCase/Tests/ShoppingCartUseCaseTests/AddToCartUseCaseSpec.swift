@@ -31,7 +31,7 @@ final class AddToCartUseCaseSpec: QuickSpec {
                     isLikedByUser: false,
                     itemID: ""
                 )
-                
+
                 waitUntil { done in
                     addToCartUseCase.executeAsync(foodItem) { _ in
                         done()

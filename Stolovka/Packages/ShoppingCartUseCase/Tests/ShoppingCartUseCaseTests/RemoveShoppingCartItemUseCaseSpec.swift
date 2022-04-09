@@ -31,7 +31,7 @@ final class RemoveShoppingCartItemUseCaseSpec: QuickSpec {
                     isLikedByUser: false,
                     itemID: ""
                 )
-                
+
                 waitUntil { done in
                     removeShoppingCartItemUseCase.executeAsync(foodItem) { _ in
                         done()

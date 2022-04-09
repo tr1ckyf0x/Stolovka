@@ -20,12 +20,9 @@ opt_in_rules:
 - closure_end_indentation 
 - closure_spacing 
 - collection_alignment 
-- contains_over_first_not_nil 
 - convenience_type 
 - discouraged_object_literal 
 - discouraged_optional_boolean 
-- empty_count 
-- empty_string 
 - empty_xctest_method 
 - explicit_init 
 - fatal_error_message 
@@ -57,7 +54,7 @@ opt_in_rules:
 - required_enum_case 
 - sorted_first_last 
 - static_operator 
-# - switch_case_on_newline # ⚠️ Требует обсуждения 
+- switch_case_on_newline # ⚠️ Требует обсуждения 
 - toggle_bool 
 - unneeded_parentheses_in_closure_argument 
 - untyped_error_in_catch 
@@ -65,7 +62,16 @@ opt_in_rules:
 - vertical_parameter_alignment_on_call 
 - vertical_whitespace_between_cases 
 - xct_specific_matcher
-- anyobject_protocol # https://stackoverflow.com/questions/30176814/whats-the-difference-between-a-protocol-extended-from-anyobject-and-a-class-onl/32895975#32895975 
+- anyobject_protocol # https://stackoverflow.com/questions/30176814/whats-the-difference-between-a-protocol-extended-from-anyobject-and-a-class-onl/32895975#32895975
+- contains_over_filter_count
+- contains_over_filter_is_empty
+- contains_over_first_not_nil
+- contains_over_range_nil_comparison
+- empty_count
+- empty_string
+- empty_collection_literal
+- unused_declaration
+
  
 excluded: # paths to ignore during linting. Takes precedence over included. 
 - Scripts
@@ -73,9 +79,12 @@ excluded: # paths to ignore during linting. Takes precedence over included.
 # # configurable rules can be customized from this configuration file 
 # # binary rules can set their severity level 
 trailing_semicolon: error 
-# empty_count: error 
+empty_count: error
+empty_string: error
+empty_collection_literal: error
 opening_brace: error 
-return_arrow_whitespace: error 
+return_arrow_whitespace: error
+last_where: error
 # statement_position: error 
 # colon: error 
 # comma: error 
