@@ -29,7 +29,7 @@ public final class RecommendationsProvider: RecommendationsProviderProtocol {
                         description: "Хорошо идет под экзамены",
                         pictureUrl: .local(Asset.Assets.Products.cofeinyiNapitok),
                         isLikedByUser: false,
-                        itemID: "11123"
+                        itemID: "coffee"
                     ),
                     FoodItem(
                         name: "Сосиска в тесте",
@@ -37,7 +37,7 @@ public final class RecommendationsProvider: RecommendationsProviderProtocol {
                         description: "Обыкновенная сосиска. Без сюпризов.",
                         pictureUrl: .local(Asset.Assets.Products.sosiskaVTeste),
                         isLikedByUser: false,
-                        itemID: "1118"
+                        itemID: "sausage"
                     ),
                     FoodItem(
                         name: "Белый хлеб",
@@ -45,7 +45,7 @@ public final class RecommendationsProvider: RecommendationsProviderProtocol {
                         description: "Выгодная цена.",
                         pictureUrl: .local(Asset.Assets.Products.whiteBread),
                         isLikedByUser: false,
-                        itemID: "111156"
+                        itemID: "bread"
                     )
                 ]
             )

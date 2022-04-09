@@ -11,26 +11,26 @@ import SharedResources
 // remove placeholder -> develop use case from shopping cart manager -> presenter
 
 final class ShoppingCartTableViewManager: NSObject {
-    var foodItems: [FoodItem] = []
+    private(set) var shoppingCartFoodItems: [CountableContainer<FoodItem>] = []
 }
 
 extension ShoppingCartTableViewManager: ShoppingCartTableManagerProtocol {
-    func setFoodItems(_ foodItems: [FoodItem]) {
-        self.foodItems = foodItems
+    func setShoppingCartFoodItems(_ shoppingCartFoodItems: [CountableContainer<FoodItem>]) {
+        self.shoppingCartFoodItems = shoppingCartFoodItems
     }
 }
 
 extension ShoppingCartTableViewManager: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        foodItems.count
+        shoppingCartFoodItems.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(ShoppingCartTableViewCell.self)", for: indexPath) as? ShoppingCartTableViewCell else {
             fatalError("Could not deque cell")
         }
-        let foodItem = foodItems[indexPath.row]
-        cell.configure(foodItem: foodItem)
+        let shoppingCartFoodItem = shoppingCartFoodItems[indexPath.row]
+        cell.configure(shoppingCartFoodItem: shoppingCartFoodItem)
         return cell
     }
 }

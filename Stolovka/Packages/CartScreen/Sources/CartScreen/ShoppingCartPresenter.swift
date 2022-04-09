@@ -10,7 +10,7 @@ final class ShoppingCartPresenter {
     weak var viewController: ShoppingCartControllerInput?
 
     var shoppingCartManager: ShoppingCartManagerProtocol?
-    var fetchCartItemsUseCase: AsyncUseCase<Void, [FoodItem]>?
+    var fetchCartItemsUseCase: AsyncUseCase<Void, [CountableContainer<FoodItem>]>?
     var shoppingCartTableViewManager: ShoppingCartTableViewManager?
 }
 
@@ -24,10 +24,10 @@ extension ShoppingCartPresenter: ShoppingCartControllerOutput {
 // MARK: - Private Methods
 extension ShoppingCartPresenter {
     private func fetchShoppingCartItems() {
-        fetchCartItemsUseCase?.executeAsync { [weak self] (result: Result<[FoodItem], Error>) in
+        fetchCartItemsUseCase?.executeAsync { [weak self] (result: Result<[CountableContainer<FoodItem>], Error>) in
             switch result {
-            case let .success(foodItems):
-                self?.shoppingCartTableViewManager?.foodItems = foodItems
+            case let .success(shoppingCartFoodItems):
+                self?.shoppingCartTableViewManager?.setShoppingCartFoodItems(shoppingCartFoodItems)
                 self?.viewController?.reloadShoppingCartTableView()
 
             case let .failure(error):
