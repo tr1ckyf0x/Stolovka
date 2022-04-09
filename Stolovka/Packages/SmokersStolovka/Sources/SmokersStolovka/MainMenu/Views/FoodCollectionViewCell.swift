@@ -148,6 +148,13 @@ extension FoodCollectionViewCell {
         switch imageSource {
         case let .local(imageAsset):
             itemImage.image = imageAsset.image
+
+        #if DEBUG
+
+        case .test:
+            break
+
+        #endif
         }
     }
 }

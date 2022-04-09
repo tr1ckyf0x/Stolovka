@@ -183,6 +183,13 @@ extension ShoppingCartTableViewCell {
         switch imageSource {
         case let .local(imageAsset):
             itemImageView.image = imageAsset.image
+
+        #if DEBUG
+
+        case .test:
+            break
+
+        #endif
         }
     }
 
