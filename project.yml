@@ -16,6 +16,22 @@ attributes:
   ORGANIZATIONNAME: "Владислав Лисянский"
 
 packages:
+  SnapKit:
+    url: https://github.com/SnapKit/SnapKit
+    from: 5.0.1
+  Moya:
+    url: https://github.com/Moya/Moya
+    from: 15.0.0
+  Nimble:
+    url: https://github.com/Quick/Nimble
+    from: 9.2.0
+  Quick:
+    url: https://github.com/Quick/Quick
+    from: 4.0.0
+  DifferenceKit:
+    url: https://github.com/ra1028/DifferenceKit
+    from: 1.2.0
+
   # Local packages
 
   UseCase:
@@ -49,6 +65,7 @@ targets:
       - package: Models
       - package: Managers
       - package: ShoppingCartUseCase
+      - package: DifferenceKit
 
     scheme:
       testTargets:

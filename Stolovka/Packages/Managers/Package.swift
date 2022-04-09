@@ -32,7 +32,8 @@ let package = Package(
             name: "Managers",
             dependencies: [
                 "SharedResources",
-                "Models"
+                "Models",
+                "DifferenceKit"
             ]
         ),
         .target(
