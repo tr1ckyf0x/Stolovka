@@ -12,5 +12,5 @@ protocol ShoppingCartControllerOutput: AnyObject {
 }
 
 protocol ShoppingCartTableManagerProtocol: AnyObject {
-    func setFoodItems(_ foodItems: [ShoppingCartFoodItem])
+    func setShoppingCartFoodItems(_ shoppingCartFoodItems: [ShoppingCartFoodItem])
 }

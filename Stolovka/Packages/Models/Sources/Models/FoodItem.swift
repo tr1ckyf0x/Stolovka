@@ -33,3 +33,9 @@ public struct FoodItem {
         self.itemID = itemID
     }
 }
+
+extension FoodItem: Equatable {
+    public static func == (lhs: FoodItem, rhs: FoodItem) -> Bool {
+        lhs.itemID == rhs.itemID
+    }
+}

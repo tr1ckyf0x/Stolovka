@@ -16,36 +16,50 @@ public protocol ShoppingCartManagerProtocol {
 }
 
 public final class ShoppingCartManager: ShoppingCartManagerProtocol {
-
-    private var shoppingCartUnsorted: [FoodItem] = []
-    private var shoppingCartSorted: [ShoppingCartFoodItem] = []
+    private var items: [ShoppingCartFoodItem] = []
 
     public init() { }
 
     public func addToCart(foodItem: FoodItem, completion: @escaping (Result<Void, Error>) -> Void) {
-        shoppingCartUnsorted.append(foodItem)
+        let index = items.firstIndex { (shoppingCartFoodItem: ShoppingCartFoodItem) -> Bool in
+            shoppingCartFoodItem.foodItem == foodItem
+        }
+
+        if let index = index {
+            items[index].quantity += 1
+        } else {
+            items.append(ShoppingCartFoodItem(quantity: 1, foodItem: foodItem))
+        }
+
         completion(.success(Void()))
     }
 
     public func removeFromCart(foodItem: FoodItem, completion: @escaping (Result<Void, Error>) -> Void) {
-        print("Not Implemented")
+        let index = items.firstIndex { (shoppingCartFoodItem: ShoppingCartFoodItem) -> Bool in
+            shoppingCartFoodItem.foodItem == foodItem
+        }
+
+        guard let index = index else {
+            completion(.failure(CartManagerError.itemNotExists(foodItem)))
+            return
+        }
+
+        items[index].quantity -= 1
+
+        if items[index].quantity == 0 {
+            items.remove(at: index)
+        }
+
+        completion(.success(Void()))
     }
 
     public func fetchCartItems(completion: @escaping (Result<[ShoppingCartFoodItem], Error>) -> Void) {
-        shoppingCartSorted = shoppingCartFoodItem(from: shoppingCartUnsorted)
-        completion(.success(shoppingCartSorted))
+        completion(.success(items))
     }
+}
 
-    private func shoppingCartFoodItem(from shoppingCartUnsorted: [FoodItem]) -> [ShoppingCartFoodItem] {
-        let foodItemsByID = Dictionary(grouping: shoppingCartUnsorted) { (foodItem: FoodItem) -> String in
-            foodItem.itemID
-        }
-
-        let shoppingCartSorted = foodItemsByID.values.compactMap { (foodItems: [FoodItem]) -> ShoppingCartFoodItem? in
-            guard let foodItem = foodItems.first else { return nil }
-            return ShoppingCartFoodItem(quantity: foodItems.count, shoppingCartFoodItem: foodItem)
-        }
-
-        return shoppingCartSorted
+extension ShoppingCartManager {
+    enum CartManagerError: Error {
+        case itemNotExists(FoodItem)
     }
 }

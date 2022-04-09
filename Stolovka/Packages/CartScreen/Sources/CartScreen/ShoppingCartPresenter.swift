@@ -26,8 +26,8 @@ extension ShoppingCartPresenter {
     private func fetchShoppingCartItems() {
         fetchCartItemsUseCase?.executeAsync { [weak self] (result: Result<[ShoppingCartFoodItem], Error>) in
             switch result {
-            case let .success(foodItems):
-                self?.shoppingCartTableViewManager?.foodItems = foodItems
+            case let .success(shoppingCartFoodItems):
+                self?.shoppingCartTableViewManager?.setShoppingCartFoodItems(shoppingCartFoodItems)
                 self?.viewController?.reloadShoppingCartTableView()
 
             case let .failure(error):
