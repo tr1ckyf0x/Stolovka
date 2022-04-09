@@ -10,6 +10,8 @@ protocol ShoppingCartControllerInput: AnyObject {
 
 protocol ShoppingCartControllerOutput: AnyObject {
     func viewDidLoad(_ view: ShoppingCartControllerInput)
+    func view(_ view: ShoppingCartControllerInput, didTapAddButtonFor foodItem: FoodItem)
+    func view(_ view: ShoppingCartControllerInput, didTapLikeButtonFor foodItem: FoodItem)
 }
 
 // sourcery: AutoMockable

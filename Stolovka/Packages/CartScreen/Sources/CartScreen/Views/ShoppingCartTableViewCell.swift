@@ -10,7 +10,6 @@ import UIKit
 import SnapKit
 import Models
 
-// TODO: remove quantity placeholder, arrangeViews, implement correct constraints for items.
 protocol ShoppingCartViewCellDelegate: AnyObject {
     func shoppingCartViewCell(_ foodCollectionViewCell: ShoppingCartTableViewCell, didPressAddOneItem foodItem: FoodItem)
     func shoppingCartViewCell(_ foodCollectionViewCell: ShoppingCartTableViewCell, didPressRemoveOneItem foodItem: FoodItem)
@@ -18,7 +17,7 @@ protocol ShoppingCartViewCellDelegate: AnyObject {
 
 final class ShoppingCartTableViewCell: UITableViewCell {
 
-    private var foodItem: FoodItem?
+    private var shoppingCartFoodItem: CountableContainer<FoodItem>?
     weak var delegate: ShoppingCartViewCellDelegate?
 
     private lazy var itemImageView: UIImageView = {
@@ -182,13 +181,13 @@ extension ShoppingCartTableViewCell {
 
     @objc
     private func pressedAddOneItem() {
-        guard let foodItem = foodItem else { return }
+        guard let foodItem = shoppingCartFoodItem?.item else { return }
         delegate?.shoppingCartViewCell(self, didPressAddOneItem: foodItem)
     }
 
     @objc
     private func pressedRemoveOneItem() {
-        guard let foodItem = foodItem else { return }
+        guard let foodItem = shoppingCartFoodItem?.item else { return }
         delegate?.shoppingCartViewCell(self, didPressRemoveOneItem: foodItem)
     }
 

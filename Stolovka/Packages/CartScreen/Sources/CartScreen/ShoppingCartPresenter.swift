@@ -16,6 +16,14 @@ final class ShoppingCartPresenter {
 // MARK: - ShoppingCartControllerOutput
 extension ShoppingCartPresenter: ShoppingCartControllerOutput {
 
+    func view(_ view: ShoppingCartControllerInput, didTapAddButtonFor foodItem: FoodItem) {
+        print("Did tap add button for", foodItem)
+    }
+
+    func view(_ view: ShoppingCartControllerInput, didTapLikeButtonFor foodItem: FoodItem) {
+        print("Did tap remove button")
+    }
+
     func viewDidLoad(_ view: ShoppingCartControllerInput) {
         fetchShoppingCartItems()
     }
