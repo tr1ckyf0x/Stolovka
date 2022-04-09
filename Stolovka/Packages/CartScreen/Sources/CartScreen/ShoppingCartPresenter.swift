@@ -17,7 +17,16 @@ final class ShoppingCartPresenter {
 extension ShoppingCartPresenter: ShoppingCartControllerOutput {
 
     func view(_ view: ShoppingCartControllerInput, didTapAddButtonFor foodItem: FoodItem) {
-        print("Did tap add button for", foodItem)
+        addToCartItemUseCase?.executeAsync(foodItem) {[weak self] (result: Result<Void, Error>) in
+            switch result {
+            case .success:
+                print("Success")
+                self?.fetchShoppingCartItems()
+
+            case .failure:
+                print("Failure")
+            }
+        }
     }
 
     func view(_ view: ShoppingCartControllerInput, didTapLikeButtonFor foodItem: FoodItem) {
