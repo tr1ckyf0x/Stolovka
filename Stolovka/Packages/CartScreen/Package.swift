@@ -19,8 +19,11 @@ let package = Package(
         .package(path: "../SharedResources"),
         .package(path: "../Managers"),
         .package(path: "../Models"),
+        .package(path: "../ShoppingCartUseCase"),
+        .package(path: "../UseCase"),
         .package(url: "https://github.com/SnapKit/SnapKit", from: "5.0.1"),
-        .package(path: "../ShoppingCartUseCase")
+        .package(url: "https://github.com/Quick/Nimble", from: "9.2.0"),
+        .package(url: "https://github.com/Quick/Quick", from: "4.0.0")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -33,6 +36,15 @@ let package = Package(
                 "Models",
                 "SnapKit",
                 "ShoppingCartUseCase"
+            ]
+        ),
+        .testTarget(
+            name: "CartScreenTests",
+            dependencies: [
+                .product(name: "UseCaseMock", package: "UseCase"),
+                "CartScreen",
+                "Nimble",
+                "Quick"
             ]
         )
     ]

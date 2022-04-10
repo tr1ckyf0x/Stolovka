@@ -20,10 +20,10 @@ SOURCERY_MODULES=(
 	"Models"
 	"SmokersStolovka"
 	"Managers"
+	"CartScreen"
 	)
 
 for MODULE in "${SOURCERY_MODULES[@]}"; do
 	MODULE_DIR="${MODULES_FOLDER}/${MODULE}"
-	mkdir -p "${MODULE_DIR}/Sources/${MODULE}/Generated"
 	sourcery --config "${MODULE_DIR}/.sourcery.yml"
 done

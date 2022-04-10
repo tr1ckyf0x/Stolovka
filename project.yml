@@ -54,6 +54,7 @@ targets:
       testTargets:
         - package: SmokersStolovka/SmokersStolovkaTests
         - package: ShoppingCartUseCase/ShoppingCartUseCaseTests
+        - package: CartScreen/CartScreenTests
 
     settings:
       base:

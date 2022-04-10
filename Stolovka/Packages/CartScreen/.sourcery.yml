@@ -1,0 +1,12 @@
+configurations:
+  - sources:
+    - Sources
+    templates:
+    - ../../../Templates/AutoMockable.stencil
+    output:
+      Tests/CartScreenTests/Mock
+    args:
+      autoMockableTestableImports:
+        - CartScreen
+      autoMockableImports: 
+        - Models

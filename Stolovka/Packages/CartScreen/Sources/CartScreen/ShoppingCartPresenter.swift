@@ -9,9 +9,8 @@ final class ShoppingCartPresenter {
 
     weak var viewController: ShoppingCartControllerInput?
 
-    var shoppingCartManager: ShoppingCartManagerProtocol?
     var fetchCartItemsUseCase: AsyncUseCase<Void, [CountableContainer<FoodItem>]>?
-    var shoppingCartTableViewManager: ShoppingCartTableViewManager?
+    var shoppingCartTableViewManager: ShoppingCartTableManagerProtocol?
 }
 
 extension ShoppingCartPresenter: ShoppingCartControllerOutput {

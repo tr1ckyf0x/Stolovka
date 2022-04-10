@@ -15,7 +15,6 @@ public enum ShoppingCartAssembly {
         let fetchShoppingCartUseCase = FetchShoppingCartUseCase(shoppingCart: shoppingCartManager)
 
         viewController.setShoppingCartDataSource(dataSource: shoppingCartTableViewManager)
-        presenter.shoppingCartManager = shoppingCartManager
         presenter.shoppingCartTableViewManager = shoppingCartTableViewManager
         presenter.fetchCartItemsUseCase = fetchShoppingCartUseCase
 
