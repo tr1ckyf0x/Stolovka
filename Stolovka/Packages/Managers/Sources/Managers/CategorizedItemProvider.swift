@@ -15,11 +15,12 @@ public protocol CategorizedItemsProviderProtocol {
     func fetchCategorizedItems(completion: @escaping(Result<[CategorizedFoodItems], Error>) -> Void)
 }
 
-public final class CategorizedItemsProvider: CategorizedItemsProviderProtocol {
+public final class CategorizedItemsProvider {
+    public init() { }
+}
 
-    public init() {
-    }
-
+// MARK: - CategorizedItemsProviderProtocol
+extension CategorizedItemsProvider: CategorizedItemsProviderProtocol {
     // swiftlint:disable:next function_body_length
     public func fetchCategorizedItems(completion: @escaping (Result<[CategorizedFoodItems], Error>) -> Void) {
 

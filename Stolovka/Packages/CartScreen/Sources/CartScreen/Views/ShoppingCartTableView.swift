@@ -6,7 +6,7 @@ import UIKit
 import SnapKit
 import SharedResources
 
-class ShoppingCartTableView: UIView {
+final class ShoppingCartTableView: UIView {
 
     private lazy var tableView: UITableView = {
 
@@ -27,13 +27,6 @@ class ShoppingCartTableView: UIView {
     required init?(coder: NSCoder) {
         fatalError("Not implemented")
     }
-
-    private func setupView() {
-        self.addSubview(tableView)
-        tableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-    }
 }
 // MARK: - Public Methods
 extension ShoppingCartTableView {
@@ -51,4 +44,14 @@ extension ShoppingCartTableView {
         }
     }
 
+}
+
+// MARK: - Private Methods
+extension ShoppingCartTableView {
+    private func setupView() {
+        self.addSubview(tableView)
+        tableView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+    }
 }

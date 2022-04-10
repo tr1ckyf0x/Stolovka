@@ -33,18 +33,21 @@ final class FoodItemCarouselManager: NSObject, MainScreenItemCategoryProtocol {
     weak var delegate: FoodItemCarouselDelegate?
 }
 
+// MARK: - SetUpModelProtocol
 extension FoodItemCarouselManager: SetUpModelProtocol {
     func modelWithDetailedDescription() -> [CategorizedFoodItems] {
         categorizedFoodItems
     }
 }
 
+// MARK: - MainScreenFoodItemsCollectionManagerProtocol
 extension FoodItemCarouselManager: MainScreenFoodItemsCollectionManagerProtocol {
     func setFoodItems(_ foodItems: [CategorizedFoodItems]) {
         self.categorizedFoodItems = foodItems
     }
 }
 
+// MARK: - UICollectionViewDataSource
 extension FoodItemCarouselManager: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         categorizedFoodItems.count

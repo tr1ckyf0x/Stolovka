@@ -9,7 +9,7 @@
 import UIKit
 import SharedResources
 
-class StolovkaMainScreenView: UIView {
+final class StolovkaMainScreenView: UIView {
 
     let greetingSubview = GreetingView()
     let searchSubview = SearchBarView()
@@ -48,8 +48,8 @@ class StolovkaMainScreenView: UIView {
         fatalError("Was Not Implemented.")
     }
 }
-// MARK: - Private Methods
 
+// MARK: - Private Methods
 extension StolovkaMainScreenView {
     private func setupview() {
         backgroundColor = SharedResources.Asset.Colors.tableViewBackground.color

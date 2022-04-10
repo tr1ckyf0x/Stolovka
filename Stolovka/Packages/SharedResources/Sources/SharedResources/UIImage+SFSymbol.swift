@@ -17,7 +17,6 @@ extension UIImage {
 }
 
 // MARK: - SFSymbolRepresentable
-
 public protocol SFSymbolRepresentable {
     var systemName: String { get }
 }

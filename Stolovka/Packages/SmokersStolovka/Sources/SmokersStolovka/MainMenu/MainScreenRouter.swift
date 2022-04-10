@@ -12,6 +12,7 @@ final class MainScreenRouter {
     weak var viewController: UIViewController?
 }
 
+// MARK: - MainScreenRouterProtocol
 extension MainScreenRouter: MainScreenRouterProtocol {
     func routeToShoppingCart() {
         let shoppingCartViewController = ShoppingCartAssembly.assembleShoppingCart()

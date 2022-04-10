@@ -8,7 +8,6 @@
 import Foundation
 
 // MARK: - SFSymbol
-
 public enum SFSymbol: String, SFSymbolRepresentable {
     case sliderHorizontal = "slider.horizontal.3"
     case takeoutbagAndCupAndStraw = "takeoutbag.and.cup.and.straw.fill"

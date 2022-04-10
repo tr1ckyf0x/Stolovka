@@ -1,5 +1,5 @@
 //
-//  NsFetchRecommendationsUseCase.swift
+//  FetchRecommendationsUseCase.swift
 //  Stolovka
 //
 //  Created by Nikita Shvad on 08.01.2022.
@@ -11,8 +11,8 @@ import UseCase
 import Models
 import Managers
 
-class NsFetchRecommendationsUseCase: AsyncUseCase<Void, [CategorizedFoodItems]> {
-    let recommendationsProvider: RecommendationsProviderProtocol
+final class FetchRecommendationsUseCase: AsyncUseCase<Void, [CategorizedFoodItems]> {
+    private let recommendationsProvider: RecommendationsProviderProtocol
 
     init(recommendationsProvider: RecommendationsProviderProtocol) {
         self.recommendationsProvider = recommendationsProvider

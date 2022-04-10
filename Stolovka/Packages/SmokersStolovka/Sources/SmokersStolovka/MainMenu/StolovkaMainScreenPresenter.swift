@@ -11,7 +11,7 @@ import SharedModels
 import Models
 import ShoppingCartUseCase
 
-class StolovkaMainScreenPresenter {
+final class StolovkaMainScreenPresenter {
 
     weak var viewController: MainScreenControllerInput?
     var router: MainScreenRouterProtocol?
@@ -64,14 +64,16 @@ extension StolovkaMainScreenPresenter: CategoryForItemManagerDelegate {
         viewController?.scrollCategorizedItems(to: IndexPath(item: 0, section: indexPath.section))
     }
 }
+
+// MARK: - ItemForCategoryDelegate
 extension StolovkaMainScreenPresenter: ItemForCategoryDelegate {
     func itemForCategory(_ categoryForItemManager: MainScreenItemCategoryProtocol, didSelectCellAt indexPath: IndexPath) {
         viewController?.scrollItemCategories(to: IndexPath(item: 0, section: indexPath.section))
     }
 }
+
 // MARK: - Private methods
 extension StolovkaMainScreenPresenter {
-
     private func setGreeting() {
         guard let greetingModel = fetchGreetingUseCase?.execute() else { return }
         viewController?.setGreeting(model: greetingModel)
@@ -104,5 +106,4 @@ extension StolovkaMainScreenPresenter {
             }
         }
     }
-
 }

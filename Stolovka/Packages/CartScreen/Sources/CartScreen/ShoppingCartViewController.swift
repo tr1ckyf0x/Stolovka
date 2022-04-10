@@ -12,6 +12,7 @@ import SharedResources
 final class ShoppingCartViewController: UIViewController {
 
     private let shoppingCartView = ShoppingCartView()
+
     var presenter: ShoppingCartControllerOutput?
 
     override func viewDidLoad() {
@@ -31,7 +32,6 @@ final class ShoppingCartViewController: UIViewController {
 }
 
 extension ShoppingCartViewController: ShoppingCartControllerInput {
-
     func reloadShoppingCartTableView() {
         shoppingCartView.shoppingCartTableView.reloadTableView()
     }

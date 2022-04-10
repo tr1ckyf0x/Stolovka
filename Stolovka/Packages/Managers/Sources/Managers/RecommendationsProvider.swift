@@ -15,10 +15,12 @@ public protocol RecommendationsProviderProtocol {
     func fetchRecommendations(completion: @escaping(Result<[CategorizedFoodItems], Error>) -> Void)
 }
 
-public final class RecommendationsProvider: RecommendationsProviderProtocol {
-    public init() {
-    }
+public final class RecommendationsProvider {
+    public init() { }
+}
 
+// MARK: - RecommendationsProviderProtocol
+extension RecommendationsProvider: RecommendationsProviderProtocol {
     public func fetchRecommendations(completion: @escaping (Result<[CategorizedFoodItems], Error>) -> Void) {
         let foodItems = [
             CategorizedFoodItems(

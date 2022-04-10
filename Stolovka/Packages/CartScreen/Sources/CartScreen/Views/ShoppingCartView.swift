@@ -6,7 +6,7 @@ import UIKit
 import SnapKit
 import SharedResources
 
-class ShoppingCartView: UIView {
+final class ShoppingCartView: UIView {
 
     let shoppingCartTableView = ShoppingCartTableView()
 
@@ -18,7 +18,10 @@ class ShoppingCartView: UIView {
     required init?(coder: NSCoder) {
         fatalError("Not implemented")
     }
+}
 
+// MARK: - Private methods
+extension ShoppingCartView {
     private func setupView() {
         backgroundColor = SharedResources.Asset.Colors.tableViewBackground.color
         addSubview(shoppingCartTableView)

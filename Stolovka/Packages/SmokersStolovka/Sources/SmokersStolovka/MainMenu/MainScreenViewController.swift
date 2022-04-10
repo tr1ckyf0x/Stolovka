@@ -9,7 +9,7 @@ import UIKit
 import SharedResources
 import Models
 
-class MainScreenViewController: UIViewController {
+final class MainScreenViewController: UIViewController {
 
     private let mainScreenView = StolovkaMainScreenView()
 

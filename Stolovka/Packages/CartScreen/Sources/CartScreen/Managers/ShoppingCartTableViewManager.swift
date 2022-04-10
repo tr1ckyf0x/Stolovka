@@ -14,12 +14,14 @@ final class ShoppingCartTableViewManager: NSObject {
     private(set) var shoppingCartFoodItems: [CountableContainer<FoodItem>] = []
 }
 
+// MARK: - ShoppingCartTableManagerProtocol
 extension ShoppingCartTableViewManager: ShoppingCartTableManagerProtocol {
     func setShoppingCartFoodItems(_ shoppingCartFoodItems: [CountableContainer<FoodItem>]) {
         self.shoppingCartFoodItems = shoppingCartFoodItems
     }
 }
 
+// MARK: - UITableViewDataSource
 extension ShoppingCartTableViewManager: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         shoppingCartFoodItems.count

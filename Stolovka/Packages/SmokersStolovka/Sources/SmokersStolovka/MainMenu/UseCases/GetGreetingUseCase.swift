@@ -13,7 +13,7 @@ import SharedResources
 import Models
 import Managers
 
-class GetGreetingUseCase: UseCase<Void, ChumBucketGreetingModel> {
+final class GetGreetingUseCase: UseCase<Void, ChumBucketGreetingModel> {
 
     private let usernameProvider: UserProfileProvider
     private let quoteOfDayProvider: QouteOfDayProvider

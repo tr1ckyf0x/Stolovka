@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Models
 
 // sourcery: AutoMockable
 public protocol UserProfileProvider {
@@ -20,14 +21,6 @@ extension UserProfileProvider {
     public var birthday: String? { nil }
     public var email: String? { nil }
     public var addresses: [Address] { [] }
-}
-
-public struct Address {
-    public var city: String
-
-    public init(city: String) {
-        self.city = city
-    }
 }
 
 public final class UserProfileDataProvider: UserProfileProvider {

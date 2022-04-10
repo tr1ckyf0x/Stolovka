@@ -1,5 +1,5 @@
 //
-//  NSFetchCategorizedItemsUseCase.swift
+//  FetchCategorizedItemsUseCase.swift
 //  Stolovka
 //
 //  Created by Nikita Shvad on 09.01.2022.
@@ -11,8 +11,8 @@ import Models
 import UseCase
 import Managers
 
-class NSFetchCategorizedItemsUseCase: AsyncUseCase<Void, [CategorizedFoodItems]> {
-    var categorizedItemsProvider: CategorizedItemsProviderProtocol
+final class FetchCategorizedItemsUseCase: AsyncUseCase<Void, [CategorizedFoodItems]> {
+    private let categorizedItemsProvider: CategorizedItemsProviderProtocol
 
     init(categorizedItemsProvider: CategorizedItemsProviderProtocol) {
         self.categorizedItemsProvider = categorizedItemsProvider

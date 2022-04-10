@@ -16,11 +16,14 @@ public protocol ShoppingCartManagerProtocol {
     func fetchCartItems(completion: @escaping (Result<[CountableContainer<FoodItem>], Error>) -> Void)
 }
 
-public final class ShoppingCartManager: ShoppingCartManagerProtocol {
+public final class ShoppingCartManager {
     private var items: [CountableContainer<FoodItem>] = []
 
     public init() { }
+}
 
+// MARK: - ShoppingCartManagerProtocol
+extension ShoppingCartManager: ShoppingCartManagerProtocol {
     public func addToCart(foodItem: FoodItem, completion: @escaping (Result<Void, Error>) -> Void) {
         let index = items.firstIndex { (shoppingCartFoodItem: CountableContainer<FoodItem>) -> Bool in
             shoppingCartFoodItem.item == foodItem

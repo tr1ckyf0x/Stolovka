@@ -16,7 +16,7 @@ protocol ShoppingCartViewCellDelegate: AnyObject {
     func shoppingCartViewCell(_ foodCollectionViewCell: ShoppingCartTableViewCell, didPressRemoveOneItem foodItem: FoodItem)
 }
 
-class ShoppingCartTableViewCell: UITableViewCell {
+final class ShoppingCartTableViewCell: UITableViewCell {
 
     private var foodItem: FoodItem?
     weak var delegate: ShoppingCartViewCellDelegate?
@@ -101,6 +101,19 @@ class ShoppingCartTableViewCell: UITableViewCell {
         guard #available(iOS 13.0, *) else { return }
         guard traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) else { return }
         quantityLabel.layer.borderColor = SharedResources.Asset.Colors.primaryText.color.cgColor
+    }
+}
+
+// MARK: - Public methods
+extension ShoppingCartTableViewCell {
+
+    func configure(shoppingCartFoodItem: CountableContainer<FoodItem>) {
+        let foodItem = shoppingCartFoodItem.item
+        itemNameLabel.text = foodItem.name
+        itemDescriptionLabel.text = foodItem.description
+        configurePriceLabelText(for: foodItem.price)
+        configureItemImage(for: foodItem.pictureUrl)
+        configureItemQuantity(for: shoppingCartFoodItem.quantity)
     }
 }
 
@@ -207,18 +220,5 @@ extension ShoppingCartTableViewCell {
 
     private func configureItemQuantity(for quantity: Int) {
         quantityLabel.text = String(quantity)
-    }
-}
-
-// MARK: - Public methods
-extension ShoppingCartTableViewCell {
-
-    func configure(shoppingCartFoodItem: CountableContainer<FoodItem>) {
-        let foodItem = shoppingCartFoodItem.item
-        itemNameLabel.text = foodItem.name
-        itemDescriptionLabel.text = foodItem.description
-        configurePriceLabelText(for: foodItem.price)
-        configureItemImage(for: foodItem.pictureUrl)
-        configureItemQuantity(for: shoppingCartFoodItem.quantity)
     }
 }

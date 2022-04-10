@@ -30,8 +30,8 @@ public enum StolovkaMainScreenBuilder {
             quoteOfDayProvider: quoteOfDayProvider
         )
 
-        let fetchRecommendationsUseCase = NsFetchRecommendationsUseCase(recommendationsProvider: recommendationsProvider)
-        let fetchCategorizedItemsUseCase = NSFetchCategorizedItemsUseCase(categorizedItemsProvider: categorizedFoodProvider)
+        let fetchRecommendationsUseCase = FetchRecommendationsUseCase(recommendationsProvider: recommendationsProvider)
+        let fetchCategorizedItemsUseCase = FetchCategorizedItemsUseCase(categorizedItemsProvider: categorizedFoodProvider)
         let addToShoppingCartUseCase = AddToCartUseCase(shoppingCart: shoppingCart)
 
         presenter.fetchGreetingUseCase = getGreetingUseCase
