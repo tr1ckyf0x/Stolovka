@@ -12,10 +12,6 @@ for MODULE in "${SWIFTGEN_MODULES[@]}"; do
 	swiftgen config run --config "${MODULE_DIR}/swiftgen.yml"
 done
 
-touch StolovkaTests/Mock/AutoMockable.generated.swift
-touch Stolovka/Packages/SmokersStolovka/Tests/SmokersStolovkaTests/Mock/AutoMockable.generated.swift
-touch Stolovka/Packages/Managers/Sources/ManagersMock/Mock/AutoMockable.generated.swift
-
 SOURCERY_MODULES=(
 	"Models"
 	"SmokersStolovka"
