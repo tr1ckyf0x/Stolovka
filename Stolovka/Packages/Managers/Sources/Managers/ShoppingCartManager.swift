@@ -16,10 +16,10 @@ public protocol ShoppingCartManagerProtocol {
     func fetchCartItems(completion: @escaping (Result<[CountableContainer<FoodItem>], Error>) -> Void)
 }
 
-public final class ShoppingCartManager {
+final class ShoppingCartManager {
     private var items: [CountableContainer<FoodItem>] = []
 
-    public init() { }
+    init() { }
 }
 
 // MARK: - ShoppingCartManagerProtocol
