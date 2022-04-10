@@ -1,0 +1,12 @@
+configurations:
+  - sources:
+    - Sources/Managers
+    templates:
+    - ../../../Templates/AutoMockable.stencil
+    output:
+      Sources/ManagersMock/Mock
+    args:
+      autoMockableTestableImports:
+        - Managers
+      autoMockableImports: 
+        - Models

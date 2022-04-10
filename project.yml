@@ -16,19 +16,6 @@ attributes:
   ORGANIZATIONNAME: "Владислав Лисянский"
 
 packages:
-  SnapKit:
-    url: https://github.com/SnapKit/SnapKit
-    from: 5.0.1
-  Moya:
-    url: https://github.com/Moya/Moya
-    from: 15.0.0
-  Nimble:
-    url: https://github.com/Quick/Nimble
-    from: 9.2.0
-  Quick:
-    url: https://github.com/Quick/Quick
-    from: 4.0.0
-
   # Local packages
 
   UseCase:
@@ -55,8 +42,6 @@ targets:
         excludes:
           - "Packages/**/"
     dependencies:
-      - package: SnapKit
-      - package: Moya
       - package: UseCase
       - package: SharedResources
       - package: SmokersStolovka
@@ -66,12 +51,9 @@ targets:
       - package: ShoppingCartUseCase
 
     scheme:
-      build:
-        targets:
-          Stolovka: all
       testTargets:
-        - StolovkaTests
         - package: SmokersStolovka/SmokersStolovkaTests
+        - package: ShoppingCartUseCase/ShoppingCartUseCaseTests
 
     settings:
       base:
@@ -98,23 +80,4 @@ targets:
                 swiftlint
               else
                 echo "warning: SwiftLint not installed, run brew install swiftlint"
-              fi
-
-  StolovkaTests:
-    type: bundle.unit-test
-    platform: iOS
-    sources:
-      - path: "StolovkaTests"
-    dependencies:
-      - target: "Stolovka"
-      - package: Quick
-      - package: Nimble
-    preBuildScripts:
-    - name: "Sourcery"
-      script: |
-              export PATH="$PATH:/opt/homebrew/bin"
-              if which sourcery >/dev/null; then
-                sourcery
-              else
-                echo "warning: Sourcery not installed, run brew install sourcery"
               fi

@@ -11,6 +11,10 @@ let package = Package(
         .library(
             name: "Managers",
             targets: ["Managers"]
+        ),
+        .library(
+            name: "ManagersMock",
+            targets: ["ManagersMock"]
         )
     ],
     dependencies: [
@@ -27,6 +31,12 @@ let package = Package(
             dependencies: [
                 "SharedResources",
                 "Models"
+            ]
+        ),
+        .target(
+            name: "ManagersMock",
+            dependencies: [
+                "Managers"
             ]
         )
     ]

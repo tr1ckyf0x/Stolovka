@@ -9,6 +9,7 @@ import Quick
 import Nimble
 import ShoppingCartUseCase
 import Models
+import ManagersMock
 
 final class RemoveShoppingCartItemUseCaseSpec: QuickSpec {
 
