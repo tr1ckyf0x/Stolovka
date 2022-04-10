@@ -1,4 +1,4 @@
-// swiftlint:disable file_length
+// swiftlint:disable all
 fileprivate func compareOptionals<T>(lhs: T?, rhs: T?, compare: (_ lhs: T, _ rhs: T) -> Bool) -> Bool {
     switch (lhs, rhs) {
     case let (lValue?, rValue?):
