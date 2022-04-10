@@ -1,0 +1,10 @@
+sources:
+  include:
+    - Sources
+  exclude:
+    - Sources/Models/Generated
+templates:
+  - ../../../Templates/AutoEquatable.stencil
+  - ../../../Templates/AutoHashable.stencil
+output:
+  Sources/Models/Generated
