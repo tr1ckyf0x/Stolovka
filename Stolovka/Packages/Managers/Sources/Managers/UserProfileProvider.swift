@@ -8,6 +8,7 @@
 
 import Foundation
 
+// sourcery: AutoMockable
 public protocol UserProfileProvider {
     var userName: String { get }
     var birthday: String? { get }

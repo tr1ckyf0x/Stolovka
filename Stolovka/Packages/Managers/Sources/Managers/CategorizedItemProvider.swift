@@ -10,8 +10,9 @@ import Foundation
 import Models
 import SharedResources
 
+// sourcery: AutoMockable
 public protocol CategorizedItemsProviderProtocol {
-    func fetchCategorizedItems (completion: @escaping(Result<[CategorizedFoodItems], Error>) -> Void)
+    func fetchCategorizedItems(completion: @escaping(Result<[CategorizedFoodItems], Error>) -> Void)
 }
 
 public final class CategorizedItemsProvider: CategorizedItemsProviderProtocol {

@@ -9,6 +9,7 @@
 import Foundation
 import SharedResources
 
+// sourcery: AutoMockable
 public protocol QouteOfDayProvider {
     var qouteOfDay: String { get }
 }
