@@ -65,6 +65,14 @@ targets:
       - package: Managers
       - package: ShoppingCartUseCase
 
+    scheme:
+      build:
+        targets:
+          Stolovka: all
+      testTargets:
+        - StolovkaTests
+        - package: SmokersStolovka/SmokersStolovkaTests
+
     settings:
       base:
         TARGETED_DEVICE_FAMILY: 1
