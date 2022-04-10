@@ -70,3 +70,4 @@ extension {{ type.name }}: Equatable {}
     }
 }
 {% endfor %}
+// swiftlint:enable all
