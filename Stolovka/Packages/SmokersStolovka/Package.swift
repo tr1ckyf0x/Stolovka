@@ -15,7 +15,6 @@ let package = Package(
     ],
     dependencies: [
         .package(path: "../SharedResources"),
-        .package(path: "../ProductModels"),
         .package(path: "../UseCase"),
         .package(path: "../Models"),
         .package(path: "../Managers"),
@@ -31,7 +30,6 @@ let package = Package(
             name: "SmokersStolovka",
             dependencies: [
                 "SharedResources",
-                "ProductModels",
                 "Models",
                 "Managers",
                 "CartScreen",

@@ -6,7 +6,6 @@
 //  Copyright © 2022 Владислав Лисянский. All rights reserved.
 //
 
-import SharedModels
 import UIKit
 import Models
 
