@@ -13,6 +13,7 @@ final class ShoppingCartPresenter {
     var shoppingCartTableViewManager: ShoppingCartTableManagerProtocol?
 }
 
+// MARK: - ShoppingCartControllerOutput
 extension ShoppingCartPresenter: ShoppingCartControllerOutput {
 
     func viewDidLoad(_ view: ShoppingCartControllerInput) {

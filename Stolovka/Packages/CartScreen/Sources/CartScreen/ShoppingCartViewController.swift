@@ -28,9 +28,9 @@ final class ShoppingCartViewController: UIViewController {
     func setShoppingCartDataSource(dataSource: UITableViewDataSource) {
         shoppingCartView.shoppingCartTableView.dataSource = dataSource
     }
-
 }
 
+// MARK: - ShoppingCartControllerInput
 extension ShoppingCartViewController: ShoppingCartControllerInput {
     func reloadShoppingCartTableView() {
         shoppingCartView.shoppingCartTableView.reloadTableView()
