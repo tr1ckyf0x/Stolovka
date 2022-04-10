@@ -33,7 +33,6 @@ let package = Package(
             dependencies: [
                 "SharedResources",
                 "Models",
-                "DifferenceKit"
             ]
         ),
         .target(
