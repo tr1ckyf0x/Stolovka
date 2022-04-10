@@ -7,17 +7,17 @@
 
 import Quick
 import Nimble
-@testable import ShoppingCartUseCase
+import ShoppingCartUseCase
 import Models
 
 final class AddToCartUseCaseSpec: QuickSpec {
 
     override func spec() {
-        var shoppingCartManagerMock: ShoppingCartManagerMock!
+        var shoppingCartManagerMock: ShoppingCartManagerProtocolMock!
         var addToCartUseCase: AddToCartUseCase!
 
         beforeEach {
-            shoppingCartManagerMock = ShoppingCartManagerMock()
+            shoppingCartManagerMock = ShoppingCartManagerProtocolMock()
             addToCartUseCase = AddToCartUseCase(shoppingCart: shoppingCartManagerMock)
         }
 
@@ -32,13 +32,9 @@ final class AddToCartUseCaseSpec: QuickSpec {
                     itemID: ""
                 )
 
-                waitUntil { done in
-                    addToCartUseCase.executeAsync(foodItem) { _ in
-                        done()
-                    }
-                }
+                addToCartUseCase.executeAsync(foodItem) { _ in }
 
-                expect(shoppingCartManagerMock.didCallAddToCart).to(beTrue())
+                expect(shoppingCartManagerMock.addToCartFoodItemCompletionCalled).to(beTrue())
             }
         }
     }

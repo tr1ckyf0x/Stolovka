@@ -11,3 +11,5 @@ for MODULE in "${MODULES[@]}"; do
 	mkdir -p "${MODULE_DIR}/Sources/${MODULE}/Generated"
 	swiftgen config run --config "${MODULE_DIR}/swiftgen.yml"
 done
+
+touch StolovkaTests/Mock/AutoMockable.generated.swift

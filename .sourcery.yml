@@ -1,0 +1,10 @@
+sources:
+  - Stolovka/Packages/Managers
+templates:
+  - Templates/AutoMockable.stencil
+output:
+  StolovkaTests/Mock
+args:
+  autoMockableImports: 
+    - Managers
+    - Models

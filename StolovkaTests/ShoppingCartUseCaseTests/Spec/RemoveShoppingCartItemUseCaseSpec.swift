@@ -7,17 +7,17 @@
 
 import Quick
 import Nimble
-@testable import ShoppingCartUseCase
+import ShoppingCartUseCase
 import Models
 
 final class RemoveShoppingCartItemUseCaseSpec: QuickSpec {
 
     override func spec() {
-        var shoppingCartManagerMock: ShoppingCartManagerMock!
+        var shoppingCartManagerMock: ShoppingCartManagerProtocolMock!
         var removeShoppingCartItemUseCase: RemoveShoppingCartItemUseCase!
 
         beforeEach {
-            shoppingCartManagerMock = ShoppingCartManagerMock()
+            shoppingCartManagerMock = ShoppingCartManagerProtocolMock()
             removeShoppingCartItemUseCase = RemoveShoppingCartItemUseCase(shoppingCart: shoppingCartManagerMock)
         }
 
@@ -32,13 +32,9 @@ final class RemoveShoppingCartItemUseCaseSpec: QuickSpec {
                     itemID: ""
                 )
 
-                waitUntil { done in
-                    removeShoppingCartItemUseCase.executeAsync(foodItem) { _ in
-                        done()
-                    }
-                }
+                removeShoppingCartItemUseCase.executeAsync(foodItem) { _ in }
 
-                expect(shoppingCartManagerMock.didCallRemoveFromCart).to(beTrue())
+                expect(shoppingCartManagerMock.removeFromCartFoodItemCompletionCalled).to(beTrue())
             }
         }
     }

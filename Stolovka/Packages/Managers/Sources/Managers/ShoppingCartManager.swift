@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import Models
 
+// sourcery: AutoMockable
 public protocol ShoppingCartManagerProtocol {
     func addToCart(foodItem: FoodItem, completion: @escaping (Result<Void, Error>) -> Void)
     func removeFromCart(foodItem: FoodItem, completion: @escaping (Result<Void, Error>) -> Void)

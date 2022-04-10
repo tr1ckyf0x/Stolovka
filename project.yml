@@ -101,4 +101,12 @@ targets:
       - target: "Stolovka"
       - package: Quick
       - package: Nimble
-      - package: UseCase
+    preBuildScripts:
+    - name: "Sourcery"
+      script: |
+              export PATH="$PATH:/opt/homebrew/bin"
+              if which sourcery >/dev/null; then
+                sourcery
+              else
+                echo "warning: Sourcery not installed, run brew install sourcery"
+              fi

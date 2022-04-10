@@ -7,29 +7,25 @@
 
 import Quick
 import Nimble
-@testable import ShoppingCartUseCase
+import ShoppingCartUseCase
 import Models
 
 final class FetchShoppingCartUseCaseSpec: QuickSpec {
 
     override func spec() {
-        var shoppingCartManagerMock: ShoppingCartManagerMock!
+        var shoppingCartManagerMock: ShoppingCartManagerProtocolMock!
         var fetchShoppingCartUseCase: FetchShoppingCartUseCase!
 
         beforeEach {
-            shoppingCartManagerMock = ShoppingCartManagerMock()
+            shoppingCartManagerMock = ShoppingCartManagerProtocolMock()
             fetchShoppingCartUseCase = FetchShoppingCartUseCase(shoppingCart: shoppingCartManagerMock)
         }
 
         describe("executeAsync(completion:)") {
             it("should call shoppingCartManagerMock.fetchCartItems(completion:)") {
-                waitUntil { done in
-                    fetchShoppingCartUseCase.executeAsync { _ in
-                        done()
-                    }
-                }
+                fetchShoppingCartUseCase.executeAsync { _ in }
 
-                expect(shoppingCartManagerMock.didCallFetchCartItems).to(beTrue())
+                expect(shoppingCartManagerMock.fetchCartItemsCompletionCalled).to(beTrue())
             }
         }
     }
