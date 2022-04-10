@@ -11,6 +11,10 @@ let package = Package(
         .library(
             name: "UseCase",
             targets: ["UseCase"]
+        ),
+        .library(
+            name: "UseCaseMock",
+            targets: ["UseCaseMock"]
         )
     ],
     dependencies: [
@@ -23,6 +27,10 @@ let package = Package(
         .target(
             name: "UseCase",
             dependencies: []
+        ),
+        .target(
+            name: "UseCaseMock",
+            dependencies: ["UseCase"]
         )
     ]
 )

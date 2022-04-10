@@ -32,11 +32,11 @@ let package = Package(
             dependencies: [
                 "SharedResources",
                 "ProductModels",
-                "UseCase",
                 "Models",
                 "Managers",
                 "CartScreen",
-                "ShoppingCartUseCase"
+                "ShoppingCartUseCase",
+                .product(name: "UseCase", package: "UseCase")
             ]
         ),
         .testTarget(
@@ -44,7 +44,8 @@ let package = Package(
             dependencies: [
                 "SmokersStolovka",
                 "Nimble",
-                "Quick"
+                "Quick",
+                .product(name: "UseCaseMock", package: "UseCase")
             ]
         )
     ]

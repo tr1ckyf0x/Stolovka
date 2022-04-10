@@ -13,9 +13,11 @@ for MODULE in "${SWIFTGEN_MODULES[@]}"; do
 done
 
 touch StolovkaTests/Mock/AutoMockable.generated.swift
+touch Stolovka/Packages/SmokersStolovka/Tests/SmokersStolovkaTests/Mock/AutoMockable.generated.swift
 
 SOURCERY_MODULES=(
 	"Models"
+	"SmokersStolovka"
 	)
 
 for MODULE in "${SOURCERY_MODULES[@]}"; do

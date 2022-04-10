@@ -10,6 +10,7 @@ import SharedModels
 import UIKit
 import Models
 
+// sourcery: AutoMockable
 protocol MainScreenControllerInput: AnyObject {
     func setGreeting(model: ChumBucketGreetingModel)
     func loadViews()
@@ -27,14 +28,17 @@ protocol MainScreenControllerOutput: AnyObject {
     func viewDidTapShoppingCart(_ view: MainScreenControllerInput)
 }
 
+// sourcery: AutoMockable
 protocol MainScreenFoodItemsCollectionManagerProtocol: AnyObject {
     func setFoodItems(_ foodItems: [CategorizedFoodItems])
 }
 
+// sourcery: AutoMockable
 protocol MainScreenItemCategoryProtocol: AnyObject {
     func setupItemCategories(_ categorizedFoodItems: [CategorizedFoodItems])
 }
 
+// sourcery: AutoMockable
 protocol MainScreenRouterProtocol: AnyObject {
     func routeToShoppingCart()
 }

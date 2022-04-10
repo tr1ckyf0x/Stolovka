@@ -1,0 +1,12 @@
+configurations:
+  - sources:
+    - Sources
+    templates:
+    - ../../../Templates/AutoMockable.stencil
+    output:
+      Tests/SmokersStolovkaTests/Mock
+    args:
+      autoMockableTestableImports:
+        - SmokersStolovka
+      autoMockableImports: 
+        - Models
