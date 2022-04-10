@@ -75,7 +75,7 @@ opt_in_rules:
  
 excluded: # paths to ignore during linting. Takes precedence over included. 
 - Scripts
-- StolovkaTests/Mock/*.generated.swift
+- "**/*.generated.swift"
 
 # # configurable rules can be customized from this configuration file 
 # # binary rules can set their severity level 
