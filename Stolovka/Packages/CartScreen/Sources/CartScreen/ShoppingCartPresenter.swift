@@ -18,8 +18,11 @@ final class ShoppingCartPresenter {
 // MARK: - ShoppingCartControllerOutput
 extension ShoppingCartPresenter: ShoppingCartControllerOutput {
 
-    func view(_ view: ShoppingCartControllerInput, didTapAddButtonFor foodItem: FoodItem) {
-        addToCartUseCase?.executeAsync(foodItem) {[weak self] (result: Result<Void, Error>) in
+    func view(
+        _ view: ShoppingCartControllerInput,
+        didTapAddButtonFor foodItem: CountableContainer<FoodItem>
+    ) {
+        addToCartUseCase?.executeAsync(foodItem.item) { [weak self] (result: Result<Void, Error>) in
             switch result {
             case .success:
                 self?.fetchShoppingCartItems()
@@ -30,8 +33,14 @@ extension ShoppingCartPresenter: ShoppingCartControllerOutput {
         }
     }
 
-    func view(_ view: ShoppingCartControllerInput, didTapLikeButtonFor foodItem: FoodItem) {
-        removeFromCartUseCase?.executeAsync(foodItem) {[weak self] (result: Result<Void, Error>) in
+    func view(
+        _ view: ShoppingCartControllerInput,
+        didTapRemoveButtonFor foodItem: CountableContainer<FoodItem>
+    ) {
+        if foodItem.quantity == 1 {
+            // TODO: Confirmation
+        }
+        removeFromCartUseCase?.executeAsync(foodItem.item) { [weak self] (result: Result<Void, Error>) in
             switch result {
             case .success:
                 self?.fetchShoppingCartItems()

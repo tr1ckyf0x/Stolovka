@@ -11,8 +11,14 @@ import SnapKit
 import Models
 
 protocol ShoppingCartViewCellDelegate: AnyObject {
-    func shoppingCartViewCell(_ foodCollectionViewCell: ShoppingCartTableViewCell, didPressAddOneItem foodItem: FoodItem)
-    func shoppingCartViewCell(_ foodCollectionViewCell: ShoppingCartTableViewCell, didPressRemoveOneItem foodItem: FoodItem)
+    func shoppingCartViewCell(
+        _ foodCollectionViewCell: ShoppingCartTableViewCell,
+        didPressAddOneItem foodItem: CountableContainer<FoodItem>
+    )
+    func shoppingCartViewCell(
+        _ foodCollectionViewCell: ShoppingCartTableViewCell,
+        didPressRemoveOneItem foodItem: CountableContainer<FoodItem>
+    )
 }
 
 final class ShoppingCartTableViewCell: UITableViewCell {
@@ -107,6 +113,7 @@ final class ShoppingCartTableViewCell: UITableViewCell {
 extension ShoppingCartTableViewCell {
 
     func configure(shoppingCartFoodItem: CountableContainer<FoodItem>) {
+        self.shoppingCartFoodItem = shoppingCartFoodItem
         let foodItem = shoppingCartFoodItem.item
         itemNameLabel.text = foodItem.name
         itemDescriptionLabel.text = foodItem.description
@@ -181,13 +188,13 @@ extension ShoppingCartTableViewCell {
 
     @objc
     private func pressedAddOneItem() {
-        guard let foodItem = shoppingCartFoodItem?.item else { return }
+        guard let foodItem = shoppingCartFoodItem else { return }
         delegate?.shoppingCartViewCell(self, didPressAddOneItem: foodItem)
     }
 
     @objc
     private func pressedRemoveOneItem() {
-        guard let foodItem = shoppingCartFoodItem?.item else { return }
+        guard let foodItem = shoppingCartFoodItem else { return }
         delegate?.shoppingCartViewCell(self, didPressRemoveOneItem: foodItem)
     }
 

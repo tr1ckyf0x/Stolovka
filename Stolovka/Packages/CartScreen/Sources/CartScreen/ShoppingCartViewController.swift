@@ -39,12 +39,18 @@ extension ShoppingCartViewController: ShoppingCartControllerInput {
 }
 
 extension ShoppingCartViewController: ShoppingCartViewCellDelegate {
-    func shoppingCartViewCell(_ foodCollectionViewCell: ShoppingCartTableViewCell, didPressAddOneItem foodItem: FoodItem) {
+    func shoppingCartViewCell(
+        _ foodCollectionViewCell: ShoppingCartTableViewCell,
+        didPressAddOneItem foodItem: CountableContainer<FoodItem>
+    ) {
         presenter?.view(self, didTapAddButtonFor: foodItem)
     }
 
-    func shoppingCartViewCell(_ foodCollectionViewCell: ShoppingCartTableViewCell, didPressRemoveOneItem foodItem: FoodItem) {
-        presenter?.view(self, didTapLikeButtonFor: foodItem)
+    func shoppingCartViewCell(
+        _ foodCollectionViewCell: ShoppingCartTableViewCell,
+        didPressRemoveOneItem foodItem: CountableContainer<FoodItem>
+    ) {
+        presenter?.view(self, didTapRemoveButtonFor: foodItem)
     }
 }
 
