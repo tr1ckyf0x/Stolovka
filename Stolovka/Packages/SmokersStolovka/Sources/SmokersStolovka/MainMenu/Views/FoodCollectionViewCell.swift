@@ -96,12 +96,14 @@ extension FoodCollectionViewCell {
         addToCartButton.snp.makeConstraints { make in
             make.trailing.equalToSuperview().inset(6)
             make.centerY.equalTo(productPriceLabel)
+            make.height.equalTo(productPriceLabel.snp.height)
+            make.height.equalTo(addToCartButton.snp.width)
         }
 
         productTitleLabel.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(8)
             make.height.equalTo(productPriceLabel.snp.height)
-            make.bottom.equalTo(addToCartButton.snp.top).offset(-4)
+            make.bottom.equalTo(addToCartButton.snp.top)
         }
 
         itemImage.snp.makeConstraints { make in
