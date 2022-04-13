@@ -12,6 +12,9 @@ import UseCaseMock
 import Models
 @testable import CartScreen
 
+// swiftlint:disable function_body_length
+// swiftlint:disable closure_body_length
+
 final class StolovkaMainScreenPresenterSpec: QuickSpec {
 
     override func spec() {
@@ -73,23 +76,56 @@ final class StolovkaMainScreenPresenterSpec: QuickSpec {
             }
         }
 
-        describe("  _ view: didTapAddToCartButton") {
-            beforeEach {
-                let foodItem = FoodItem(
-                    name: "",
-                    price: 0,
-                    description: "",
-                    pictureUrl: .test,
-                    isLikedByUser: false,
-                    itemID: ""
-                )
+        describe("view(_:didTapAddButtonFor:)") {
+            let foodItem = FoodItem(
+                name: "",
+                price: 0,
+                description: "",
+                pictureUrl: .test,
+                isLikedByUser: false,
+                itemID: ""
+            )
 
-                it("Should call recommendationCollectionManager.addToCart") {
-                    sut.view(shoppingCartControllerInputMock, didTapAddButtonFor: CountableContainer(item: foodItem, quantity: 1))
+            let foodItemContainer = CountableContainer(item: foodItem, quantity: 1)
 
-                    expect(addToCartUseCaseMock.didCallExecuteAsync).to(beTrue())
+            it("Should call addToCartUseCase.executeAsync(_:)") {
+                sut.view(shoppingCartControllerInputMock, didTapAddButtonFor: foodItemContainer)
+
+                expect(addToCartUseCaseMock.didCallExecuteAsync).to(beTrue())
+            }
+
+            context("addToCartUseCase.executeAsync(_:) returns success") {
+
+                beforeEach {
+                    addToCartUseCaseMock.result = .success(Void())
+                }
+
+                it("should call fetchCartItemsUseCase.executeAsync()") {
+                    sut.view(shoppingCartControllerInputMock, didTapAddButtonFor: foodItemContainer)
+
+                    expect(fetchCartItemsUseCaseMock.didCallExecuteAsync).to(beTrue())
+                }
+
+                context("fetchCartItemsUseCase?.executeAsync() returns success") {
+
+                    beforeEach {
+                        fetchCartItemsUseCaseMock.result = .success([])
+                    }
+
+                    it("should call shoppingCartTableViewManager.setShoppingCartFoodItems(_:)") {
+                        sut.view(shoppingCartControllerInputMock, didTapAddButtonFor: foodItemContainer)
+
+                        expect(shoppingCartTableViewManagerMock.setShoppingCartFoodItemsCalled).to(beTrue())
+                    }
+
+                    it("should call viewController.reloadShoppingCartTableView()") {
+                        sut.view(shoppingCartControllerInputMock, didTapAddButtonFor: foodItemContainer)
+
+                        expect(shoppingCartControllerInputMock.reloadShoppingCartTableViewCalled).to(beTrue())
+                    }
                 }
             }
+
         }
     }
 }

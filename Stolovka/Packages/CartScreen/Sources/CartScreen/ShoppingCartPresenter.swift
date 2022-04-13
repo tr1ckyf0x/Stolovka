@@ -18,6 +18,10 @@ final class ShoppingCartPresenter {
 // MARK: - ShoppingCartControllerOutput
 extension ShoppingCartPresenter: ShoppingCartControllerOutput {
 
+    func viewDidLoad(_ view: ShoppingCartControllerInput) {
+        fetchShoppingCartItems()
+    }
+
     func view(
         _ view: ShoppingCartControllerInput,
         didTapAddButtonFor foodItem: CountableContainer<FoodItem>
@@ -51,9 +55,6 @@ extension ShoppingCartPresenter: ShoppingCartControllerOutput {
         }
     }
 
-    func viewDidLoad(_ view: ShoppingCartControllerInput) {
-        fetchShoppingCartItems()
-    }
 }
 
 // MARK: - Private Methods
