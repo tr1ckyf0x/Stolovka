@@ -25,6 +25,7 @@ final class StolovkaMainScreenPresenterSpec: QuickSpec {
         var shoppingCartTableViewManagerMock: ShoppingCartTableManagerProtocolMock!
         var fetchCartItemsUseCaseMock: AsyncUseCaseMock<Void, [CountableContainer<FoodItem>]>!
         var addToCartUseCaseMock: AsyncUseCaseMock<FoodItem, Void>!
+        var removeFromCartUseCaseMock: AsyncUseCaseMock<FoodItem, Void>!
 
         beforeEach {
             sut = ShoppingCartPresenter()
@@ -33,11 +34,13 @@ final class StolovkaMainScreenPresenterSpec: QuickSpec {
             shoppingCartTableViewManagerMock = ShoppingCartTableManagerProtocolMock()
             fetchCartItemsUseCaseMock = AsyncUseCaseMock()
             addToCartUseCaseMock = AsyncUseCaseMock()
+            removeFromCartUseCaseMock = AsyncUseCaseMock()
 
             sut.viewController = shoppingCartControllerInputMock
             sut.shoppingCartTableViewManager = shoppingCartTableViewManagerMock
             sut.fetchCartItemsUseCase = fetchCartItemsUseCaseMock
             sut.addToCartUseCase = addToCartUseCaseMock
+            sut.removeFromCartUseCase = removeFromCartUseCaseMock
         }
 
         describe("viewDidLoad(_:)") {
@@ -125,7 +128,39 @@ final class StolovkaMainScreenPresenterSpec: QuickSpec {
                     }
                 }
             }
-
         }
+
+        describe("view(_:didTapRemoveButtomFor:)") {
+            let foodItem = FoodItem(
+                name: "",
+                price: 0,
+                description: "",
+                pictureUrl: .test,
+                isLikedByUser: false,
+                itemID: ""
+            )
+
+            let foodItemContainer = CountableContainer(item: foodItem, quantity: 1)
+
+            it("should call removeFromCartUseCase.executeAsync(_:)") {
+                sut.view(shoppingCartControllerInputMock, didTapRemoveButtonFor: foodItemContainer)
+
+                expect(removeFromCartUseCaseMock.didCallExecuteAsync).to(beTrue())
+            }
+
+            context("removeFromCartUseCase?.executeAsync() returns success") {
+
+                beforeEach {
+                    addToCartUseCaseMock.result = .success(Void())
+                }
+
+                it("should call fetchCartItemsUseCase.executeAsync()") {
+                    sut.view(shoppingCartControllerInputMock, didTapRemoveButtonFor: foodItemContainer)
+
+                    expect(fetchCartItemsUseCaseMock.didCallExecuteAsync).to(beTrue())
+                }
+            }
+        }
+
     }
 }
