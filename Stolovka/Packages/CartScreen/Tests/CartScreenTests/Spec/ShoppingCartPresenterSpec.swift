@@ -21,6 +21,7 @@ final class StolovkaMainScreenPresenterSpec: QuickSpec {
         var shoppingCartControllerInputMock: ShoppingCartControllerInputMock!
         var shoppingCartTableViewManagerMock: ShoppingCartTableManagerProtocolMock!
         var fetchCartItemsUseCaseMock: AsyncUseCaseMock<Void, [CountableContainer<FoodItem>]>!
+        var addToCartUseCaseMock: AsyncUseCaseMock<FoodItem, Void>!
 
         beforeEach {
             sut = ShoppingCartPresenter()
@@ -28,10 +29,12 @@ final class StolovkaMainScreenPresenterSpec: QuickSpec {
             shoppingCartControllerInputMock = ShoppingCartControllerInputMock()
             shoppingCartTableViewManagerMock = ShoppingCartTableManagerProtocolMock()
             fetchCartItemsUseCaseMock = AsyncUseCaseMock()
+            addToCartUseCaseMock = AsyncUseCaseMock()
 
             sut.viewController = shoppingCartControllerInputMock
             sut.shoppingCartTableViewManager = shoppingCartTableViewManagerMock
             sut.fetchCartItemsUseCase = fetchCartItemsUseCaseMock
+            sut.addToCartUseCase = addToCartUseCaseMock
         }
 
         describe("viewDidLoad(_:)") {
@@ -66,6 +69,25 @@ final class StolovkaMainScreenPresenterSpec: QuickSpec {
                     sut.viewDidLoad(shoppingCartControllerInputMock)
 
                     expect(shoppingCartControllerInputMock.reloadShoppingCartTableViewCalled).to(beTrue())
+                }
+            }
+        }
+
+        describe("  _ view: didTapAddToCartButton") {
+            beforeEach {
+                let foodItem = FoodItem(
+                    name: "",
+                    price: 0,
+                    description: "",
+                    pictureUrl: .test,
+                    isLikedByUser: false,
+                    itemID: ""
+                )
+
+                it("Should call recommendationCollectionManager.addToCart") {
+                    sut.view(shoppingCartControllerInputMock, didTapAddButtonFor: CountableContainer(item: foodItem, quantity: 1))
+
+                    expect(addToCartUseCaseMock.didCallExecuteAsync).to(beTrue())
                 }
             }
         }
