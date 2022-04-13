@@ -151,7 +151,7 @@ final class StolovkaMainScreenPresenterSpec: QuickSpec {
             context("removeFromCartUseCase?.executeAsync() returns success") {
 
                 beforeEach {
-                    addToCartUseCaseMock.result = .success(Void())
+                    removeFromCartUseCaseMock.result = .success(Void())
                 }
 
                 it("should call fetchCartItemsUseCase.executeAsync()") {
