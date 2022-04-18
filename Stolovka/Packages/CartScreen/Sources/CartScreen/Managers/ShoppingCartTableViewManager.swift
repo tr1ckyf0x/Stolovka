@@ -8,10 +8,13 @@ import UIKit
 import Models
 import SharedResources
 
-// remove placeholder -> develop use case from shopping cart manager -> presenter
+protocol ShoppingCartTableViewManagerDelegate: AnyObject {
+    func shoppingCartManagerNeedsDelegateForFoodCell(_ shoppingTableCartManager: ShoppingCartTableManagerProtocol) -> ShoppingCartViewCellDelegate?
+}
 
 final class ShoppingCartTableViewManager: NSObject {
     private(set) var shoppingCartFoodItems: [CountableContainer<FoodItem>] = []
+    weak var delegate: ShoppingCartTableViewManagerDelegate?
 }
 
 // MARK: - ShoppingCartTableManagerProtocol
@@ -33,6 +36,8 @@ extension ShoppingCartTableViewManager: UITableViewDataSource {
         }
         let shoppingCartFoodItem = shoppingCartFoodItems[indexPath.row]
         cell.configure(shoppingCartFoodItem: shoppingCartFoodItem)
+        let cellDelegate = delegate?.shoppingCartManagerNeedsDelegateForFoodCell(self)
+        cell.delegate = cellDelegate
         return cell
     }
 }

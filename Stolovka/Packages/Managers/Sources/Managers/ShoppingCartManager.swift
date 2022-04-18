@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import Models
+// TODO: notification "are you sure you want to remove the item?" when items[index].quatity == 0
 
 // sourcery: AutoMockable
 public protocol ShoppingCartManagerProtocol {

@@ -1,3 +1,5 @@
+// swiftlint:disable all
+
 import Foundation
 #if os(iOS) || os(tvOS) || os(watchOS)
 import UIKit
@@ -138,3 +140,5 @@ public class {{ type.name }}Mock: {{ type.name }} {
 {% endfor %}
 }
 {% endif %}{% endfor %}
+
+// swiftlint:enable all

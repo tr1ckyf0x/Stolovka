@@ -63,3 +63,4 @@ extension {{ type.name }}: Hashable {
     }
 }
 {% endfor %}
+// swiftlint:enable all

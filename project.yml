@@ -16,6 +16,7 @@ attributes:
   ORGANIZATIONNAME: "Владислав Лисянский"
 
 packages:
+
   # Local packages
 
   UseCase:
@@ -42,14 +43,8 @@ targets:
         excludes:
           - "Packages/**/"
     dependencies:
-      - package: UseCase
-      - package: SharedResources
       - package: SmokersStolovka
-      - package: CartScreen
-      - package: Models
-      - package: Managers
-      - package: ShoppingCartUseCase
-
+      - package: SharedResources
     scheme:
       testTargets:
         - package: SmokersStolovka/SmokersStolovkaTests

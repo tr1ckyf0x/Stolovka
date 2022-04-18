@@ -10,15 +10,20 @@ import UIKit
 import SnapKit
 import Models
 
-// TODO: remove quantity placeholder, arrangeViews, implement correct constraints for items.
 protocol ShoppingCartViewCellDelegate: AnyObject {
-    func shoppingCartViewCell(_ foodCollectionViewCell: ShoppingCartTableViewCell, didPressAddOneItem foodItem: FoodItem)
-    func shoppingCartViewCell(_ foodCollectionViewCell: ShoppingCartTableViewCell, didPressRemoveOneItem foodItem: FoodItem)
+    func shoppingCartViewCell(
+        _ foodCollectionViewCell: ShoppingCartTableViewCell,
+        didPressAddOneItem foodItem: CountableContainer<FoodItem>
+    )
+    func shoppingCartViewCell(
+        _ foodCollectionViewCell: ShoppingCartTableViewCell,
+        didPressRemoveOneItem foodItem: CountableContainer<FoodItem>
+    )
 }
 
 final class ShoppingCartTableViewCell: UITableViewCell {
 
-    private var foodItem: FoodItem?
+    private var shoppingCartFoodItem: CountableContainer<FoodItem>?
     weak var delegate: ShoppingCartViewCellDelegate?
 
     private lazy var itemImageView: UIImageView = {
@@ -108,6 +113,7 @@ final class ShoppingCartTableViewCell: UITableViewCell {
 extension ShoppingCartTableViewCell {
 
     func configure(shoppingCartFoodItem: CountableContainer<FoodItem>) {
+        self.shoppingCartFoodItem = shoppingCartFoodItem
         let foodItem = shoppingCartFoodItem.item
         itemNameLabel.text = foodItem.name
         itemDescriptionLabel.text = foodItem.description
@@ -182,13 +188,13 @@ extension ShoppingCartTableViewCell {
 
     @objc
     private func pressedAddOneItem() {
-        guard let foodItem = foodItem else { return }
+        guard let foodItem = shoppingCartFoodItem else { return }
         delegate?.shoppingCartViewCell(self, didPressAddOneItem: foodItem)
     }
 
     @objc
     private func pressedRemoveOneItem() {
-        guard let foodItem = foodItem else { return }
+        guard let foodItem = shoppingCartFoodItem else { return }
         delegate?.shoppingCartViewCell(self, didPressRemoveOneItem: foodItem)
     }
 
