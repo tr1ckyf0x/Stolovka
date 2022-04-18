@@ -14,7 +14,9 @@ let package = Package(
     ],
     dependencies: [
         .package(path: "../SharedResources"),
-        .package(url: "https://github.com/SnapKit/SnapKit", from: "5.0.1")
+        .package(url: "https://github.com/SnapKit/SnapKit", from: "5.0.1"),
+        .package(url: "https://github.com/Quick/Nimble", from: "9.2.0"),
+        .package(url: "https://github.com/Quick/Quick", from: "4.0.0")
     ],
     targets: [
         .target(
@@ -26,7 +28,11 @@ let package = Package(
         ),
         .testTarget(
             name: "UIComponentsTests",
-            dependencies: ["UIComponents"]
+            dependencies: [
+                "UIComponents",
+                "Nimble",
+                "Quick"
+            ]
         )
     ]
 )
