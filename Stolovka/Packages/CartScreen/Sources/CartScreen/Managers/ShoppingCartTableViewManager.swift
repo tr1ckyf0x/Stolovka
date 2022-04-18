@@ -8,13 +8,13 @@ import UIKit
 import Models
 import SharedResources
 
-protocol ShoppingCartDelegate: AnyObject {
-    func shoppingCartManagerNeedsDelegateForFoodCell(_ shoppingCartManager: ShoppingCartTableManagerProtocol) -> ShoppingCartViewCellDelegate?
+protocol ShoppingCartTableViewManagerDelegate: AnyObject {
+    func shoppingCartManagerNeedsDelegateForFoodCell(_ shoppingTableCartManager: ShoppingCartTableManagerProtocol) -> ShoppingCartViewCellDelegate?
 }
 
 final class ShoppingCartTableViewManager: NSObject {
     private(set) var shoppingCartFoodItems: [CountableContainer<FoodItem>] = []
-    weak var delegate: ShoppingCartDelegate?
+    weak var delegate: ShoppingCartTableViewManagerDelegate?
 }
 
 // MARK: - ShoppingCartTableManagerProtocol

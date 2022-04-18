@@ -54,8 +54,10 @@ extension ShoppingCartViewController: ShoppingCartViewCellDelegate {
     }
 }
 
-extension ShoppingCartViewController: ShoppingCartDelegate {
-    func shoppingCartManagerNeedsDelegateForFoodCell(_ shoppingCartManager: ShoppingCartTableManagerProtocol) -> ShoppingCartViewCellDelegate? {
+extension ShoppingCartViewController: ShoppingCartTableViewManagerDelegate {
+    func shoppingCartManagerNeedsDelegateForFoodCell(
+        _ shoppingTableCartManager: ShoppingCartTableManagerProtocol
+    ) -> ShoppingCartViewCellDelegate? {
         self
     }
 }
