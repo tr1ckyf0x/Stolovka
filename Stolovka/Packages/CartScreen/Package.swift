@@ -21,6 +21,7 @@ let package = Package(
         .package(path: "../Models"),
         .package(path: "../ShoppingCartUseCase"),
         .package(path: "../UseCase"),
+        .package(path: "../UIComponents"),
         .package(url: "https://github.com/SnapKit/SnapKit", from: "5.0.1"),
         .package(url: "https://github.com/Quick/Nimble", from: "9.2.0"),
         .package(url: "https://github.com/Quick/Quick", from: "4.0.0")
@@ -35,7 +36,8 @@ let package = Package(
                 "Managers",
                 "Models",
                 "SnapKit",
-                "ShoppingCartUseCase"
+                "ShoppingCartUseCase",
+                "UIComponents"
             ]
         ),
         .testTarget(

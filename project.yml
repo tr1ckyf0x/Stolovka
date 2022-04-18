@@ -19,20 +19,44 @@ packages:
 
   # Local packages
 
-  UseCase:
-    path: Stolovka/Packages/UseCase
-  SharedResources:
-    path: Stolovka/Packages/SharedResources
-  SmokersStolovka:
-    path: Stolovka/Packages/SmokersStolovka
-  CartScreen:
-    path: Stolovka/Packages/CartScreen
+  ## Core
+
   Models:
     path: Stolovka/Packages/Models
+    group: Core
+
+  UseCase:
+    path: Stolovka/Packages/UseCase
+    group: Core
+
+  ## Business Logic
+
   Managers:
     path: Stolovka/Packages/Managers
+    group: BusinessLogic
+
   ShoppingCartUseCase:
     path: Stolovka/Packages/ShoppingCartUseCase
+    group: BusinessLogic
+
+  ## UI
+  SharedResources:
+    path: Stolovka/Packages/SharedResources
+    group: UI
+
+  UIComponents:
+    path: Stolovka/Packages/UIComponents
+    group: UI
+
+  ## Feature
+  
+  SmokersStolovka:
+    path: Stolovka/Packages/SmokersStolovka
+    group: Feature
+
+  CartScreen:
+    path: Stolovka/Packages/CartScreen
+    group: Feature
 
 targets:
   Stolovka:
@@ -51,6 +75,7 @@ targets:
         - package: ShoppingCartUseCase/ShoppingCartUseCaseTests
         - package: CartScreen/CartScreenTests
         - package: Managers/ManagersTests
+        - package: UIComponents/UIComponentsTests
 
     settings:
       base:
