@@ -165,6 +165,12 @@ final class StolovkaMainScreenPresenterSpec: QuickSpec {
                         fetchCartItemsUseCaseMock.result = .success([])
                     }
 
+                    it("should call shoppingCartTableViewManager.setShoppingCartFoodItems(_:)") {
+                        sut.view(shoppingCartControllerInputMock, didTapRemoveButtonFor: foodItemContainer)
+
+                        expect(shoppingCartTableViewManagerMock.setShoppingCartFoodItemsCalled).to(beTrue())
+                    }
+
                     it("should call viewController.reloadShoppingCartTableView()") {
                         sut.view(shoppingCartControllerInputMock, didTapRemoveButtonFor: foodItemContainer)
 
@@ -177,4 +183,3 @@ final class StolovkaMainScreenPresenterSpec: QuickSpec {
 }
 // swiftlint:enable function_body_length
 // swiftlint:enable closure_body_length
-
