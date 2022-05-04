@@ -17,4 +17,6 @@ public enum SFSymbol: String, SFSymbolRepresentable {
     case minusCircle = "minus.circle"
     case heart = "heart"
     case heartFill = "heart.fill"
+    case minus = "minus"
+    case plus = "plus"
 }

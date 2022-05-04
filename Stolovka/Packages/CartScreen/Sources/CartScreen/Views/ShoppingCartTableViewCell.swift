@@ -28,7 +28,7 @@ final class ShoppingCartTableViewCell: UITableViewCell {
     weak var delegate: ShoppingCartViewCellDelegate?
 
     private var stepper = Stepper()
-    
+
     private lazy var itemImageView: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
@@ -84,7 +84,6 @@ extension ShoppingCartTableViewCell {
         itemDescriptionLabel.text = foodItem.description
         configurePriceLabelText(for: foodItem.price)
         configureItemImage(for: foodItem.pictureUrl)
-        configureItemQuantity(for: shoppingCartFoodItem.quantity)
     }
 }
 
@@ -97,7 +96,8 @@ extension ShoppingCartTableViewCell {
             itemImageView,
             itemDescriptionLabel,
             itemNameLabel,
-            itemPriceLabel
+            itemPriceLabel,
+            stepper
         ].forEach(contentView.addSubview(_:))
 
         itemImageView.snp.makeConstraints { make in
@@ -110,23 +110,27 @@ extension ShoppingCartTableViewCell {
             make.left.equalTo(itemImageView.snp.right).offset(10)
             make.top.equalToSuperview().offset(8)
             make.height.equalTo(itemImageView.snp.height).multipliedBy(0.21)
-            make.right.equalTo(quantityLabel.snp.right)
         }
 
         itemDescriptionLabel.snp.makeConstraints { make in
             make.left.equalTo(itemNameLabel.snp.left)
             make.top.equalTo(itemNameLabel.snp.bottom).offset(8)
             make.height.equalTo(itemImageView.snp.height).multipliedBy(0.21)
-            make.right.equalTo(quantityLabel.snp.left)
+            make.right.equalTo(stepper.snp.left).offset(4)
         }
 
         itemPriceLabel.snp.makeConstraints { make in
             make.left.equalTo(itemNameLabel.snp.left)
             make.top.equalTo(itemDescriptionLabel.snp.bottom).offset(8)
             make.height.equalTo(itemImageView.snp.height).multipliedBy(0.21)
-            make.right.equalTo(quantityLabel.snp.right)
         }
 
+        stepper.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.height.equalTo(44)
+            make.width.equalTo(itemImageView.snp.width).multipliedBy(0.7)
+            make.right.equalToSuperview().inset(4)
+        }
     }
 
     @objc
@@ -165,9 +169,5 @@ extension ShoppingCartTableViewCell {
         guard let formattedValue = formatter.string(from: number) else { return }
 
         itemPriceLabel.text = SharedResources.L10n.roubles(formattedValue)
-    }
-
-    private func configureItemQuantity(for quantity: Int) {
-        quantityLabel.text = String(quantity)
     }
 }

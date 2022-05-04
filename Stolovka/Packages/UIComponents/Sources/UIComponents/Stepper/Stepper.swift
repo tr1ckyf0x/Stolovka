@@ -9,15 +9,20 @@ import UIKit
 import SharedResources
 import SnapKit
 
-final class Stepper: UIView {
+public final class Stepper: UIView {
 
     private lazy var incrementButton: UIButton = { button in
-        button.backgroundColor = Asset.Colors.stepperOperator.color
+        let image = UIImage(sfSymbol: SFSymbol.plus)
+        button.setImage(image, for: .normal)
+        button.tintColor = Asset.Colors.stepperOperator.color
         return button
     }(UIButton())
 
     private lazy var decrementButton: UIButton = { button in
-        button.backgroundColor = Asset.Colors.stepperOperator.color
+        button.backgroundColor = Asset.Colors.stepperBackground.color
+        let image = UIImage(sfSymbol: SFSymbol.minus)
+        button.setImage(image, for: .normal)
+        button.tintColor = Asset.Colors.stepperOperator.color
         return button
     }(UIButton())
 
@@ -29,6 +34,10 @@ final class Stepper: UIView {
 
     private lazy var countLabel: UILabel = { label in
         label.textColor = Asset.Colors.stepperNumber.color
+        label.text = "12"
+        label.font = .systemFont(ofSize: 16)
+        label.adjustsFontSizeToFitWidth = true
+        label.textAlignment = .center
         return label
     }(UILabel())
 
@@ -56,31 +65,27 @@ extension Stepper {
         ].forEach(self.addSubview(_:))
 
         countLabelBackgroundView.snp.makeConstraints { make in
-            make.height.equalToSuperview()
+            make.height.equalToSuperview().multipliedBy(0.8)
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
             make.width.equalTo(countLabelBackgroundView.snp.height)
-            make.centerX.centerY.equalToSuperview()
-        }
-
-        incrementButton.snp.makeConstraints { make in
-            make.height.equalToSuperview()
-            make.width.equalTo(incrementButton.snp.height)
-            make.left.equalToSuperview()
-            make.centerY.equalToSuperview()
-            make.right.equalTo(countLabelBackgroundView.snp.left)
-        }
-
-        decrementButton.snp.makeConstraints { make in
-            make.height.equalToSuperview()
-            make.width.equalTo(decrementButton.snp.height)
-            make.right.equalToSuperview()
-            make.centerY.equalToSuperview()
-            make.left.equalTo(countLabelBackgroundView.snp.left)
         }
 
         countLabelBackgroundView.addSubview(countLabel)
-
         countLabel.snp.makeConstraints { make in
-            make.centerY.centerX.height.width.equalToSuperview()
+            make.top.bottom.width.height.left.right.equalTo(countLabelBackgroundView)
+        }
+
+        decrementButton.snp.makeConstraints { make in
+            make.left.equalToSuperview().inset(4)
+            make.right.equalTo(countLabelBackgroundView.snp.left)
+            make.height.equalToSuperview().multipliedBy(0.96)
+        }
+
+        incrementButton.snp.makeConstraints { make in
+            make.right.equalToSuperview().inset(4)
+            make.left.equalTo(countLabelBackgroundView.snp.right)
+            make.height.equalToSuperview().multipliedBy(0.96)
         }
     }
 }
