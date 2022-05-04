@@ -29,6 +29,8 @@ public final class Stepper: UIView {
     private lazy var countLabelBackgroundView: UIView = { view in
         view.layer.cornerRadius = 4
         view.backgroundColor = Asset.Colors.tableViewBackground.color
+        view.layer.borderColor = Asset.Colors.stepperNumber.color.cgColor
+        view.layer.borderWidth = 1
         return view
     }(UIView())
 
