@@ -106,7 +106,6 @@ extension Stepper {
     private func setupVerticalStepperConstraints() {
 
         countLabelBackgroundView.snp.makeConstraints { make in
-            make.width.equalToSuperview().multipliedBy(0.8)
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()
             make.height.equalTo(countLabelBackgroundView.snp.width)
@@ -114,18 +113,16 @@ extension Stepper {
 
         countLabelBackgroundView.addSubview(countLabel)
         countLabel.snp.makeConstraints { make in
-            make.top.bottom.width.height.left.right.equalTo(countLabelBackgroundView)
+            make.top.bottom.width.height.left.right.equalTo(countLabelBackgroundView).inset(4)
         }
 
         incrementButton.snp.makeConstraints { make in
-            make.top.left.right.equalToSuperview()
+            make.top.left.right.equalToSuperview().inset(4)
             make.bottom.equalTo(countLabelBackgroundView.snp.top)
-            make.width.equalToSuperview().multipliedBy(0.96)
         }
 
         decrementButton.snp.makeConstraints { make in
-            make.width.equalToSuperview().multipliedBy(0.96)
-            make.bottom.left.right.equalToSuperview()
+            make.bottom.left.right.equalToSuperview().inset(4)
             make.top.equalTo(countLabelBackgroundView.snp.bottom)
         }
     }

@@ -89,7 +89,6 @@ extension ShoppingCartTableViewCell {
 
 // MARK: - Private methods
 extension ShoppingCartTableViewCell {
-    // swiftlint:disable:next function_body_length
     private func setupView() {
         self.backgroundColor = Asset.Colors.tableViewBackground.color
         [
@@ -116,7 +115,7 @@ extension ShoppingCartTableViewCell {
             make.left.equalTo(itemNameLabel.snp.left)
             make.top.equalTo(itemNameLabel.snp.bottom).offset(8)
             make.height.equalTo(itemImageView.snp.height).multipliedBy(0.21)
-            make.width.equalToSuperview().multipliedBy(0.55)
+            make.width.equalToSuperview().multipliedBy(0.5)
         }
 
         itemPriceLabel.snp.makeConstraints { make in
@@ -127,9 +126,9 @@ extension ShoppingCartTableViewCell {
 
         stepper.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.height.equalToSuperview()
-            make.left.equalTo(itemDescriptionLabel.snp.right)
-           // make.width.equalTo(40)
+            make.height.equalToSuperview().multipliedBy(0.8)
+            make.right.equalToSuperview().inset(4)
+            make.width.equalTo(40)
         }
 
     }
