@@ -27,7 +27,7 @@ final class ShoppingCartTableViewCell: UITableViewCell {
     private var shoppingCartFoodItem: CountableContainer<FoodItem>?
     weak var delegate: ShoppingCartViewCellDelegate?
 
-    private var stepper = Stepper()
+    private var stepper = Stepper(stepperType: .vertical)
 
     private lazy var itemImageView: UIImageView = {
         let image = UIImageView()
@@ -116,7 +116,7 @@ extension ShoppingCartTableViewCell {
             make.left.equalTo(itemNameLabel.snp.left)
             make.top.equalTo(itemNameLabel.snp.bottom).offset(8)
             make.height.equalTo(itemImageView.snp.height).multipliedBy(0.21)
-            make.right.equalTo(stepper.snp.left).offset(4)
+            make.width.equalToSuperview().multipliedBy(0.55)
         }
 
         itemPriceLabel.snp.makeConstraints { make in
@@ -127,10 +127,11 @@ extension ShoppingCartTableViewCell {
 
         stepper.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.height.equalTo(44)
-            make.width.equalTo(itemImageView.snp.width).multipliedBy(0.7)
-            make.right.equalToSuperview().inset(4)
+            make.height.equalToSuperview()
+            make.left.equalTo(itemDescriptionLabel.snp.right)
+           // make.width.equalTo(40)
         }
+
     }
 
     @objc

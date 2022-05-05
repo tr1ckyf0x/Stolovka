@@ -10,6 +10,7 @@ import SharedResources
 import SnapKit
 
 public final class Stepper: UIView {
+    private (set) var stepperType: StepperType
 
     private lazy var incrementButton: UIButton = { button in
         let image = UIImage(sfSymbol: SFSymbol.plus)
@@ -43,8 +44,9 @@ public final class Stepper: UIView {
         return label
     }(UILabel())
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    public init(stepperType: StepperType) {
+        self.stepperType = stepperType
+        super.init(frame: .zero)
         setupView()
     }
 
@@ -66,6 +68,16 @@ extension Stepper {
             decrementButton
         ].forEach(self.addSubview(_:))
 
+        switch stepperType {
+        case .horizontal:
+            setupHorizontalStepperConstraints()
+
+        case .vertical:
+            setupVerticalStepperConstraints()
+        }
+    }
+
+    private func setupHorizontalStepperConstraints() {
         countLabelBackgroundView.snp.makeConstraints { make in
             make.height.equalToSuperview().multipliedBy(0.8)
             make.centerX.equalToSuperview()
@@ -89,5 +101,39 @@ extension Stepper {
             make.left.equalTo(countLabelBackgroundView.snp.right)
             make.height.equalToSuperview().multipliedBy(0.96)
         }
+    }
+
+    private func setupVerticalStepperConstraints() {
+
+        countLabelBackgroundView.snp.makeConstraints { make in
+            make.width.equalToSuperview().multipliedBy(0.8)
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+            make.height.equalTo(countLabelBackgroundView.snp.width)
+        }
+
+        countLabelBackgroundView.addSubview(countLabel)
+        countLabel.snp.makeConstraints { make in
+            make.top.bottom.width.height.left.right.equalTo(countLabelBackgroundView)
+        }
+
+        incrementButton.snp.makeConstraints { make in
+            make.top.left.right.equalToSuperview()
+            make.bottom.equalTo(countLabelBackgroundView.snp.top)
+            make.width.equalToSuperview().multipliedBy(0.96)
+        }
+
+        decrementButton.snp.makeConstraints { make in
+            make.width.equalToSuperview().multipliedBy(0.96)
+            make.bottom.left.right.equalToSuperview()
+            make.top.equalTo(countLabelBackgroundView.snp.bottom)
+        }
+    }
+}
+
+extension Stepper {
+    public enum StepperType {
+        case vertical
+        case horizontal
     }
 }
