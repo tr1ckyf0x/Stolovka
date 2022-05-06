@@ -95,6 +95,7 @@ extension ShoppingCartTableViewCell {
         configurePriceLabelText(for: foodItem.price)
         configureItemImage(for: foodItem.pictureUrl)
         setupStepperDelegate()
+        stepper.configureStepperQuantity(shoppingCartFoodItem.quantity)
     }
 }
 

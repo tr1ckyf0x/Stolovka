@@ -31,7 +31,7 @@ public final class Stepper: UIView {
         button.tintColor = Asset.Colors.stepperOperator.color
         button.addTarget(self, action: #selector(addOneItem), for: .touchDown)
         return button
-    }(UIButton())
+    }(UIButton(type: .system))
 
     private lazy var decrementButton: UIButton = { button in
         button.backgroundColor = Asset.Colors.stepperBackground.color
@@ -40,7 +40,7 @@ public final class Stepper: UIView {
         button.tintColor = Asset.Colors.stepperOperator.color
         button.addTarget(self, action: #selector(removeOneItem), for: .touchDown)
         return button
-    }(UIButton())
+    }(UIButton(type: .system))
 
     private lazy var countLabelBackgroundView: UIView = { view in
         view.layer.cornerRadius = 4
@@ -73,8 +73,13 @@ public final class Stepper: UIView {
 // MARK: - Public Methods
 
 extension Stepper {
-   public func setupDelegate(_ delegate: StepperDelegate) {
+
+    public func setupDelegate(_ delegate: StepperDelegate) {
         self.delegate = delegate
+    }
+
+    public func configureStepperQuantity(_ quantity: Int) {
+        self.countLabel.text = String(quantity)
     }
 }
 // MARK: - Private methods
