@@ -10,6 +10,7 @@ import SharedResources
 import SnapKit
 
 public final class Stepper: UIView {
+
     private (set) var stepperType: StepperType
 
     private lazy var incrementButton: UIButton = { button in
@@ -55,7 +56,11 @@ public final class Stepper: UIView {
         fatalError("Not implemented")
     }
 }
+// MARK: - Public Methods
 
+extension Stepper {
+
+}
 // MARK: - Private methods
 extension Stepper {
     private func setupView() {
