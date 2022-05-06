@@ -9,14 +9,27 @@ import UIKit
 import SharedResources
 import SnapKit
 
+public protocol StepperDelegate: AnyObject {
+    func didPressIncrement(
+        _ stepper: Stepper
+    )
+
+    func didPressDecrement(
+        _ stepper: Stepper
+    )
+}
+
 public final class Stepper: UIView {
 
     private (set) var stepperType: StepperType
+
+   weak var delegate: StepperDelegate?
 
     private lazy var incrementButton: UIButton = { button in
         let image = UIImage(sfSymbol: SFSymbol.plus)
         button.setImage(image, for: .normal)
         button.tintColor = Asset.Colors.stepperOperator.color
+        button.addTarget(self, action: #selector(addOneItem), for: .touchDown)
         return button
     }(UIButton())
 
@@ -25,6 +38,7 @@ public final class Stepper: UIView {
         let image = UIImage(sfSymbol: SFSymbol.minus)
         button.setImage(image, for: .normal)
         button.tintColor = Asset.Colors.stepperOperator.color
+        button.addTarget(self, action: #selector(removeOneItem), for: .touchDown)
         return button
     }(UIButton())
 
@@ -130,6 +144,16 @@ extension Stepper {
             make.bottom.left.right.equalToSuperview().inset(4)
             make.top.equalTo(countLabelBackgroundView.snp.bottom)
         }
+    }
+
+    @objc
+    func addOneItem() {
+        delegate?.didPressIncrement(self)
+    }
+
+    @objc
+    func removeOneItem() {
+        delegate?.didPressDecrement(self)
     }
 }
 

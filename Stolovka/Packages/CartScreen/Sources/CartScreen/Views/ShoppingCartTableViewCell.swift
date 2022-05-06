@@ -22,6 +22,16 @@ protocol ShoppingCartViewCellDelegate: AnyObject {
     )
 }
 
+extension ShoppingCartTableViewCell: StepperDelegate {
+    func didPressIncrement(_ stepper: Stepper) {
+        pressedAddOneItem()
+    }
+
+    func didPressDecrement(_ stepper: Stepper) {
+        pressedRemoveOneItem()
+    }
+}
+
 final class ShoppingCartTableViewCell: UITableViewCell {
 
     private var shoppingCartFoodItem: CountableContainer<FoodItem>?

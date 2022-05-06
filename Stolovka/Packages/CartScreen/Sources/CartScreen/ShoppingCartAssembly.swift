@@ -3,6 +3,7 @@
 import UIKit
 import Managers
 import ShoppingCartUseCase
+import UIComponents
 
 public enum ShoppingCartAssembly {
     public static func assembleShoppingCart() -> UIViewController {
@@ -17,6 +18,7 @@ public enum ShoppingCartAssembly {
         let removeFromCartUseCase = RemoveShoppingCartItemUseCase(shoppingCart: shoppingCartManager)
 
         shoppingCartTableViewManager.delegate = viewController
+    
         viewController.setShoppingCartDataSource(dataSource: shoppingCartTableViewManager)
         presenter.shoppingCartTableViewManager = shoppingCartTableViewManager
         presenter.fetchCartItemsUseCase = fetchShoppingCartUseCase
