@@ -94,6 +94,7 @@ extension ShoppingCartTableViewCell {
         itemDescriptionLabel.text = foodItem.description
         configurePriceLabelText(for: foodItem.price)
         configureItemImage(for: foodItem.pictureUrl)
+        setupStepperDelegate()
     }
 }
 
@@ -167,6 +168,10 @@ extension ShoppingCartTableViewCell {
 
         #endif
         }
+    }
+
+    private func setupStepperDelegate() {
+        stepper.setupDelegate(self)
     }
 
     private func configurePriceLabelText(for price: Double) {

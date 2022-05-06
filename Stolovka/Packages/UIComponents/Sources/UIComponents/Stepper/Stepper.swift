@@ -73,7 +73,9 @@ public final class Stepper: UIView {
 // MARK: - Public Methods
 
 extension Stepper {
-
+   public func setupDelegate(_ delegate: StepperDelegate) {
+        self.delegate = delegate
+    }
 }
 // MARK: - Private methods
 extension Stepper {
