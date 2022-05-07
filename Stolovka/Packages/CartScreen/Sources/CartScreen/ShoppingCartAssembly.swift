@@ -3,7 +3,6 @@
 import UIKit
 import Managers
 import ShoppingCartUseCase
-import UIComponents
 
 public enum ShoppingCartAssembly {
     public static func assembleShoppingCart() -> UIViewController {
