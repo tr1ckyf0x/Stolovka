@@ -10,7 +10,7 @@ import SharedResources
 import SnapKit
 
 public protocol StepperDelegate: AnyObject {
-    func didPressIncrement(
+    func stepperDidPressIncrement(
         _ stepper: Stepper
     )
 
