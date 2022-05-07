@@ -22,22 +22,16 @@ protocol ShoppingCartViewCellDelegate: AnyObject {
     )
 }
 
-extension ShoppingCartTableViewCell: StepperDelegate {
-    func didPressIncrement(_ stepper: Stepper) {
-        pressedAddOneItem()
-    }
-
-    func didPressDecrement(_ stepper: Stepper) {
-        pressedRemoveOneItem()
-    }
-}
-
 final class ShoppingCartTableViewCell: UITableViewCell {
 
     private var shoppingCartFoodItem: CountableContainer<FoodItem>?
     weak var delegate: ShoppingCartViewCellDelegate?
 
-    private var stepper = Stepper(stepperType: .vertical)
+    private lazy var stepper: Stepper = {
+        let stepper = Stepper(stepperType: .vertical)
+        stepper.setupDelegate(self)
+        return stepper
+    }()
 
     private lazy var itemImageView: UIImageView = {
         let image = UIImageView()
@@ -94,8 +88,7 @@ extension ShoppingCartTableViewCell {
         itemDescriptionLabel.text = foodItem.description
         configurePriceLabelText(for: foodItem.price)
         configureItemImage(for: foodItem.pictureUrl)
-        setupStepperDelegate()
-        stepper.configureStepperQuantity(shoppingCartFoodItem.quantity)
+        stepper.value = shoppingCartFoodItem.quantity
     }
 }
 
@@ -171,10 +164,6 @@ extension ShoppingCartTableViewCell {
         }
     }
 
-    private func setupStepperDelegate() {
-        stepper.setupDelegate(self)
-    }
-
     private func configurePriceLabelText(for price: Double) {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
@@ -185,5 +174,15 @@ extension ShoppingCartTableViewCell {
         guard let formattedValue = formatter.string(from: number) else { return }
 
         itemPriceLabel.text = SharedResources.L10n.roubles(formattedValue)
+    }
+}
+
+extension ShoppingCartTableViewCell: StepperDelegate {
+    func stepperDidPressIncrement(_ stepper: Stepper) {
+        pressedAddOneItem()
+    }
+
+    func stepperDidPressDecrement(_ stepper: Stepper) {
+        pressedRemoveOneItem()
     }
 }

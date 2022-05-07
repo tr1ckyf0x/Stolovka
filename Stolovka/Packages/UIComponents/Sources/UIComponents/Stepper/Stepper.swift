@@ -21,9 +21,16 @@ public protocol StepperDelegate: AnyObject {
 
 public final class Stepper: UIView {
 
-    private (set) var stepperType: StepperType
+    private (set) var stepperType: Style
 
-   weak var delegate: StepperDelegate?
+    public var value: Int? {
+        didSet {
+            guard let value = value else { return }
+            self.countLabel.text = String(value)
+        }
+    }
+
+    weak var delegate: StepperDelegate?
 
     private lazy var incrementButton: UIButton = { button in
         let image = UIImage(sfSymbol: SFSymbol.plus)
@@ -52,14 +59,13 @@ public final class Stepper: UIView {
 
     private lazy var countLabel: UILabel = { label in
         label.textColor = Asset.Colors.stepperNumber.color
-        label.text = "12"
         label.font = .systemFont(ofSize: 16)
         label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .center
         return label
     }(UILabel())
 
-    public init(stepperType: StepperType) {
+    public init(stepperType: Style) {
         self.stepperType = stepperType
         super.init(frame: .zero)
         setupView()
@@ -76,10 +82,6 @@ extension Stepper {
 
     public func setupDelegate(_ delegate: StepperDelegate) {
         self.delegate = delegate
-    }
-
-    public func configureStepperQuantity(_ quantity: Int) {
-        self.countLabel.text = String(quantity)
     }
 }
 // MARK: - Private methods
@@ -154,13 +156,13 @@ extension Stepper {
     }
 
     @objc
-    func addOneItem() {
-        delegate?.didPressIncrement(self)
+   private func addOneItem() {
+        delegate?.stepperDidPressIncrement(self)
     }
 
     @objc
-    func removeOneItem() {
-        delegate?.didPressDecrement(self)
+   private func removeOneItem() {
+        delegate?.stepperDidPressDecrement(self)
     }
 }
 
