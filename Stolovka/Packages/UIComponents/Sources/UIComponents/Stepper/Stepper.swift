@@ -14,7 +14,7 @@ public protocol StepperDelegate: AnyObject {
         _ stepper: Stepper
     )
 
-    func didPressDecrement(
+    func stepperDidPressDecrement(
         _ stepper: Stepper
     )
 }
