@@ -165,7 +165,7 @@ extension Stepper {
 }
 
 extension Stepper {
-    public enum StepperType {
+    public enum Style {
         case vertical
         case horizontal
     }
