@@ -21,16 +21,15 @@ public protocol StepperDelegate: AnyObject {
 
 public final class Stepper: UIView {
 
-    private (set) var stepperType: Style
+    private (set) var style: Style
 
-    public var value: Int? {
+    public var value: Int = 0 {
         didSet {
-            guard let value = value else { return }
             self.countLabel.text = String(value)
         }
     }
 
-    weak var delegate: StepperDelegate?
+    public weak var delegate: StepperDelegate?
 
     private lazy var incrementButton: UIButton = { button in
         let image = UIImage(sfSymbol: SFSymbol.plus)
@@ -65,8 +64,8 @@ public final class Stepper: UIView {
         return label
     }(UILabel())
 
-    public init(stepperType: Style) {
-        self.stepperType = stepperType
+    public init(style: Style) {
+        self.style = style
         super.init(frame: .zero)
         setupView()
     }
@@ -79,11 +78,8 @@ public final class Stepper: UIView {
 // MARK: - Public Methods
 
 extension Stepper {
-
-    public func setupDelegate(_ delegate: StepperDelegate) {
-        self.delegate = delegate
-    }
 }
+
 // MARK: - Private methods
 extension Stepper {
     private func setupView() {
@@ -96,7 +92,7 @@ extension Stepper {
             decrementButton
         ].forEach(self.addSubview(_:))
 
-        switch stepperType {
+        switch style {
         case .horizontal:
             setupHorizontalStepperConstraints()
 

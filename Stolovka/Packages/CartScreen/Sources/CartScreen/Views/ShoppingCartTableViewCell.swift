@@ -28,8 +28,8 @@ final class ShoppingCartTableViewCell: UITableViewCell {
     weak var delegate: ShoppingCartViewCellDelegate?
 
     private lazy var stepper: Stepper = {
-        let stepper = Stepper(stepperType: .vertical)
-        stepper.setupDelegate(self)
+        let stepper = Stepper(style: .vertical)
+        stepper.delegate = self
         return stepper
     }()
 
@@ -105,26 +105,27 @@ extension ShoppingCartTableViewCell {
         ].forEach(contentView.addSubview(_:))
 
         itemImageView.snp.makeConstraints { make in
-            make.top.bottom.left.equalToSuperview()
+            make.top.bottom.equalToSuperview()
+            make.leading.equalToSuperview().offset(8)
             make.width.equalToSuperview().multipliedBy(0.32)
             make.height.equalTo(itemImageView.snp.width).priority(999)
         }
 
         itemNameLabel.snp.makeConstraints { make in
-            make.left.equalTo(itemImageView.snp.right).offset(10)
+            make.leading.equalTo(itemImageView.snp.trailing).offset(10)
             make.top.equalToSuperview().offset(8)
             make.height.equalTo(itemImageView.snp.height).multipliedBy(0.21)
         }
 
         itemDescriptionLabel.snp.makeConstraints { make in
-            make.left.equalTo(itemNameLabel.snp.left)
+            make.leading.equalTo(itemNameLabel.snp.leading)
             make.top.equalTo(itemNameLabel.snp.bottom).offset(8)
             make.height.equalTo(itemImageView.snp.height).multipliedBy(0.21)
             make.width.equalToSuperview().multipliedBy(0.5)
         }
 
         itemPriceLabel.snp.makeConstraints { make in
-            make.left.equalTo(itemNameLabel.snp.left)
+            make.leading.equalTo(itemNameLabel.snp.leading)
             make.top.equalTo(itemDescriptionLabel.snp.bottom).offset(8)
             make.height.equalTo(itemImageView.snp.height).multipliedBy(0.21)
         }
@@ -132,7 +133,7 @@ extension ShoppingCartTableViewCell {
         stepper.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.height.equalToSuperview().multipliedBy(0.8)
-            make.right.equalToSuperview().inset(4)
+            make.trailing.equalToSuperview().inset(8)
             make.width.equalTo(40)
         }
 
