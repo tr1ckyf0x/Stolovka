@@ -177,6 +177,7 @@ extension ShoppingCartTableViewCell {
     }
 }
 
+// MARK: - StepperDelegate
 extension ShoppingCartTableViewCell: StepperDelegate {
     func stepperDidPressIncrement(_ stepper: Stepper) {
         pressedAddOneItem()
