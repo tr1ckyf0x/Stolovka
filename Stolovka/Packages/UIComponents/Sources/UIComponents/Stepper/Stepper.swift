@@ -74,8 +74,8 @@ public final class Stepper: UIView {
         fatalError("Not implemented")
     }
 }
-// MARK: - Public Methods
 
+// MARK: - Public Methods
 extension Stepper {
 }
 
