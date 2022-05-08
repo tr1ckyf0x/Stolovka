@@ -7,7 +7,6 @@
 
 import UIKit
 import SharedResources
-import SnapKit
 
 public protocol StepperDelegate: AnyObject {
     func stepperDidPressIncrement(
@@ -92,63 +91,17 @@ extension Stepper {
             decrementButton
         ].forEach(self.addSubview(_:))
 
-        switch style {
-        case .horizontal:
-            setupHorizontalStepperConstraints()
-
-        case .vertical:
-            setupVerticalStepperConstraints()
-        }
-    }
-
-    private func setupHorizontalStepperConstraints() {
-        countLabelBackgroundView.snp.makeConstraints { make in
-            make.height.equalToSuperview().multipliedBy(0.8)
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-            make.width.equalTo(countLabelBackgroundView.snp.height)
-        }
-
         countLabelBackgroundView.addSubview(countLabel)
-        countLabel.snp.makeConstraints { make in
-            make.top.bottom.width.height.left.right.equalTo(countLabelBackgroundView)
-        }
 
-        decrementButton.snp.makeConstraints { make in
-            make.left.equalToSuperview().inset(4)
-            make.right.equalTo(countLabelBackgroundView.snp.left)
-            make.height.equalToSuperview().multipliedBy(0.96)
-        }
+        let constraintStrategy = StepperConstraintStrategyFactory.strategy(for: style)
 
-        incrementButton.snp.makeConstraints { make in
-            make.right.equalToSuperview().inset(4)
-            make.left.equalTo(countLabelBackgroundView.snp.right)
-            make.height.equalToSuperview().multipliedBy(0.96)
-        }
-    }
-
-    private func setupVerticalStepperConstraints() {
-
-        countLabelBackgroundView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-            make.height.equalTo(countLabelBackgroundView.snp.width)
-        }
-
-        countLabelBackgroundView.addSubview(countLabel)
-        countLabel.snp.makeConstraints { make in
-            make.top.bottom.width.height.left.right.equalTo(countLabelBackgroundView).inset(4)
-        }
-
-        incrementButton.snp.makeConstraints { make in
-            make.top.left.right.equalToSuperview().inset(4)
-            make.bottom.equalTo(countLabelBackgroundView.snp.top)
-        }
-
-        decrementButton.snp.makeConstraints { make in
-            make.bottom.left.right.equalToSuperview().inset(4)
-            make.top.equalTo(countLabelBackgroundView.snp.bottom)
-        }
+        constraintStrategy.setConstraints(
+            stepper: self,
+            incrementButton: incrementButton,
+            decrementButton: decrementButton,
+            countLabelBackgroundView: countLabelBackgroundView,
+            countLabel: countLabel
+        )
     }
 
     @objc
