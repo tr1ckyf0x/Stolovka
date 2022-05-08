@@ -152,12 +152,12 @@ extension Stepper {
     }
 
     @objc
-   private func addOneItem() {
+    private func addOneItem() {
         delegate?.stepperDidPressIncrement(self)
     }
 
     @objc
-   private func removeOneItem() {
+    private func removeOneItem() {
         delegate?.stepperDidPressDecrement(self)
     }
 }
