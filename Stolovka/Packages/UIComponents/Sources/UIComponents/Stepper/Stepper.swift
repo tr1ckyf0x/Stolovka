@@ -20,8 +20,6 @@ public protocol StepperDelegate: AnyObject {
 
 public final class Stepper: UIView {
 
-    private (set) var style: Style
-
     public var value: Int = 0 {
         didSet {
             self.countLabel.text = String(value)
@@ -29,6 +27,8 @@ public final class Stepper: UIView {
     }
 
     public weak var delegate: StepperDelegate?
+
+    public private(set) var style: Style
 
     private lazy var incrementButton: UIButton = { button in
         let image = UIImage(sfSymbol: SFSymbol.plus)
