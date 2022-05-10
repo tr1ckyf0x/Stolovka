@@ -16,6 +16,7 @@ final class ShoppingCartTableView: UIView {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 150
         tableView.allowsSelection = false
+        tableView.tableFooterView = ShoppingCartPurchaseBlockView()
         return tableView
     }()
 
