@@ -87,39 +87,38 @@ extension FoodCollectionViewCell {
             addToCartButton
         ].forEach(addSubview(_:))
 
-        productPriceLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().inset(10)
-            make.trailing.lessThanOrEqualTo(addToCartButton).inset(8)
-            make.bottom.equalToSuperview().inset(8)
+        likeButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(6)
+            make.trailing.equalToSuperview().inset(8)
+            // Magic number calculated by dividing intrinsic height by width
+            make.height.equalTo(likeButton.snp.width).multipliedBy(0.8875140607)
         }
 
-        addToCartButton.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().inset(6)
-            make.centerY.equalTo(productPriceLabel)
-            make.height.equalTo(productPriceLabel.snp.height)
-            make.height.equalTo(addToCartButton.snp.width)
+        itemImage.snp.makeConstraints { make in
+            make.top.equalTo(likeButton.snp.bottom)
+            make.bottom.equalTo(productTitleLabel.snp.top)
+            make.leading.trailing.equalToSuperview().inset(8)
         }
 
         productTitleLabel.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(8)
-            make.height.equalTo(productPriceLabel.snp.height)
             make.bottom.equalTo(addToCartButton.snp.top)
         }
 
-        itemImage.snp.makeConstraints { make in
-            make.bottom.equalTo(productTitleLabel.snp.top)
-            make.centerX.equalToSuperview()
-            make.width.equalToSuperview().multipliedBy(0.52)
-            make.height.equalTo(itemImage.snp.width)
+        productPriceLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(8)
+            make.trailing.lessThanOrEqualTo(addToCartButton.snp.leading).offset(-8)
+            make.bottom.equalToSuperview().inset(6)
         }
 
-        likeButton.snp.makeConstraints { make in
-            make.bottom.equalTo(itemImage.snp.top)
-            make.top.equalToSuperview().inset(5)
-            make.centerX.equalTo(addToCartButton.snp.centerX)
-            make.size.equalTo(addToCartButton)
+        addToCartButton.snp.makeConstraints { make in
+            make.height.equalTo(22)
+            make.width.equalTo(addToCartButton.snp.height)
+            make.bottom.equalToSuperview().inset(6)
+            make.trailing.equalToSuperview().inset(8)
         }
 
+        itemImage.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
     }
 
     @objc
