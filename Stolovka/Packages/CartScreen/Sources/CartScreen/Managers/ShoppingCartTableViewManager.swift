@@ -41,3 +41,11 @@ extension ShoppingCartTableViewManager: UITableViewDataSource {
         return cell
     }
 }
+
+final class ShoppingCartTableViewDelegate: NSObject, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "\(ShoppingCartPurchaseBlockView.self)")
+        print("View")
+        return view
+    }
+}

@@ -16,7 +16,7 @@ final class ShoppingCartTableView: UIView {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 150
         tableView.allowsSelection = false
-        tableView.tableFooterView = ShoppingCartPurchaseBlockView()
+        tableView.register(ShoppingCartPurchaseBlockView.self, forHeaderFooterViewReuseIdentifier: "\(ShoppingCartPurchaseBlockView.self)")
         return tableView
     }()
 
@@ -42,6 +42,15 @@ extension ShoppingCartTableView {
         }
         set {
             tableView.dataSource = newValue
+        }
+    }
+
+    var delegate: UITableViewDelegate? {
+        get {
+            tableView.delegate
+        }
+        set {
+            tableView.delegate = newValue
         }
     }
 
