@@ -15,6 +15,7 @@ protocol ShoppingCartTableViewManagerDelegate: AnyObject {
 final class ShoppingCartTableViewManager: NSObject {
     private(set) var shoppingCartFoodItems: [CountableContainer<FoodItem>] = []
     weak var delegate: ShoppingCartTableViewManagerDelegate?
+    weak var tableViewDelegate: ShoppingCartTableViewDelegate?
 }
 
 // MARK: - ShoppingCartTableManagerProtocol
