@@ -18,6 +18,7 @@ public enum ShoppingCartAssembly {
         let removeFromCartUseCase = RemoveShoppingCartItemUseCase(shoppingCart: shoppingCartManager)
 
         shoppingCartTableViewManager.delegate = viewController
+        shoppingCartTableViewManager.tableViewDelegate = shoppingCartTableViewDelegate
         viewController.setShoppingCartDelegate(delegate: shoppingCartTableViewDelegate)
         viewController.setShoppingCartDataSource(dataSource: shoppingCartTableViewManager)
         presenter.shoppingCartTableViewManager = shoppingCartTableViewManager
