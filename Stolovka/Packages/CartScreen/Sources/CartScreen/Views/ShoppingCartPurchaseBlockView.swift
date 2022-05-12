@@ -61,8 +61,9 @@ extension ShoppingCartPurchaseBlockView {
         purchaseView.snp.makeConstraints { make in
             make.right.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(0.5)
-            make.height.equalTo(100)
+            make.height.equalTo(purchaseView.snp.width).multipliedBy(0.4)
             make.centerY.equalToSuperview()
+            make.bottom.equalToSuperview()
         }
     }
 
