@@ -15,7 +15,6 @@ protocol ShoppingCartTableViewManagerDelegate: AnyObject {
 final class ShoppingCartTableViewManager: NSObject {
     private(set) var shoppingCartFoodItems: [CountableContainer<FoodItem>] = []
     weak var delegate: ShoppingCartTableViewManagerDelegate?
-    weak var tableViewDelegate: ShoppingCartTableViewDelegate?
 }
 
 // MARK: - ShoppingCartTableManagerProtocol
@@ -40,13 +39,5 @@ extension ShoppingCartTableViewManager: UITableViewDataSource {
         let cellDelegate = delegate?.shoppingCartManagerNeedsDelegateForFoodCell(self)
         cell.delegate = cellDelegate
         return cell
-    }
-}
-
-final class ShoppingCartTableViewDelegate: NSObject, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "\(ShoppingCartPurchaseBlockView.self)")
-        print("View")
-        return view
     }
 }

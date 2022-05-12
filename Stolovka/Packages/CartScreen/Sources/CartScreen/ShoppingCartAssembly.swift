@@ -11,15 +11,12 @@ public enum ShoppingCartAssembly {
         let presenter = ShoppingCartPresenter()
 
         let shoppingCartTableViewManager = ShoppingCartTableViewManager()
-        let shoppingCartTableViewDelegate = ShoppingCartTableViewDelegate()
         let shoppingCartManager = ManagerFactory.shared.shoppingCartManager
         let fetchShoppingCartUseCase = FetchShoppingCartUseCase(shoppingCart: shoppingCartManager)
         let addToCartItemUseCase = AddToCartUseCase(shoppingCart: shoppingCartManager)
         let removeFromCartUseCase = RemoveShoppingCartItemUseCase(shoppingCart: shoppingCartManager)
 
         shoppingCartTableViewManager.delegate = viewController
-        shoppingCartTableViewManager.tableViewDelegate = shoppingCartTableViewDelegate
-        viewController.setShoppingCartDelegate(delegate: shoppingCartTableViewDelegate)
         viewController.setShoppingCartDataSource(dataSource: shoppingCartTableViewManager)
         presenter.shoppingCartTableViewManager = shoppingCartTableViewManager
         presenter.fetchCartItemsUseCase = fetchShoppingCartUseCase

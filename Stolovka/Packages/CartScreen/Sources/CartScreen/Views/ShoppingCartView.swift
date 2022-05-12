@@ -9,6 +9,7 @@ import SharedResources
 final class ShoppingCartView: UIView {
 
     let shoppingCartTableView = ShoppingCartTableView()
+    let shoppingCartPurchaseBlockView = ShoppingCartPurchaseBlockView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,9 +25,21 @@ final class ShoppingCartView: UIView {
 extension ShoppingCartView {
     private func setupView() {
         backgroundColor = SharedResources.Asset.Colors.tableViewBackground.color
-        addSubview(shoppingCartTableView)
+        [
+            shoppingCartTableView,
+            shoppingCartPurchaseBlockView
+        ].forEach(addSubview(_:))
+
+        shoppingCartPurchaseBlockView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(safeAreaLayoutGuide)
+            make.width.equalToSuperview()
+            make.height.equalTo(shoppingCartPurchaseBlockView.snp.width).multipliedBy(0.2)
+        }
+
         shoppingCartTableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.trailing.leading.equalToSuperview()
+            make.bottom.equalTo(shoppingCartPurchaseBlockView.snp.top)
         }
     }
 }

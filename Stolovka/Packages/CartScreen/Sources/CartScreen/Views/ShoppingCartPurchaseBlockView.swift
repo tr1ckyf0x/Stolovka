@@ -5,7 +5,7 @@ import UIKit
 import SharedResources
 import SnapKit
 
-class ShoppingCartPurchaseBlockView: UITableViewHeaderFooterView {
+class ShoppingCartPurchaseBlockView: UIView {
 
     let calculationView = UIView()
     let purchaseView = UIView()
@@ -36,11 +36,10 @@ class ShoppingCartPurchaseBlockView: UITableViewHeaderFooterView {
         return label
     }()
 
-    override init(reuseIdentifier: String?) {
-        super.init(reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setupView()
     }
-
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
