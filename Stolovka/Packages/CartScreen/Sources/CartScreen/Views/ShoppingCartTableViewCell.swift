@@ -27,6 +27,8 @@ final class ShoppingCartTableViewCell: UITableViewCell {
     private var shoppingCartFoodItem: CountableContainer<FoodItem>?
     weak var delegate: ShoppingCartViewCellDelegate?
 
+    let descriptionVIew = UIView()
+
     private lazy var stepper: Stepper = {
         let stepper = Stepper(style: .vertical)
         stepper.delegate = self
@@ -44,6 +46,7 @@ final class ShoppingCartTableViewCell: UITableViewCell {
         label.textAlignment = .left
         label.textColor = SharedResources.Asset.Colors.primaryText.color
         label.font = .systemFont(ofSize: 22)
+        label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.6
         return label
     }()
@@ -98,11 +101,15 @@ extension ShoppingCartTableViewCell {
         self.backgroundColor = Asset.Colors.tableViewBackground.color
         [
             itemImageView,
-            itemDescriptionLabel,
-            itemNameLabel,
-            itemPriceLabel,
+            descriptionVIew,
             stepper
         ].forEach(contentView.addSubview(_:))
+
+        [
+            itemDescriptionLabel,
+            itemNameLabel,
+            itemPriceLabel
+        ].forEach(descriptionVIew.addSubview(_:))
 
         itemImageView.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview()
@@ -111,32 +118,39 @@ extension ShoppingCartTableViewCell {
             make.height.equalTo(itemImageView.snp.width).priority(999)
         }
 
-        itemNameLabel.snp.makeConstraints { make in
-            make.leading.equalTo(itemImageView.snp.trailing).offset(10)
-            make.top.equalToSuperview().offset(8)
-            make.height.equalTo(itemImageView.snp.height).multipliedBy(0.21)
-        }
-
-        itemDescriptionLabel.snp.makeConstraints { make in
-            make.leading.equalTo(itemNameLabel.snp.leading)
-            make.top.equalTo(itemNameLabel.snp.bottom).offset(8)
-            make.height.equalTo(itemImageView.snp.height).multipliedBy(0.21)
-            make.width.equalToSuperview().multipliedBy(0.5)
-        }
-
-        itemPriceLabel.snp.makeConstraints { make in
-            make.leading.equalTo(itemNameLabel.snp.leading)
-            make.top.equalTo(itemDescriptionLabel.snp.bottom).offset(8)
-            make.height.equalTo(itemImageView.snp.height).multipliedBy(0.21)
-        }
-
         stepper.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.height.equalToSuperview().multipliedBy(0.8)
             make.trailing.equalToSuperview().inset(8)
-            make.width.equalTo(40)
+            make.width.equalTo(stepper.snp.height).multipliedBy(0.5)
         }
 
+        descriptionVIew.snp.makeConstraints { make in
+            make.leading.equalTo(itemImageView.snp.trailing)
+            make.trailing.equalTo(stepper.snp.leading)
+            make.top.bottom.equalToSuperview()
+        }
+
+        itemDescriptionLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.leading.equalToSuperview().offset(6)
+            make.width.equalToSuperview().multipliedBy(0.95)
+            make.height.equalTo(itemDescriptionLabel.snp.width).multipliedBy(0.3)
+        }
+
+        itemNameLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.bottom.equalTo(itemDescriptionLabel.snp.top).offset(6)
+            make.leading.equalTo(itemDescriptionLabel.snp.leading)
+            make.trailing.equalTo(itemDescriptionLabel.snp.trailing)
+        }
+
+        itemPriceLabel.snp.makeConstraints { make in
+            make.bottom.equalToSuperview()
+            make.top.equalTo(itemDescriptionLabel.snp.bottom)
+            make.leading.equalToSuperview()
+            make.width.equalToSuperview().multipliedBy(0.2)
+        }
     }
 
     @objc
@@ -156,12 +170,12 @@ extension ShoppingCartTableViewCell {
         case let .local(imageAsset):
             itemImageView.image = imageAsset.image
 
-        #if DEBUG
+#if DEBUG
 
         case .test:
             break
 
-        #endif
+#endif
         }
     }
 
