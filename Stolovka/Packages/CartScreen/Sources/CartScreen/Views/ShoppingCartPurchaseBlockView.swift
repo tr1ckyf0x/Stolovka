@@ -4,8 +4,17 @@
 import UIKit
 import SharedResources
 import SnapKit
+import Models
+
+protocol ShoppingCartPurchaseButtonDelegate: AnyObject {
+    func shoppingCartPurchaseBlockView (
+        _ shoppingCartPurchaseView: UIView
+    )
+}
 
 class ShoppingCartPurchaseBlockView: UIView {
+
+    weak var delegate: ShoppingCartPurchaseButtonDelegate?
 
     let calculationView = UIView()
     let purchaseView = UIView()
@@ -106,6 +115,6 @@ extension ShoppingCartPurchaseBlockView {
 
     @objc
     private func purchaseButtonPressed() {
-        print("Purchased")
+        delegate?.shoppingCartPurchaseBlockView(self)
     }
 }
