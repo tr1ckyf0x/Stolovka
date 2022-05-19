@@ -18,6 +18,10 @@ protocol ShoppingCartControllerOutput: AnyObject {
         _ view: ShoppingCartControllerInput,
         didTapRemoveButtonFor foodItem: CountableContainer<FoodItem>
     )
+    func view(
+        _ view: ShoppingCartControllerInput,
+        didTapPurchaseButtonFor shoppingCart: [CountableContainer<FoodItem>]
+    )
 }
 
 // sourcery: AutoMockable

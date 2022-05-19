@@ -16,6 +16,7 @@ public protocol ShoppingCartManagerProtocol {
     func removeFromCart(foodItem: FoodItem, completion: @escaping (Result<Void, Error>) -> Void)
     func fetchCartItems(completion: @escaping (Result<[CountableContainer<FoodItem>], Error>) -> Void)
     func displayNumberOfItems(shoppingCart: [CountableContainer<FoodItem>], completion: @escaping (Result<Void, Error>) -> Void)
+    func purchaseShoppingCartFoodItems(shoppingCart: [CountableContainer<FoodItem>], completion: @escaping (Result<Void, Error>) -> Void)
 }
 
 final class ShoppingCartManager {
@@ -27,6 +28,9 @@ final class ShoppingCartManager {
 
 // MARK: - ShoppingCartManagerProtocol
 extension ShoppingCartManager: ShoppingCartManagerProtocol {
+    func purchaseShoppingCartFoodItems(shoppingCart: [CountableContainer<FoodItem>], completion: @escaping (Result<Void, Error>) -> Void) {
+        print("Purchased")
+    }
 
     func displayNumberOfItems(shoppingCart: [CountableContainer<FoodItem>], completion: @escaping (Result<Void, Error>) -> Void) {
         for item in shoppingCart {

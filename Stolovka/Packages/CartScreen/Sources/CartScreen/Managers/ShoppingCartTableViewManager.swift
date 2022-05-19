@@ -41,11 +41,3 @@ extension ShoppingCartTableViewManager: UITableViewDataSource {
         return cell
     }
 }
-
-// MARK: - ShoppingCartPurchaseBlockDelegate
-
-extension ShoppingCartTableViewManager: ShoppingCartPurchaseButtonDelegate {
-    func shoppingCartPurchaseBlockView(_ shoppingCartPurchaseView: UIView) {
-        print("Purchased \(shoppingCartFoodItems)")
-    }
-}

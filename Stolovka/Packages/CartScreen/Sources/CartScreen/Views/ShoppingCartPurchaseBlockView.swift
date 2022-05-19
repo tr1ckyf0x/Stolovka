@@ -8,6 +8,7 @@ import Models
 
 protocol ShoppingCartPurchaseButtonDelegate: AnyObject {
     func shoppingCartPurchaseBlockView (
+        didPressPurchaseFor shoppingCartItems: CountableContainer<FoodItem>,
         _ shoppingCartPurchaseView: UIView
     )
 }
@@ -15,6 +16,7 @@ protocol ShoppingCartPurchaseButtonDelegate: AnyObject {
 class ShoppingCartPurchaseBlockView: UIView {
 
     weak var delegate: ShoppingCartPurchaseButtonDelegate?
+    private var shoppingCart: CountableContainer<FoodItem>?
 
     let calculationView = UIView()
     let purchaseView = UIView()
@@ -31,6 +33,7 @@ class ShoppingCartPurchaseBlockView: UIView {
         return button
     }()
 
+    // Todo: Count Total number and price of items, remove strings
     private lazy var numberOfItemsLabel: UILabel = {
         let label = UILabel()
         label.alpha = 0.9
@@ -115,6 +118,7 @@ extension ShoppingCartPurchaseBlockView {
 
     @objc
     private func purchaseButtonPressed() {
-        delegate?.shoppingCartPurchaseBlockView(self)
+        guard let shoppingCart = shoppingCart else { return }
+        delegate?.shoppingCartPurchaseBlockView(didPressPurchaseFor: shoppingCart, self)
     }
 }
