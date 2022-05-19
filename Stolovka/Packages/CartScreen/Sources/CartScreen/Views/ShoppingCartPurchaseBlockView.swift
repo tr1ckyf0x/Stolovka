@@ -8,7 +8,7 @@ import Models
 
 protocol ShoppingCartPurchaseButtonDelegate: AnyObject {
     func shoppingCartPurchaseBlockView (
-        didPressPurchaseFor shoppingCartItems: CountableContainer<FoodItem>,
+        didPressPurchaseFor shoppingCartItems: [CountableContainer<FoodItem>],
         _ shoppingCartPurchaseView: UIView
     )
 }
@@ -16,7 +16,7 @@ protocol ShoppingCartPurchaseButtonDelegate: AnyObject {
 class ShoppingCartPurchaseBlockView: UIView {
 
     weak var delegate: ShoppingCartPurchaseButtonDelegate?
-    private var shoppingCart: CountableContainer<FoodItem>?
+    private var shoppingCart: [CountableContainer<FoodItem>] = []
 
     let calculationView = UIView()
     let purchaseView = UIView()
@@ -118,7 +118,6 @@ extension ShoppingCartPurchaseBlockView {
 
     @objc
     private func purchaseButtonPressed() {
-        guard let shoppingCart = shoppingCart else { return }
         delegate?.shoppingCartPurchaseBlockView(didPressPurchaseFor: shoppingCart, self)
     }
 }

@@ -19,6 +19,7 @@ public enum ShoppingCartAssembly {
 
         shoppingCartTableViewManager.delegate = viewController
         viewController.setShoppingCartDataSource(dataSource: shoppingCartTableViewManager)
+        viewController.setShoppingCartPurchaseBlockDelegate(delegate: shoppingCartManager)
         presenter.shoppingCartTableViewManager = shoppingCartTableViewManager
         presenter.fetchCartItemsUseCase = fetchShoppingCartUseCase
         presenter.addToCartUseCase = addToCartItemUseCase

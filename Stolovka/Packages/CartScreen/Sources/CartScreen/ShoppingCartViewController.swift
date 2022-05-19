@@ -29,6 +29,10 @@ final class ShoppingCartViewController: UIViewController {
     func setShoppingCartDataSource(dataSource: UITableViewDataSource) {
         shoppingCartView.shoppingCartTableView.dataSource = dataSource
     }
+
+    func setShoppingCartPurchaseBlockDelegate(delegate: ShoppingCartPurchaseButtonDelegate) {
+        shoppingCartView.shoppingCartPurchaseBlockView.delegate = delegate
+    }
 }
 
 // MARK: - ShoppingCartControllerInput
