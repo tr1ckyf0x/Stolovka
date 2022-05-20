@@ -6,17 +6,15 @@ import SharedResources
 import SnapKit
 import Models
 
-protocol ShoppingCartPurchaseButtonDelegate: AnyObject {
-    func shoppingCartPurchaseBlockView (
-        didPressPurchaseFor shoppingCartItems: [CountableContainer<FoodItem>],
-        _ shoppingCartPurchaseView: UIView
+protocol ShoppingCartPurchaseBlockViewDelegate: AnyObject {
+    func shoppingCartPurchaseBlockViewDidPressPurchase(
+        _ shoppingCartPurchaseBlockView: ShoppingCartPurchaseBlockView
     )
 }
 
 class ShoppingCartPurchaseBlockView: UIView {
 
-    weak var delegate: ShoppingCartPurchaseButtonDelegate?
-    private var shoppingCart: [CountableContainer<FoodItem>] = []
+    weak var delegate: ShoppingCartPurchaseBlockViewDelegate?
 
     let calculationView = UIView()
     let purchaseView = UIView()
@@ -66,15 +64,15 @@ class ShoppingCartPurchaseBlockView: UIView {
 extension ShoppingCartPurchaseBlockView {
     func setupView() {
         [
-        calculationView,
-        purchaseView
+            calculationView,
+            purchaseView
         ].forEach(addSubview(_:))
 
         purchaseView.addSubview(purchaseButton)
 
         [
-        numberOfItemsLabel,
-        totalPriceLabel
+            numberOfItemsLabel,
+            totalPriceLabel
         ].forEach(calculationView.addSubview(_:))
 
         purchaseView.backgroundColor = Asset.Colors.purchaseBlockViewBackground.color
@@ -118,6 +116,6 @@ extension ShoppingCartPurchaseBlockView {
 
     @objc
     private func purchaseButtonPressed() {
-        delegate?.shoppingCartPurchaseBlockView(didPressPurchaseFor: shoppingCart, self)
+        delegate?.shoppingCartPurchaseBlockViewDidPressPurchase(self)
     }
 }

@@ -1,4 +1,3 @@
-
 import Foundation
 import UseCase
 import Models
@@ -13,6 +12,6 @@ public final class PurchaseShoppingCartItemsUseCase: AsyncUseCase<[CountableCont
     }
 
     override public func executeAsync(_ requestArgument: [CountableContainer<FoodItem>], completion: @escaping (Result<Void, Error>) -> Void) {
-        shoppingCart.purchaseShoppingCartFoodItems(shoppingCart: requestArgument, completion: completion)
+       // shoppingCart.purchaseShoppingCartFoodItems(shoppingCart: requestArgument, completion: completion)
     }
 }

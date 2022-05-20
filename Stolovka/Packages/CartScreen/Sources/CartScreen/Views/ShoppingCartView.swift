@@ -34,7 +34,7 @@ extension ShoppingCartView {
             make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(safeAreaLayoutGuide)
             make.width.equalToSuperview()
-            make.height.equalTo(shoppingCartPurchaseBlockView.snp.width).multipliedBy(0.2)
+            make.height.equalTo(100)
         }
 
         shoppingCartTableView.snp.makeConstraints { make in

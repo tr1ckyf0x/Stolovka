@@ -18,21 +18,6 @@ final class ShoppingCartPresenter {
 
 // MARK: - ShoppingCartControllerOutput
 extension ShoppingCartPresenter: ShoppingCartControllerOutput {
-    func view(
-        _ view: ShoppingCartControllerInput,
-        didTapPurchaseButtonFor shoppingCart: [CountableContainer<FoodItem>]
-    ) {
-        purchaseShoppingCartItemsUseCase?.executeAsync(shoppingCart) { [weak self] (result: Result<Void, Error>) in
-            switch result {
-            case .success:
-                self?.fetchShoppingCartItems()
-
-            case.failure:
-                print("Failed to purchase")
-            }
-        }
-    }
-
     func viewDidLoad(_ view: ShoppingCartControllerInput) {
         fetchShoppingCartItems()
     }
@@ -68,6 +53,10 @@ extension ShoppingCartPresenter: ShoppingCartControllerOutput {
                 print("failed to remove an item")
             }
         }
+    }
+
+    func viewDidTapPurchaseButton(_ view: ShoppingCartControllerInput) {
+        print("Hello")
     }
 
 }
