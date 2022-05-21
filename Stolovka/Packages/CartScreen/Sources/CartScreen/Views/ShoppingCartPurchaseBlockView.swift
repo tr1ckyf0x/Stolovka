@@ -59,8 +59,16 @@ class ShoppingCartPurchaseBlockView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 }
+// MARK: - Public Methods
 
+extension ShoppingCartPurchaseBlockView {
+    public func configureView(viewModel: PurchaseBlockViewModel) {
+        numberOfItemsLabel.text = "\(viewModel.quantity)"
+        totalPriceLabel.text = "\(SharedResources.L10n.roubles(viewModel.totalPrice))"
+    }
+}
 // MARK: - Private Methods
+
 extension ShoppingCartPurchaseBlockView {
     func setupView() {
         [
