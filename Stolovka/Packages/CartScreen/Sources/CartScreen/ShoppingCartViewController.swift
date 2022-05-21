@@ -39,6 +39,10 @@ extension ShoppingCartViewController: ShoppingCartControllerInput {
     func reloadShoppingCartTableView() {
         shoppingCartView.shoppingCartTableView.reloadTableView()
     }
+
+    func configureShoppingCartPurchaseBlockLabels(purchaseBlockViewModel: PurchaseBlockViewModel) {
+        shoppingCartView.shoppingCartPurchaseBlockView.configureView(viewModel: purchaseBlockViewModel)
+    }
 }
 
 // MARK: - ShoppingCartViewCellDelegate

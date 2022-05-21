@@ -6,6 +6,7 @@ import Models
 // sourcery: AutoMockable
 protocol ShoppingCartControllerInput: AnyObject {
     func reloadShoppingCartTableView()
+    func configureShoppingCartPurchaseBlockLabels(purchaseBlockViewModel: PurchaseBlockViewModel)
 }
 
 protocol ShoppingCartControllerOutput: AnyObject {

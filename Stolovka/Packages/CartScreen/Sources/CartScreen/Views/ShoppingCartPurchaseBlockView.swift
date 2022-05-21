@@ -4,7 +4,6 @@
 import UIKit
 import SharedResources
 import SnapKit
-import Models
 
 protocol ShoppingCartPurchaseBlockViewDelegate: AnyObject {
     func shoppingCartPurchaseBlockViewDidPressPurchase(

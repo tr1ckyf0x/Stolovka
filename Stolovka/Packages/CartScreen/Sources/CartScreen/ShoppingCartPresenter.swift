@@ -18,6 +18,7 @@ final class ShoppingCartPresenter {
 
 // MARK: - ShoppingCartControllerOutput
 extension ShoppingCartPresenter: ShoppingCartControllerOutput {
+
     func viewDidLoad(_ view: ShoppingCartControllerInput) {
         fetchShoppingCartItems()
     }
@@ -58,7 +59,6 @@ extension ShoppingCartPresenter: ShoppingCartControllerOutput {
     func viewDidTapPurchaseButton(_ view: ShoppingCartControllerInput) {
         print("Hello")
     }
-
 }
 
 // MARK: - Private Methods
@@ -69,6 +69,7 @@ extension ShoppingCartPresenter {
             case let .success(shoppingCartFoodItems):
                 self?.shoppingCartTableViewManager?.setShoppingCartFoodItems(shoppingCartFoodItems)
                 self?.viewController?.reloadShoppingCartTableView()
+                self?.viewController?.configureShoppingCartPurchaseBlockLabels()
 
             case let .failure(error):
                 print(error)

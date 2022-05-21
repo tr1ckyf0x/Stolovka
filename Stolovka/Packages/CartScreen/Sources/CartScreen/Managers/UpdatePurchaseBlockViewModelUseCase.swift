@@ -10,7 +10,7 @@ import UseCase
 import Models
 import ShoppingCartUseCase
 
-final class UpdatePurchaseBlockUseCase: UseCase<[CountableContainer<FoodItem>], PurchaseBlockViewModel> {
+final class UpdatePurchaseBlockViewModelUseCase: UseCase<[CountableContainer<FoodItem>], PurchaseBlockViewModel> {
     let calculateCartItemsUseCase = CalculateCartItemsCountUseCase()
     let calculateTotalPriceUseCase = CalculateCartTotalPriceUseCase()
 
@@ -18,6 +18,7 @@ final class UpdatePurchaseBlockUseCase: UseCase<[CountableContainer<FoodItem>], 
         let totalPrice = calculateTotalPriceUseCase.execute(container)
         let cartItemsNumber = calculateCartItemsUseCase.execute(container)
         let viewModel = PurchaseBlockViewModel(quantity: cartItemsNumber, totalPrice: totalPrice)
+
         return viewModel
     }
 }
