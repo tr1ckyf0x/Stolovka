@@ -12,6 +12,7 @@
 "searchBarMessage" = "Поиск по столовке...";
 "recommendations" = "Старшаки рекомендуют";
 "roubles" = "%@ ₽";
+"goods" = "%@ Товар";
 "NikitaScreenTitle" = "Столовка курильщика";
 "bakery" = "Выпечка";
 "fromYesterday" = "Вчерашнее";
@@ -21,4 +22,5 @@
 "beverage" = "Попить";
 "shopping cart" = "Твой Поднос";
 "purchase" = "Купить";
+
 

@@ -1,5 +1,5 @@
 //
-//  PreparePurchaseBlockViewModelUseCase
+//  PreparePurchaseBlockViewModelUseCase.swift
 //  
 //
 //  Created by Nikita Shvad on 21.05.2022.
@@ -8,7 +8,6 @@
 import Foundation
 import UseCase
 import Models
-import ShoppingCartUseCase
 
 final class PreparePurchaseBlockViewModelUseCase: UseCase<[CountableContainer<FoodItem>], PurchaseBlockViewModel> {
     let calculateCartItemsUseCase: UseCase<[CountableContainer<FoodItem>], Int>

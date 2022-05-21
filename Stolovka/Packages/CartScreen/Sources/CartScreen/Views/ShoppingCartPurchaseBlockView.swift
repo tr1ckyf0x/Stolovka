@@ -34,7 +34,6 @@ class ShoppingCartPurchaseBlockView: UIView {
     private lazy var numberOfItemsLabel: UILabel = {
         let label = UILabel()
         label.alpha = 0.9
-        label.text = "1 Товар"
         label.textColor = Asset.Colors.secondaryText.color
         label.textAlignment = .left
         label.font = .systemFont(ofSize: 14)
@@ -45,7 +44,6 @@ class ShoppingCartPurchaseBlockView: UIView {
         let label = UILabel()
         label.textColor = Asset.Colors.primaryText.color
         label.textAlignment = .left
-        label.text = "1453 Р"
         label.font = .boldSystemFont(ofSize: 16)
         return label
     }()
@@ -62,7 +60,7 @@ class ShoppingCartPurchaseBlockView: UIView {
 // MARK: - Public Methods
 extension ShoppingCartPurchaseBlockView {
     public func configureView(viewModel: PurchaseBlockViewModel) {
-        numberOfItemsLabel.text = "\(viewModel.quantity)"
+        numberOfItemsLabel.text = SharedResources.L10n.goods(viewModel.quantity)
         totalPriceLabel.text = SharedResources.L10n.roubles(viewModel.totalPrice)
     }
 }
