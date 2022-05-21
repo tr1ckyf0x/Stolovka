@@ -1,5 +1,5 @@
 //
-//  UpdatePurchaseBlockUseCase.swift
+//  PreparePurchaseBlockViewModelUseCase
 //  
 //
 //  Created by Nikita Shvad on 21.05.2022.
@@ -22,9 +22,9 @@ final class PreparePurchaseBlockViewModelUseCase: UseCase<[CountableContainer<Fo
         self.calculateTotalPriceUseCase = calculateTotalPriceUseCase
     }
 
-    override func execute(_ container: [CountableContainer<FoodItem>]) -> PurchaseBlockViewModel {
-        let totalPrice = calculateTotalPriceUseCase.execute(container)
-        let cartItemsNumber = calculateCartItemsUseCase.execute(container)
+    override func execute(_ containers: [CountableContainer<FoodItem>]) -> PurchaseBlockViewModel {
+        let totalPrice = calculateTotalPriceUseCase.execute(containers)
+        let cartItemsNumber = calculateCartItemsUseCase.execute(containers)
         let viewModel = PurchaseBlockViewModel(quantity: cartItemsNumber, totalPrice: totalPrice)
 
         return viewModel
