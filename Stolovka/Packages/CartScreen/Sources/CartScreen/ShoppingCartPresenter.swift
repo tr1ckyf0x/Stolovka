@@ -14,7 +14,7 @@ final class ShoppingCartPresenter {
     var addToCartUseCase: AsyncUseCase<FoodItem, Void>?
     var removeFromCartUseCase: AsyncUseCase<FoodItem, Void>?
     var purchaseShoppingCartItemsUseCase: AsyncUseCase<[CountableContainer<FoodItem>], Void>?
-    var updatePurchaseBlockViewModelUseCase: UseCase<[CountableContainer<FoodItem>], PurchaseBlockViewModel>?
+    var presentPurchaseBlockViewModelUseCase: UseCase<[CountableContainer<FoodItem>], PurchaseBlockViewModel>?
 }
 
 // MARK: - ShoppingCartControllerOutput
@@ -70,12 +70,16 @@ extension ShoppingCartPresenter {
             case let .success(shoppingCartFoodItems):
                 self?.shoppingCartTableViewManager?.setShoppingCartFoodItems(shoppingCartFoodItems)
                 self?.viewController?.reloadShoppingCartTableView()
-                guard let shoppingCartViewModel = self?.updatePurchaseBlockViewModelUseCase?.execute(shoppingCartFoodItems) else { return }
-                self?.viewController?.configureShoppingCartPurchaseBlockLabels(purchaseBlockViewModel: shoppingCartViewModel)
+                self?.presentPurchaseModel(from: shoppingCartFoodItems)
 
             case let .failure(error):
                 print(error)
             }
         }
+    }
+
+    private func presentPurchaseModel(from container: [CountableContainer<FoodItem>]) {
+        guard let shoppingCartViewModel = presentPurchaseBlockViewModelUseCase?.execute(container) else { return }
+        viewController?.configureShoppingCartPurchaseBlockLabels(purchaseBlockViewModel: shoppingCartViewModel)
     }
 }

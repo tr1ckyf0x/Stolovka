@@ -31,7 +31,7 @@ public enum ShoppingCartAssembly {
         presenter.addToCartUseCase = addToCartItemUseCase
         presenter.removeFromCartUseCase = removeFromCartUseCase
         presenter.purchaseShoppingCartItemsUseCase = purchaseItemsUseCase
-        presenter.updatePurchaseBlockViewModelUseCase = preparePurchaseBlockViewModelUseCase
+        presenter.presentPurchaseBlockViewModelUseCase = preparePurchaseBlockViewModelUseCase
 
         viewController.presenter = presenter
         presenter.viewController = viewController
