@@ -36,7 +36,7 @@ class ShoppingCartPurchaseBlockView: UIView {
         label.alpha = 0.9
         label.textColor = Asset.Colors.secondaryText.color
         label.textAlignment = .left
-        label.font = .systemFont(ofSize: 14)
+        label.font = .boldSystemFont(ofSize: 15)
         return label
     }()
 
@@ -44,7 +44,7 @@ class ShoppingCartPurchaseBlockView: UIView {
         let label = UILabel()
         label.textColor = Asset.Colors.primaryText.color
         label.textAlignment = .left
-        label.font = .boldSystemFont(ofSize: 16)
+        label.font = .boldSystemFont(ofSize: 20)
         return label
     }()
 
@@ -68,55 +68,32 @@ extension ShoppingCartPurchaseBlockView {
 // MARK: - Private Methods
 extension ShoppingCartPurchaseBlockView {
     func setupView() {
-        [
-            calculationView,
-            purchaseView
-        ].forEach(addSubview(_:))
-
-        purchaseView.addSubview(purchaseButton)
+        self.backgroundColor = Asset.Colors.purchaseBlockViewBackground.color
 
         [
+            purchaseButton,
             numberOfItemsLabel,
             totalPriceLabel
-        ].forEach(calculationView.addSubview(_:))
-
-        purchaseView.backgroundColor = Asset.Colors.purchaseBlockViewBackground.color
-        calculationView.backgroundColor = Asset.Colors.purchaseBlockViewBackground.color
-
-        purchaseView.snp.makeConstraints { make in
-            make.right.equalToSuperview()
-            make.width.equalToSuperview().multipliedBy(0.5)
-            make.height.equalTo(purchaseView.snp.width).multipliedBy(0.4)
-            make.centerY.equalToSuperview()
-            make.bottom.equalToSuperview()
-        }
+        ].forEach(addSubview(_:))
 
         purchaseButton.snp.makeConstraints { make in
-            make.centerY.centerX.equalToSuperview()
-            make.height.equalToSuperview().multipliedBy(0.5)
-            make.width.equalToSuperview().multipliedBy(0.7)
-        }
-
-        calculationView.snp.makeConstraints { make in
-            make.left.equalToSuperview()
-            make.right.equalTo(purchaseView.snp.left)
-            make.height.equalTo(purchaseView.snp.width).multipliedBy(0.4)
+            make.trailing.equalToSuperview().inset(5)
             make.centerY.equalToSuperview()
-            make.bottom.equalToSuperview()
-        }
-
-        numberOfItemsLabel.snp.makeConstraints { make in
-            make.top.trailing.equalToSuperview()
-            make.leading.equalToSuperview().inset(10)
-            make.bottom.equalTo(calculationView.snp.centerY)
+            make.height.equalTo(50)
+            make.width.equalTo(150)
         }
 
         totalPriceLabel.snp.makeConstraints { make in
-            make.trailing.bottom.equalToSuperview()
-            make.leading.equalToSuperview().inset(10)
-            make.top.equalTo(calculationView.snp.centerY)
+            make.bottom.equalToSuperview()
+            make.top.equalTo(purchaseButton.snp.centerY)
+            make.leading.equalToSuperview().inset(8)
         }
 
+        numberOfItemsLabel.snp.makeConstraints { make in
+            make.left.equalToSuperview().inset(8)
+            make.top.equalToSuperview()
+            make.bottom.equalTo(purchaseButton.snp.centerY)
+        }
     }
 
     @objc
