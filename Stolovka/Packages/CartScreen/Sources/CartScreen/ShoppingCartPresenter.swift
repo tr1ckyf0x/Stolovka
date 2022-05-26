@@ -80,6 +80,6 @@ extension ShoppingCartPresenter {
 
     private func updatePurchaseBlock(from containers: [CountableContainer<FoodItem>]) {
         guard let shoppingCartViewModel = preparePurchaseBlockViewModelUseCase?.execute(containers) else { return }
-        viewController?.configureShoppingCartPurchaseBlockLabels(purchaseBlockViewModel: shoppingCartViewModel)
+        viewController?.configurePurchaseBlock(with: shoppingCartViewModel)
     }
 }
