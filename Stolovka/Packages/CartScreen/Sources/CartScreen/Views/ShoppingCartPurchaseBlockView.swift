@@ -11,7 +11,7 @@ protocol ShoppingCartPurchaseBlockViewDelegate: AnyObject {
     )
 }
 
-class ShoppingCartPurchaseBlockView: UIView {
+final class ShoppingCartPurchaseBlockView: UIView {
 
     weak var delegate: ShoppingCartPurchaseBlockViewDelegate?
 
