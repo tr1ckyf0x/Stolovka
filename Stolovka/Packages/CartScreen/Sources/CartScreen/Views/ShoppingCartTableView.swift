@@ -44,6 +44,15 @@ extension ShoppingCartTableView {
         }
     }
 
+    var delegate: UITableViewDelegate? {
+        get {
+            tableView.delegate
+        }
+        set {
+            tableView.delegate = newValue
+        }
+    }
+
 }
 
 // MARK: - Private Methods

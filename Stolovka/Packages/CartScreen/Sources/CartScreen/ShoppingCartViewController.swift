@@ -12,7 +12,10 @@ import SharedResources
 
 final class ShoppingCartViewController: UIViewController {
 
-    private let shoppingCartView = ShoppingCartView()
+    private lazy var shoppingCartView: ShoppingCartView = { shoppingCartView in
+        shoppingCartView.shoppingCartPurchaseBlockView.delegate = self
+        return shoppingCartView
+    }(ShoppingCartView())
 
     var presenter: ShoppingCartControllerOutput?
 
@@ -36,8 +39,13 @@ extension ShoppingCartViewController: ShoppingCartControllerInput {
     func reloadShoppingCartTableView() {
         shoppingCartView.shoppingCartTableView.reloadTableView()
     }
+
+    func configurePurchaseBlock(with viewModel: PurchaseBlockViewModel) {
+        shoppingCartView.shoppingCartPurchaseBlockView.configureView(viewModel: viewModel)
+    }
 }
 
+// MARK: - ShoppingCartViewCellDelegate
 extension ShoppingCartViewController: ShoppingCartViewCellDelegate {
     func shoppingCartViewCell(
         _ foodCollectionViewCell: ShoppingCartTableViewCell,
@@ -54,10 +62,18 @@ extension ShoppingCartViewController: ShoppingCartViewCellDelegate {
     }
 }
 
+// MARK: - ShoppingCartTableViewManagerDelegate
 extension ShoppingCartViewController: ShoppingCartTableViewManagerDelegate {
     func shoppingCartManagerNeedsDelegateForFoodCell(
         _ shoppingTableCartManager: ShoppingCartTableManagerProtocol
     ) -> ShoppingCartViewCellDelegate? {
         self
+    }
+}
+
+// MARK: - ShoppingCartPurchaseBlockViewDelegate
+extension ShoppingCartViewController: ShoppingCartPurchaseBlockViewDelegate {
+    func shoppingCartPurchaseBlockViewDidPressPurchase(_ shoppingCartPurchaseBlockView: ShoppingCartPurchaseBlockView) {
+        presenter?.viewDidTapPurchaseButton(self)
     }
 }

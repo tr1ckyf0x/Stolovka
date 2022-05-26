@@ -44,6 +44,7 @@ final class ShoppingCartTableViewCell: UITableViewCell {
         label.textAlignment = .left
         label.textColor = SharedResources.Asset.Colors.primaryText.color
         label.font = .systemFont(ofSize: 22)
+        label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.6
         return label
     }()
@@ -98,45 +99,48 @@ extension ShoppingCartTableViewCell {
         self.backgroundColor = Asset.Colors.tableViewBackground.color
         [
             itemImageView,
-            itemDescriptionLabel,
             itemNameLabel,
-            itemPriceLabel,
-            stepper
+            stepper,
+            itemDescriptionLabel,
+            itemPriceLabel
         ].forEach(contentView.addSubview(_:))
 
         itemImageView.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview()
             make.leading.equalToSuperview().offset(8)
-            make.width.equalToSuperview().multipliedBy(0.32)
             make.height.equalTo(itemImageView.snp.width).priority(999)
+            make.width.equalTo(110)
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
+
+        stepper.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().inset(5)
+            make.centerY.equalToSuperview()
+            make.height.equalTo(itemImageView.snp.height).inset(10)
+            make.width.equalTo(30)
         }
 
         itemNameLabel.snp.makeConstraints { make in
-            make.leading.equalTo(itemImageView.snp.trailing).offset(10)
-            make.top.equalToSuperview().offset(8)
-            make.height.equalTo(itemImageView.snp.height).multipliedBy(0.21)
+            make.top.equalTo(itemImageView.snp.top)
+            make.height.equalTo(35)
+            make.leading.equalTo(itemImageView.snp.trailing).inset(-8)
+            make.trailing.equalTo(stepper.snp.leading)
         }
 
         itemDescriptionLabel.snp.makeConstraints { make in
             make.leading.equalTo(itemNameLabel.snp.leading)
-            make.top.equalTo(itemNameLabel.snp.bottom).offset(8)
-            make.height.equalTo(itemImageView.snp.height).multipliedBy(0.21)
-            make.width.equalToSuperview().multipliedBy(0.5)
+            make.top.equalTo(itemNameLabel.snp.bottom)
+            make.height.equalTo(45)
+            make.trailing.equalTo(stepper.snp.leading)
+
         }
 
         itemPriceLabel.snp.makeConstraints { make in
+            make.top.equalTo(itemDescriptionLabel.snp.bottom)
+            make.bottom.equalToSuperview()
+            make.trailing.equalTo(stepper.snp.leading)
             make.leading.equalTo(itemNameLabel.snp.leading)
-            make.top.equalTo(itemDescriptionLabel.snp.bottom).offset(8)
-            make.height.equalTo(itemImageView.snp.height).multipliedBy(0.21)
         }
-
-        stepper.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.height.equalToSuperview().multipliedBy(0.8)
-            make.trailing.equalToSuperview().inset(8)
-            make.width.equalTo(40)
-        }
-
     }
 
     @objc
@@ -156,12 +160,12 @@ extension ShoppingCartTableViewCell {
         case let .local(imageAsset):
             itemImageView.image = imageAsset.image
 
-        #if DEBUG
+#if DEBUG
 
         case .test:
             break
 
-        #endif
+#endif
         }
     }
 

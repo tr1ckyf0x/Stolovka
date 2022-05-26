@@ -15,6 +15,13 @@ public enum ShoppingCartAssembly {
         let fetchShoppingCartUseCase = FetchShoppingCartUseCase(shoppingCart: shoppingCartManager)
         let addToCartItemUseCase = AddToCartUseCase(shoppingCart: shoppingCartManager)
         let removeFromCartUseCase = RemoveShoppingCartItemUseCase(shoppingCart: shoppingCartManager)
+        let calculateCartItemsCountUseCase = CalculateCartItemsCountUseCase()
+        let calculateCartTotalPriceUseCase = CalculateCartTotalPriceUseCase()
+
+        let preparePurchaseBlockViewModelUseCase = PreparePurchaseBlockViewModelUseCase(
+            calculateCartItemsUseCase: calculateCartItemsCountUseCase,
+            calculateTotalPriceUseCase: calculateCartTotalPriceUseCase
+        )
 
         shoppingCartTableViewManager.delegate = viewController
         viewController.setShoppingCartDataSource(dataSource: shoppingCartTableViewManager)
@@ -22,6 +29,7 @@ public enum ShoppingCartAssembly {
         presenter.fetchCartItemsUseCase = fetchShoppingCartUseCase
         presenter.addToCartUseCase = addToCartItemUseCase
         presenter.removeFromCartUseCase = removeFromCartUseCase
+        presenter.preparePurchaseBlockViewModelUseCase = preparePurchaseBlockViewModelUseCase
 
         viewController.presenter = presenter
         presenter.viewController = viewController

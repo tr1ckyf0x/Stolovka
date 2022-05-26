@@ -6,6 +6,7 @@ import Models
 // sourcery: AutoMockable
 protocol ShoppingCartControllerInput: AnyObject {
     func reloadShoppingCartTableView()
+    func configurePurchaseBlock(with viewModel: PurchaseBlockViewModel)
 }
 
 protocol ShoppingCartControllerOutput: AnyObject {
@@ -17,6 +18,9 @@ protocol ShoppingCartControllerOutput: AnyObject {
     func view(
         _ view: ShoppingCartControllerInput,
         didTapRemoveButtonFor foodItem: CountableContainer<FoodItem>
+    )
+    func viewDidTapPurchaseButton(
+        _ view: ShoppingCartControllerInput
     )
 }
 
