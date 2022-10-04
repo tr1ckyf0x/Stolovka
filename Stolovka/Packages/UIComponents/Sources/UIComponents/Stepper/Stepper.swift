@@ -51,7 +51,7 @@ public final class Stepper: UIView {
         view.layer.cornerRadius = 4
         view.backgroundColor = Asset.Colors.tableViewBackground.color
         view.layer.borderColor = Asset.Colors.stepperNumber.color.cgColor
-        view.layer.borderWidth = 1
+        view.layer.borderWidth = 0.5
         return view
     }(UIView())
 
@@ -83,6 +83,8 @@ extension Stepper {
 extension Stepper {
     private func setupView() {
         self.backgroundColor = Asset.Colors.stepperBackground.color
+        self.layer.borderColor = Asset.Colors.stepperNumber.color.cgColor
+        self.layer.borderWidth = 0.5
         self.layer.cornerRadius = 4
 
         [

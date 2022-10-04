@@ -23,16 +23,16 @@ struct StepperVerticalConstraintStrategy: StepperConstraintStrategy {
         }
 
         countLabel.snp.makeConstraints { make in
-            make.top.bottom.width.height.left.right.equalTo(countLabelBackgroundView).inset(4)
+            make.top.bottom.width.height.left.right.equalTo(countLabelBackgroundView).inset(2)
         }
 
         incrementButton.snp.makeConstraints { make in
-            make.top.left.right.equalToSuperview().inset(4)
+            make.top.left.right.equalToSuperview().inset(2)
             make.bottom.equalTo(countLabelBackgroundView.snp.top)
         }
 
         decrementButton.snp.makeConstraints { make in
-            make.bottom.left.right.equalToSuperview().inset(4)
+            make.bottom.left.right.equalToSuperview().inset(2)
             make.top.equalTo(countLabelBackgroundView.snp.bottom)
         }
     }
