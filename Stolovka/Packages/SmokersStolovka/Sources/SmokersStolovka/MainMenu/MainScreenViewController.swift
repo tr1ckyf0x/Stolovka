@@ -89,7 +89,6 @@ extension MainScreenViewController {
 
     @objc
     private func didTapMenuButton() {
-        print("Tapped Menu Button")
     }
 }
 

@@ -34,7 +34,7 @@ extension StolovkaMainScreenPresenter: MainScreenControllerOutput {
         addToCartUseCase?.executeAsync(foodItem) { (result: Result<Void, Error>) in
             switch result {
             case .success:
-                print("Success")
+                Void()
 
             case .failure:
                 print("Failure")
