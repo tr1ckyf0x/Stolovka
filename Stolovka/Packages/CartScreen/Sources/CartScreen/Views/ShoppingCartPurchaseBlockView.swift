@@ -30,7 +30,6 @@ final class ShoppingCartPurchaseBlockView: UIView {
         return button
     }()
 
-    // Todo: Count Total number and price of items, remove strings
     private lazy var numberOfItemsLabel: UILabel = {
         let label = UILabel()
         label.alpha = 0.9
@@ -69,6 +68,7 @@ extension ShoppingCartPurchaseBlockView {
 extension ShoppingCartPurchaseBlockView {
     func setupView() {
         self.backgroundColor = Asset.Colors.purchaseBlockViewBackground.color
+        self.layer.cornerRadius = 5
 
         [
             purchaseButton,
