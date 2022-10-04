@@ -19,6 +19,7 @@ protocol ShoppingCartControllerOutput: AnyObject {
         _ view: ShoppingCartControllerInput,
         didTapRemoveButtonFor foodItem: CountableContainer<FoodItem>
     )
+
     func viewDidTapPurchaseButton(
         _ view: ShoppingCartControllerInput
     )

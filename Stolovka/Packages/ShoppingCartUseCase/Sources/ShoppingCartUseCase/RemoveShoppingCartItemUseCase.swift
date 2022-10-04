@@ -1,10 +1,3 @@
-//
-//  RemoveShoppingCartItemUseCase.swift
-//  
-//
-//  Created by Vladislav Lisianskii on 09.04.2022.
-//
-
 import Foundation
 import Models
 import Managers
