@@ -12,8 +12,7 @@ final class ShoppingCartPresenter {
     var fetchCartItemsUseCase: AsyncUseCase<Void, [CountableContainer<FoodItem>]>?
     var shoppingCartTableViewManager: ShoppingCartTableManagerProtocol?
     var addToCartUseCase: AsyncUseCase<FoodItem, Void>?
-    var removeFromCartUseCase: AsyncUseCase<FoodItem, Void>?
-    var itemRemovalAlertUseCase: AsyncUseCase<FoodItem, Void>?
+    var removeFromCartUseCase: AsyncUseCase<CountableContainer<FoodItem>, Void>?
     var purchaseShoppingCartItemsUseCase: AsyncUseCase<[CountableContainer<FoodItem>], Void>?
     var preparePurchaseBlockViewModelUseCase: UseCase<[CountableContainer<FoodItem>], PurchaseBlockViewModel>?
 }
@@ -44,19 +43,7 @@ extension ShoppingCartPresenter: ShoppingCartControllerOutput {
         _ view: ShoppingCartControllerInput,
         didTapRemoveButtonFor foodItem: CountableContainer<FoodItem>
     ) {
-        if foodItem.quantity == 1 {
-            itemRemovalAlertUseCase?.executeAsync(foodItem.item) { [weak self] (result: Result<Void, Error>) in
-                switch result {
-                case .success:
-                    self?.fetchShoppingCartItems()
-
-                case .failure:
-                    print("failed to remove an item")
-                }
-            }
-            return
-        }
-        removeFromCartUseCase?.executeAsync(foodItem.item) { [weak self] (result: Result<Void, Error>) in
+        removeFromCartUseCase?.executeAsync(foodItem) { [weak self] (result: Result<Void, Error>) in
             switch result {
             case .success:
                 self?.fetchShoppingCartItems()

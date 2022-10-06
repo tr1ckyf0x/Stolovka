@@ -13,10 +13,9 @@ public enum ShoppingCartAssembly {
         let shoppingCartManager = ManagerFactory.shared.shoppingCartManager
         let fetchShoppingCartUseCase = FetchShoppingCartUseCase(shoppingCart: shoppingCartManager)
         let addToCartItemUseCase = AddToCartUseCase(shoppingCart: shoppingCartManager)
-        let removeFromCartUseCase = RemoveShoppingCartItemUseCase(shoppingCart: shoppingCartManager)
+        let removeFromCartUseCase = RemoveShoppingCartItemUseCase(shoppingCart: shoppingCartManager, itemRemovalAlert: itemRemovalAlert)
         let calculateCartItemsCountUseCase = CalculateCartItemsCountUseCase()
         let calculateCartTotalPriceUseCase = CalculateCartTotalPriceUseCase()
-        let itemRemovalAlertUseCase = ItemRemovalAlertUseCase(shoppingCart: shoppingCartManager, itemRemovalAlert: itemRemovalAlert)
 
         let preparePurchaseBlockViewModelUseCase = PreparePurchaseBlockViewModelUseCase(
             calculateCartItemsUseCase: calculateCartItemsCountUseCase,
@@ -30,7 +29,6 @@ public enum ShoppingCartAssembly {
         presenter.addToCartUseCase = addToCartItemUseCase
         presenter.removeFromCartUseCase = removeFromCartUseCase
         presenter.preparePurchaseBlockViewModelUseCase = preparePurchaseBlockViewModelUseCase
-        presenter.itemRemovalAlertUseCase = itemRemovalAlertUseCase
 
         viewController.presenter = presenter
         presenter.viewController = viewController
