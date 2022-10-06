@@ -23,7 +23,7 @@ public final class ItemRemovalAlert: ItemRemovalAlertProtocol {
     ) {
         let alert = UIAlertController(
             title: SharedResources.L10n.removeItemAlertTitle,
-            message: SharedResources.L10n.removeItemAlertMessage(itemName),
+            message: SharedResources.L10n.removeItemAlertMessage,
             preferredStyle: UIAlertController.Style.alert
         )
 

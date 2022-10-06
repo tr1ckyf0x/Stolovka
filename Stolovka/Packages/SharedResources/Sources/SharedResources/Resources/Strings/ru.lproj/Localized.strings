@@ -23,9 +23,9 @@
 "shopping cart" = "Твой Поднос";
 "purchase" = "Купить";
 
-"ok" = "Хорошо";
-"cancel" = "Отменить";
-"removeItemAlertMessage" = "Убрать %@ из корзины?";
+"ok" = "Да";
+"cancel" = "Нет";
+"removeItemAlertMessage" = "Убрать товар из корзины?";
 "removeItemAlertTitle" = "Вы уверены?";
 
 
