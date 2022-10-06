@@ -1,10 +1,3 @@
-//
-//  CalculateCartTotalPriceUseCase.swift
-//  
-//
-//  Created by Nikita Shvad on 21.05.2022.
-//
-
 import Foundation
 import UseCase
 import Models
