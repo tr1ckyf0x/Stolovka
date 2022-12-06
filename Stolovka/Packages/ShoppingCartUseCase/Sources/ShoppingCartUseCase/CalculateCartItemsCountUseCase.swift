@@ -1,6 +1,3 @@
-//  Created by Nikita Shvad on 13.05.2022.
-//
-
 import Foundation
 import UseCase
 import Models

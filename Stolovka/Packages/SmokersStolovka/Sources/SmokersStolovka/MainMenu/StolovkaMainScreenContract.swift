@@ -1,11 +1,3 @@
-//
-//  StolovkaMainScreenContract.swift
-//  Stolovka
-//
-//  Created by Nikita Shvad on 07.01.2022.
-//  Copyright © 2022 Владислав Лисянский. All rights reserved.
-//
-
 import UIKit
 import Models
 

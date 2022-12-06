@@ -12,7 +12,7 @@ final class ShoppingCartPresenter {
     var fetchCartItemsUseCase: AsyncUseCase<Void, [CountableContainer<FoodItem>]>?
     var shoppingCartTableViewManager: ShoppingCartTableManagerProtocol?
     var addToCartUseCase: AsyncUseCase<FoodItem, Void>?
-    var removeFromCartUseCase: AsyncUseCase<FoodItem, Void>?
+    var removeFromCartUseCase: AsyncUseCase<CountableContainer<FoodItem>, Void>?
     var purchaseShoppingCartItemsUseCase: AsyncUseCase<[CountableContainer<FoodItem>], Void>?
     var preparePurchaseBlockViewModelUseCase: UseCase<[CountableContainer<FoodItem>], PurchaseBlockViewModel>?
 }
@@ -43,10 +43,7 @@ extension ShoppingCartPresenter: ShoppingCartControllerOutput {
         _ view: ShoppingCartControllerInput,
         didTapRemoveButtonFor foodItem: CountableContainer<FoodItem>
     ) {
-        if foodItem.quantity == 1 {
-            // TODO: Confirmation
-        }
-        removeFromCartUseCase?.executeAsync(foodItem.item) { [weak self] (result: Result<Void, Error>) in
+        removeFromCartUseCase?.executeAsync(foodItem) { [weak self] (result: Result<Void, Error>) in
             switch result {
             case .success:
                 self?.fetchShoppingCartItems()
@@ -58,7 +55,6 @@ extension ShoppingCartPresenter: ShoppingCartControllerOutput {
     }
 
     func viewDidTapPurchaseButton(_ view: ShoppingCartControllerInput) {
-        print("Hello")
     }
 }
 

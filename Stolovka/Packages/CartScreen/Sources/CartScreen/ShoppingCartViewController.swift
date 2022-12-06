@@ -36,6 +36,7 @@ final class ShoppingCartViewController: UIViewController {
 
 // MARK: - ShoppingCartControllerInput
 extension ShoppingCartViewController: ShoppingCartControllerInput {
+
     func reloadShoppingCartTableView() {
         shoppingCartView.shoppingCartTableView.reloadTableView()
     }

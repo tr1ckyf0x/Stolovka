@@ -1,10 +1,3 @@
-//
-//  StolovkaMainScreenPresenter.swift
-//  Stolovka
-//
-//  Created by Nikita Shvad on 07.01.2022.
-//  Copyright © 2022 Владислав Лисянский. All rights reserved.
-//
 import Foundation
 import UseCase
 import Models
@@ -41,7 +34,7 @@ extension StolovkaMainScreenPresenter: MainScreenControllerOutput {
         addToCartUseCase?.executeAsync(foodItem) { (result: Result<Void, Error>) in
             switch result {
             case .success:
-                print("Success")
+                print("Item added to cart")
 
             case .failure:
                 print("Failure")

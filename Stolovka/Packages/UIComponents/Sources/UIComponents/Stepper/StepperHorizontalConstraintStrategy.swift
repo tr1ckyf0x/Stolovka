@@ -1,10 +1,3 @@
-//
-//  StepperHorizontalConstraintStrategy.swift
-//  
-//
-//  Created by Vladislav Lisianskii on 08.05.2022.
-//
-
 import UIKit
 import SnapKit
 

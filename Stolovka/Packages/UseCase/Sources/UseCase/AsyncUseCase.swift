@@ -1,10 +1,3 @@
-//
-//  AsyncUseCase.swift
-//  
-//
-//  Created by Vladislav Lisianskii on 06.01.2022.
-//
-
 import Foundation
 
 public protocol AsyncUseCaseProtocol {

@@ -6,15 +6,14 @@ import ShoppingCartUseCase
 
 public enum ShoppingCartAssembly {
     public static func assembleShoppingCart() -> UIViewController {
-
         let viewController = ShoppingCartViewController()
         let presenter = ShoppingCartPresenter()
-
+        let itemRemovalAlert = ItemRemovalAlert(viewController: viewController)
         let shoppingCartTableViewManager = ShoppingCartTableViewManager()
         let shoppingCartManager = ManagerFactory.shared.shoppingCartManager
         let fetchShoppingCartUseCase = FetchShoppingCartUseCase(shoppingCart: shoppingCartManager)
         let addToCartItemUseCase = AddToCartUseCase(shoppingCart: shoppingCartManager)
-        let removeFromCartUseCase = RemoveShoppingCartItemUseCase(shoppingCart: shoppingCartManager)
+        let removeFromCartUseCase = RemoveShoppingCartItemUseCase(shoppingCart: shoppingCartManager, itemRemovalAlert: itemRemovalAlert)
         let calculateCartItemsCountUseCase = CalculateCartItemsCountUseCase()
         let calculateCartTotalPriceUseCase = CalculateCartTotalPriceUseCase()
 

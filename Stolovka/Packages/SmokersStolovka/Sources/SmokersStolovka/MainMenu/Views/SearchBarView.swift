@@ -63,5 +63,4 @@ class SearchBarView: UIView {
     func didTapSearchButton () {
         print("Tapped Search Settings Button")
     }
-
 }
