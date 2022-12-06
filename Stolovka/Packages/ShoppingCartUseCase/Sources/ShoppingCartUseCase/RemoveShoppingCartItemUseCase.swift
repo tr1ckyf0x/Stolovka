@@ -5,7 +5,7 @@ import UseCase
 
 public final class RemoveShoppingCartItemUseCase: AsyncUseCase<CountableContainer<FoodItem>, Void> {
 
-    private let shoppingCart: ShoppingCartManagerProtocol
+    private var shoppingCart: ShoppingCartManagerProtocol
     private let itemRemovalAlert: ItemRemovalAlertProtocol
 
     public init(shoppingCart: ShoppingCartManagerProtocol, itemRemovalAlert: ItemRemovalAlertProtocol) {
@@ -15,9 +15,11 @@ public final class RemoveShoppingCartItemUseCase: AsyncUseCase<CountableContaine
 
     override public func executeAsync(_ foodItem: CountableContainer<FoodItem>, completion: @escaping (Result<Void, Error>) -> Void) {
         if foodItem.quantity == 1 {
-            itemRemovalAlert.presentRemoveItemAlert(
+            itemRemovalAlert.onSuccess(
                 itemName: foodItem.item.name,
-                success: { self.shoppingCart.removeFromCart(foodItem: foodItem.item, completion: completion) },
+                success: { [weak self] in
+                    self?.shoppingCart.removeFromCart(foodItem: foodItem.item, completion: completion)
+                },
                 cancel: { }
             )
         } else {

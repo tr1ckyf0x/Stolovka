@@ -2,7 +2,7 @@ import UIKit
 import SharedResources
 
 public protocol ItemRemovalAlertProtocol {
-    func presentRemoveItemAlert(
+    func onSuccess(
         itemName: String,
         success: @escaping () -> Void?,
         cancel: @escaping () -> Void?
@@ -10,13 +10,13 @@ public protocol ItemRemovalAlertProtocol {
 }
 
 public final class ItemRemovalAlert: ItemRemovalAlertProtocol {
-    let viewController: UIViewController
+    weak var viewController: UIViewController?
 
    public init(viewController: UIViewController) {
         self.viewController = viewController
     }
 
-    public func presentRemoveItemAlert(
+    public func onSuccess(
         itemName: String,
         success: @escaping () -> Void?,
         cancel: @escaping () -> Void?
@@ -37,6 +37,7 @@ public final class ItemRemovalAlert: ItemRemovalAlertProtocol {
         alert.addAction(okAction)
         alert.addAction(cancelAction)
 
+        guard let viewController = viewController else { return }
         viewController.present(alert, animated: true)
     }
 }
